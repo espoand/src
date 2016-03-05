@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.MostraAutoController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+         <menus>
+            <Menu mnemonicParsing="false" text="Quit">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" />
+              </items>
+            </Menu>
+         </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+            <Text layoutX="32.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TARGA" />
+            <Text layoutX="337.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MODELLO" />
+            <TextField fx:id="targa" editable="false" layoutX="119.0" layoutY="117.0" />
+            <TextField fx:id="modello" editable="false" layoutX="447.0" layoutY="116.0" />
+            <Text layoutX="30.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FASCIA" />
+            <TextField fx:id="fascia" editable="false" layoutX="119.0" layoutY="217.0">
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu></TextField>
+            <TextField fx:id="km" editable="false" layoutX="447.0" layoutY="217.0" />
+            <Text layoutX="336.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KM PERCORSI" />
+            <Button fx:id="indietro" layoutX="281.0" layoutY="293.0" mnemonicParsing="false" onAction="#indietro" text="INDIETRO" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
