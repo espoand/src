@@ -9,6 +9,7 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 	@Override
 	public Object handleRequest(String request) {
 		// TODO Auto-generated method stub
+		Command command;
 		Object risultato = null;
 		switch(request){
 		case "AggiungiAuto":
@@ -66,6 +67,8 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			dispatcher.apriView("SchermataOperatore");break;
 		case "Login":
 			dispatcher.apriView("Login");break;
+		case "TutteTariffe":
+			command = new TutteTariffe();
 		
 		}
 		return risultato;
@@ -97,6 +100,7 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		case "RimuoviAuto":
 			command = new RimuoviAuto();
 			result = command.execute(parameters.get(0));break;
+		
 			}
 		return result;
 		}

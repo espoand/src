@@ -1,6 +1,10 @@
 package utility;
 
+import java.time.LocalDate;
+
 import entity.Auto;
+import entity.TariffaBase;
+import java.time.temporal.ChronoUnit;
 
 public  class Sessione {
 static String username;
@@ -9,6 +13,12 @@ static String viewAttuale;
 static String viewPrecedente;
 //utile per mostrare l'auto che l'utente ha cercato
 static Auto autoAttuale;
+//trova la data odierna
+public static LocalDate today(){
+	LocalDate today = LocalDate.now();
+	return today;
+	
+}
 
 public Sessione(String username,TipoUtente tipo){
 	this.username=username;
@@ -49,4 +59,29 @@ public static String getUsername(){
 public static void setTipoUtente(TipoUtente t){
 	tipo=t;
 }
+//calcola il totale in base ai km,poi se non si riconsegna in tempo scatta la mora per ogni giorno
+public static double calcolaTotale(LocalDate riconsegna,boolean illimitati,TariffaBase tariffa,double kmDaPercorrere){
+	LocalDate oggi = today();
+	long durata = ChronoUnit.
+	double totale;
+	if(illimitati){
+		totale = tariffa.getCostoAlGiornoExtra() * durata;
+	}
+	else{
+		totale = tariffa.getCostoAlKm() * kmDaPercorrere;
+	}
+	return totale;
+	
+}
+public static void main(String[] args){
+	LocalDate riconsegna = LocalDate.of(2016, 03, 16);
+	TariffaBase tariffa = new TariffaBase("prova",1.70,5,50);
+	System.out.println(Double.toString(Sessione.calcolaTotale(riconsegna,false,tariffa,400)));
+	System.out.println(Double.toString(Sessione.calcolaTotale(riconsegna,true,tariffa,400)));
+	LocalDate riconsegnaDopoUnMese = LocalDate.of(2016, 04, 06);
+	System.out.println(Double.toString(Sessioasfane.calcolaTotale(riconsegnaDopoUnMese,false,tariffa,400)));
+
+
+}
+
 }

@@ -6,6 +6,7 @@ double costoAlKmExtra;
 double costoAlGiornoExtra;
 String nome;
 public TariffaBase(String nome,double c,double d,double e){
+	this.nome = nome;
 	costoAlKm = c;
 	costoAlKmExtra = d;
 	costoAlGiornoExtra=e;

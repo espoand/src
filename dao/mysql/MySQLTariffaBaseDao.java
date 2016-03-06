@@ -5,8 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import dao.TariffaBaseDao;
+import entity.Auto;
 import entity.TariffaBase;
 import exceptions.DatabaseConnectionException;
 
@@ -92,6 +95,31 @@ public class MySQLTariffaBaseDao implements TariffaBaseDao{
 			e.printStackTrace();
 		}
 		return effettuato;
+		
+	}
+
+	@Override
+	public ArrayList<TariffaBase> getTariffe() {
+		// TODO Auto-generated method stub
+		
+		ArrayList<TariffaBase>  tutteTariffe= null;
+		String query = "SELECT * FROM TariffaBase";
+		
+			Connection connessione;
+			try {
+				connessione = MySqlDaoFactory.getConnection();
+				Statement statement = connessione.createStatement();
+			ResultSet risultato= statement.executeQuery(query);
+			tutteTariffe=new ArrayList<TariffaBase>();
+			while(risultato.next()){
+				
+				tutteTariffe.add(new TariffaBase(risultato.getString("Nome"),risultato.getDouble("Costo_al_km"),risultato.getDouble("Costo_al_giorno_extra"),risultato.getDouble("Costo_al_giorno_extra")));
+			}
+			} catch (DatabaseConnectionException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return tutteTariffe;
 		
 	}
 	
