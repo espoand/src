@@ -2,6 +2,7 @@ package presentation.ui.controller;
 
 import java.util.ArrayList;
 
+import entity.ModalitaNoleggio;
 import entity.Noleggio;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -78,5 +79,7 @@ public void indietro(){
 public void quit(){
 	Sessione.azzera();
 	System.exit(0);
+	
+	
 }
 }

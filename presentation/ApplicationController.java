@@ -56,6 +56,8 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			dispatcher.apriView("mostraNoleggio");break;
 		case "MostraTariffaBase":
 			dispatcher.apriView("mostraTariffaBase");break;
+		case "MostraOperatore":
+			dispatcher.apriView("mostraOperatore");break;
 		case "SchermataAmministratore":
 			dispatcher.apriView("SchermataAmministratore");break;
 		case "SchermataOperatore":
@@ -129,6 +131,9 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			result = command.execute(parameters.get(0));break;
 		case "RimuoviNoleggio":
 			command = new RimuoviNoleggio();
+			result = command.execute(parameters.get(0));break;
+		case "CercaOperatore":
+			command = new CercaOperatore();
 			result = command.execute(parameters.get(0));break;
 		}
 		return result;

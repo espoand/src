@@ -6,6 +6,7 @@ import entity.Auto;
 import entity.Cliente;
 import entity.Fascia;
 import entity.Noleggio;
+import entity.Operatore;
 import entity.TariffaBase;
 import java.time.temporal.ChronoUnit;
 
@@ -20,6 +21,16 @@ static Cliente clienteAttuale;
 static Fascia fasciaAttuale;
 static TariffaBase tariffaAttuale;
 static Noleggio noleggioAttuale;
+static Operatore operatoreAttuale;
+
+public static Operatore getOperatoreAttuale() {
+	return operatoreAttuale;
+}
+
+public static void setOperatoreAttuale(Operatore operatoreAttuale) {
+	Sessione.operatoreAttuale = operatoreAttuale;
+}
+
 public static Noleggio getNoleggioAttuale() {
 	return noleggioAttuale;
 }
@@ -72,6 +83,8 @@ public static void azzera(){
 	clienteAttuale = null;
 	fasciaAttuale = null;
 	tariffaAttuale = null;
+	noleggioAttuale = null;
+	operatoreAttuale = null;
 }
 public static TariffaBase getTariffaAttuale() {
 	return tariffaAttuale;
