@@ -3,6 +3,7 @@ package utility;
 import java.time.LocalDate;
 
 import entity.Auto;
+import entity.Cliente;
 import entity.TariffaBase;
 import java.time.temporal.ChronoUnit;
 
@@ -13,6 +14,7 @@ static String viewAttuale;
 static String viewPrecedente;
 //utile per mostrare l'auto che l'utente ha cercato
 static Auto autoAttuale;
+static Cliente clienteAttuale;
 //trova la data odierna
 public static LocalDate today(){
 	LocalDate today = LocalDate.now();
@@ -46,6 +48,7 @@ public static void azzera(){
 	viewAttuale=null;
 	viewPrecedente = null;
 	autoAttuale = null;
+	clienteAttuale = null;
 }
 public static String getPrecedente(){
 	return viewPrecedente;
@@ -59,7 +62,18 @@ public static String getUsername(){
 public static void setTipoUtente(TipoUtente t){
 	tipo=t;
 }
+
 //calcola il totale in base ai km,poi se non si riconsegna in tempo scatta la mora per ogni giorno
+public static Cliente getClienteAttuale() {
+	return clienteAttuale;
+}
+
+
+  public static void setClienteAttuale(Cliente clienteAttuale) {
+
+	Sessione.clienteAttuale = clienteAttuale;
+}
+/*
 public static double calcolaTotale(LocalDate riconsegna,boolean illimitati,TariffaBase tariffa,double kmDaPercorrere){
 	LocalDate oggi = today();
 	long durata = ChronoUnit.
@@ -82,6 +96,6 @@ public static void main(String[] args){
 	System.out.println(Double.toString(Sessioasfane.calcolaTotale(riconsegnaDopoUnMese,false,tariffa,400)));
 
 
-}
+}*/
 
 }

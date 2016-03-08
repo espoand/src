@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -23,9 +24,9 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <TextField id="username" fx:id="username" layoutX="237.0" layoutY="103.0" text="USERNAME" />
-            <TextField id="password" fx:id="password" layoutX="237.0" layoutY="172.0" text="PASSWORD" />
-            <Button id="loginButton" fx:id="submit" layoutX="300.0" layoutY="252.0" mnemonicParsing="false" onAction="#submitLogin" text="Login" />
+            <Button id="loginButton" fx:id="submit" layoutX="300.0" layoutY="252.0" mnemonicParsing="false" onAction="#submit" text="Login" />
             <Text layoutX="209.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Benvenuto in CarLoan! Effettua il login" />
+            <PasswordField fx:id="password" layoutX="237.0" layoutY="159.0" text="Password" />
          </children>
     </AnchorPane>
   </children>

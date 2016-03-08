@@ -25,18 +25,7 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		case "AggiungiTariffaBase":
 			dispatcher.apriView("aggiungiTariffaBase");break;
 		
-		case "CercaCliente":
-			dispatcher.apriView("cercaCliente");break;
-		case "CercaFascia":
-			dispatcher.apriView("cercaFascia");break;
-		case "CercaNoleggio":
-			dispatcher.apriView("cercaNoleggio");break;
-		case "CercaOperatore":
-			dispatcher.apriView("cercaOperatore");break;
-		case "CercaTariffaBase":
-			dispatcher.apriView("cercaTariffaBase");break;
-		case "Contratto":
-			dispatcher.apriView("contratto");break;
+	
 		case "GestioneAuto":
 			dispatcher.apriView("gestioneAuto");break;
 		case "GestioneCliente":
@@ -61,6 +50,8 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			dispatcher.apriView("modificaTariffaBase");break;
 		case "MostraAuto":
 			dispatcher.apriView("MostraAuto");break;
+		case "MostraCliente":
+			dispatcher.apriView("MostraCliente");break;
 		case "SchermataAmministratore":
 			dispatcher.apriView("SchermataAmministratore");break;
 		case "SchermataOperatore":
@@ -69,6 +60,13 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			dispatcher.apriView("Login");break;
 		case "TutteTariffe":
 			command = new TutteTariffe();
+			risultato = command.execute("");break;
+		case "TutteAgenzie":
+			command = new TutteAgenzie();
+			risultato = command.execute("");break;
+		case "TuttiClienti":
+			command = new TuttiClienti();
+			risultato = command.execute("");break;
 		
 		}
 		return risultato;
@@ -100,9 +98,24 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		case "RimuoviAuto":
 			command = new RimuoviAuto();
 			result = command.execute(parameters.get(0));break;
+		case "CercaCliente":
+			command = new CercaCliente();
+			result = command.execute(parameters.get(0));break;
+		case "RimuoviCliente":
+			command = new RimuoviCliente();
+			result = command.execute(parameters.get(0));break;
+			
+		case "CercaAgenzia":
+			command = new CercaAgenzia();
+			result = command.execute(parameters.get(0));break;
+		case "InserisciContratto":
+			command = new InserisciContratto();
+			result = command.execute(parameters);break;
+
 		
-			}
+		}
 		return result;
+		
 		}
 
 

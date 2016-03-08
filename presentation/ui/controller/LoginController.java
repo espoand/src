@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import presentation.FrontController;
 import presentation.ViewDispatcher;
@@ -19,7 +20,7 @@ InputController ic = new InputController();
 @FXML
 TextField username;
 @FXML
-TextField password;
+PasswordField password;
 @Override
 public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub

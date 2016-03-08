@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.AggiungiContrattoController">
+   <children>
+      <MenuBar>
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" />
+              </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <AnchorPane prefHeight="456.0" prefWidth="600.0">
+         <children>
+            <TextField fx:id="cfCliente" layoutX="365.0" layoutY="35.0" opacity="0.81" promptText="Nome" text="CF" />
+            <TextField fx:id="acconto" layoutX="365.0" layoutY="125.0" promptText="Acconto" />
+            <TextField fx:id="agenziaNoleggio" layoutX="365.0" layoutY="253.0" promptText="Agenzia Noleggio" />
+            <TextField fx:id="agenziaRiconsegna" layoutX="365.0" layoutY="295.0" promptText="Agenzia riconsegna" />
+            <TextField fx:id="numeroOrdine" layoutX="365.0" layoutY="169.0" promptText="Num ordine" />
+            <Label layoutX="40.0" layoutY="39.0" text="Inserisci il C.Fiscale del cliente" />
+            <Label layoutX="40.0" layoutY="84.0" text="Inserisci la data del noleggio" />
+            <Label layoutX="40.0" layoutY="129.0" text="Inserisci l'acconto versato" />
+            <Label layoutX="40.0" layoutY="173.0" text="Inserisci il numero d'ordine" />
+            <Label layoutX="40.0" layoutY="215.0" text="Inserisci la data di fine noleggio" />
+            <Label layoutX="38.0" layoutY="257.0" text="Inserisci l'agenzia di noleggio" />
+            <Label layoutX="41.0" layoutY="299.0" text="Inserisci l'agenzia di riconsegna" />
+            <Button layoutX="406.0" layoutY="345.0" mnemonicParsing="false" onAction="#submit" text="Conferma" />
+            <Button layoutX="65.0" layoutY="345.0" mnemonicParsing="false" onAction="#indietro" text="Torna alla home" />
+            <Button layoutX="235.0" layoutY="345.0" mnemonicParsing="false" onAction="#gestioneNoleggio" text="Gestione Noleggio" />
+            <DatePicker fx:id="dataNoleggio" layoutX="365.0" layoutY="71.0" />
+            <DatePicker fx:id="dataFineNoleggio" layoutX="365.0" layoutY="210.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

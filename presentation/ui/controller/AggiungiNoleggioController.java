@@ -36,7 +36,7 @@ TextField totale;
 public void submit(){}
 @FXML
 public void calcolaTotale(){
-	if(tariffa.getValue().isEmpty() || data.getValue().isBefore(Sessione.today())){
+	if(tariffa.getValue().isEmpty() || data.getValue()==null ||data.getValue().isBefore(Sessione.today())){
 		vd.showMessage("Data errata o tariffa non selezionata");
 	}
 	
