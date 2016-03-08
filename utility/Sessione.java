@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import entity.Auto;
 import entity.Cliente;
+import entity.Fascia;
+import entity.Noleggio;
 import entity.TariffaBase;
 import java.time.temporal.ChronoUnit;
 
@@ -15,11 +17,30 @@ static String viewPrecedente;
 //utile per mostrare l'auto che l'utente ha cercato
 static Auto autoAttuale;
 static Cliente clienteAttuale;
+static Fascia fasciaAttuale;
+static TariffaBase tariffaAttuale;
+static Noleggio noleggioAttuale;
+public static Noleggio getNoleggioAttuale() {
+	return noleggioAttuale;
+}
+
+public static void setNoleggioAttuale(Noleggio noleggioAttuale) {
+	Sessione.noleggioAttuale = noleggioAttuale;
+}
+
 //trova la data odierna
 public static LocalDate today(){
 	LocalDate today = LocalDate.now();
 	return today;
 	
+}
+
+public static Fascia getFasciaAttuale() {
+	return fasciaAttuale;
+}
+
+public static void setFasciaAttuale(Fascia fasciaAttuale) {
+	Sessione.fasciaAttuale = fasciaAttuale;
 }
 
 public Sessione(String username,TipoUtente tipo){
@@ -49,7 +70,17 @@ public static void azzera(){
 	viewPrecedente = null;
 	autoAttuale = null;
 	clienteAttuale = null;
+	fasciaAttuale = null;
+	tariffaAttuale = null;
 }
+public static TariffaBase getTariffaAttuale() {
+	return tariffaAttuale;
+}
+
+public static void setTariffaAttuale(TariffaBase tariffaAttuale) {
+	Sessione.tariffaAttuale = tariffaAttuale;
+}
+
 public static String getPrecedente(){
 	return viewPrecedente;
 }

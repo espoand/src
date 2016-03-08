@@ -39,7 +39,7 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		case "GestioneTariffaBase":
 			dispatcher.apriView("gestioneTariffaBase");break;
 		case "ModificaAuto":
-			dispatcher.apriView("gestioneAuto");break;
+			dispatcher.apriView("modificaAuto");break;
 		case "ModificaFascia":
 			dispatcher.apriView("modificaFascia");break;
 		case "ModificaNoleggio":
@@ -49,9 +49,13 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		case "ModificaTariffaBase":
 			dispatcher.apriView("modificaTariffaBase");break;
 		case "MostraAuto":
-			dispatcher.apriView("MostraAuto");break;
+			dispatcher.apriView("mostraAuto");break;
 		case "MostraCliente":
-			dispatcher.apriView("MostraCliente");break;
+			dispatcher.apriView("mostraCliente");break;
+		case "MostraNoleggio":
+			dispatcher.apriView("mostraNoleggio");break;
+		case "MostraTariffaBase":
+			dispatcher.apriView("mostraTariffaBase");break;
 		case "SchermataAmministratore":
 			dispatcher.apriView("SchermataAmministratore");break;
 		case "SchermataOperatore":
@@ -66,6 +70,9 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			risultato = command.execute("");break;
 		case "TuttiClienti":
 			command = new TuttiClienti();
+			risultato = command.execute("");break;
+		case "TutteAuto":
+			command = new TutteAuto();
 			risultato = command.execute("");break;
 		
 		}
@@ -111,8 +118,18 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		case "InserisciContratto":
 			command = new InserisciContratto();
 			result = command.execute(parameters);break;
-
-		
+		case "RimuoviFascia":
+			command = new RimuoviFascia();
+			result = command.execute(parameters.get(0));break;
+		case "ModificaAuto":
+			command = new ModificaAuto();
+			result = command.execute(parameters);
+		case "CercaNoleggio":
+			command = new CercaNoleggio();
+			result = command.execute(parameters.get(0));break;
+		case "RimuoviNoleggio":
+			command = new RimuoviNoleggio();
+			result = command.execute(parameters.get(0));break;
 		}
 		return result;
 		

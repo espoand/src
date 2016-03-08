@@ -40,7 +40,21 @@ public void aggiungi(){
 }
 @FXML
 public void modifica(){
-	vd.apriView("ModificaAuto");
+	if(targa.getText().isEmpty()){
+		vd.showMessage("Campo targa vuoto");
+	}
+	if(!ic.onlyNumbersAndLetters(targa.getText())){
+	vd.showMessage("Targa non valida");
+	}
+	
+	else{
+		ArrayList<String> targaList = new ArrayList<String>();
+		targaList.add(targa.getText());
+		Auto a = (Auto) fc.handleRequest("CercaAuto",targaList);
+		Sessione.setAuto(a);
+		fc.handleRequest("ModificaAuto");
+		
+	}
 	
 }
 @FXML

@@ -19,7 +19,7 @@ public boolean eliminaTariffaBase(TariffaBase tb){
 public boolean modificaTariffaBase(TariffaBase tb){
 	return tbDao.modificaTariffaBase(tb.getNome(), tb.getCostoAlKm(), tb.getCostoAlKmExtra() ,tb.getCostoAlGiornoExtra());
 }
-public TariffaBase getTariffaBase(TariffaBase tb){
-	return tb;
+public TariffaBase getTariffaBase(String tb){
+	return tbDao.getTariffaBase(tb);
 }
 }

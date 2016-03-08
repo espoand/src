@@ -44,7 +44,22 @@ public void aggiungi(){
 }
 @FXML
 public void modifica(){
-	fc.handleRequest("ModificaCliente");
+	Cliente cliente = null;
+	if(cf.getText().isEmpty()){
+		vd.showMessage("Compilare il campo codice fiscale");
+		
+	}
+	if(!ic.onlyNumbersAndLetters(cf.getText())){
+		vd.showMessage("Il campo codice fiscale deve essere composto di soli numeri e lettere");
+		
+}
+	else{
+		ArrayList<String> parameters = new ArrayList<String>();
+		parameters.add(cf.getText());
+		cliente = (Cliente) fc.handleRequest("CercaCliente",parameters);
+		Sessione.setClienteAttuale(cliente);
+		fc.handleRequest("ModificaCliente");
+		}
 }
 @FXML
 public void elimina(){
