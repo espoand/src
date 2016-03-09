@@ -27,7 +27,7 @@ TextField username;
 TextField password;
 @FXML
 CheckBox amministratore;
-
+@FXML
 public void submit(){
 	boolean isAmministratore = amministratore.isSelected();
 	if(cf.getText().isEmpty() || nome.getText().isEmpty() || cognome.getText().isEmpty() || username.getText().isEmpty() || password.getText().isEmpty()){
@@ -51,8 +51,7 @@ public void submit(){
 @FXML
 
 public void quit(){
-	Sessione.azzera();
-	System.exit(0);
+	vd.quit();
 }
 @FXML
 

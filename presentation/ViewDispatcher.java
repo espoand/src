@@ -47,5 +47,8 @@ public static void main(String[] args){
 public int areYouSure(String message){
 	return JOptionPane.showConfirmDialog(null, message);
 }
-
+public void quit(){
+	Sessione.azzera();
+	System.exit(0);
+}
 }

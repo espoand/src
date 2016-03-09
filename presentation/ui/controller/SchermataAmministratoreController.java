@@ -2,10 +2,12 @@ package presentation.ui.controller;
 
 import javafx.fxml.FXML;
 import presentation.FrontController;
+import presentation.ViewDispatcher;
 import utility.Sessione;
 
 public class SchermataAmministratoreController {
 	FrontController fc = new FrontController();
+	ViewDispatcher vd = new ViewDispatcher();
 @FXML
 public void gestioneAuto(){
 	fc.handleRequest("GestioneAuto");
@@ -38,7 +40,6 @@ public void login(){
 }
 @FXML
 public void quit(){
-	Sessione.azzera();
-	System.exit(0);
+	vd.quit();
 }
 }

@@ -30,7 +30,7 @@ TextField idFascia;
 TextField descrizioneFascia;
 @FXML 
 ChoiceBox<String> tariffa;
-
+@FXML
 public void submit(){
 if(idFascia.getText().isEmpty() || descrizioneFascia.getText().isEmpty() || tariffa.getValue().isEmpty()){
 	vd.showMessage("Compila tutti i campi");
@@ -48,10 +48,11 @@ fc.handleRequest("AggiungiFascia",parameters);
 }
 	
 }
+@FXML
 public void quit(){
-	Sessione.azzera();
-	System.exit(0);
+	vd.quit();
 }
+@FXML
 public void indietro(){vd.indietro();}
 
 @Override

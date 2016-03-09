@@ -24,6 +24,7 @@ TextField cognome;
 TextField telefono;
 @FXML
 TextField indirizzo;
+@FXML
 public void submit(){
 	if(cf.getText().isEmpty() || cognome.getText().isEmpty() || nome.getText().isEmpty() || telefono.getText().isEmpty() || indirizzo.getText().isEmpty()){
 		vd.showMessage("Compilare tutti i campi");
@@ -52,11 +53,12 @@ public void submit(){
 		}
 	}
 }
+@FXML
 public void indietro(){
 	vd.indietro();
 }
+@FXML
 public void quit(){
-	Sessione.azzera();
-	System.exit(0);
+	vd.quit();
 }
 }

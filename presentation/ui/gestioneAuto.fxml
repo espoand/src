@@ -24,7 +24,7 @@
             <Button layoutX="37.0" layoutY="159.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi Auto" />
             <Button layoutX="183.0" layoutY="159.0" mnemonicParsing="false" onAction="#modifica" prefHeight="27.0" prefWidth="119.0" text="Modifica Auto" />
             <Button layoutX="319.0" layoutY="159.0" mnemonicParsing="false" onAction="#elimina" prefHeight="27.0" prefWidth="119.0" text="Elimina Auto" />
-            <Button layoutX="473.0" layoutY="159.0" mnemonicParsing="false" onAction="#login" prefHeight="27.0" prefWidth="119.0" text="Torna alla Home" />
+            <Button layoutX="473.0" layoutY="159.0" mnemonicParsing="false" onAction="#home" prefHeight="27.0" prefWidth="119.0" text="Torna alla Home" />
             <Button layoutX="473.0" layoutY="35.0" mnemonicParsing="false" onAction="#cerca" prefHeight="27.0" prefWidth="119.0" text="Cerca Auto" />
             <TextField fx:id="targa" layoutX="14.0" layoutY="35.0" prefHeight="27.0" prefWidth="364.0" text="Targa" />
       </children>

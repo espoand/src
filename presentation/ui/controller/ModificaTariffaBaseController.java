@@ -41,9 +41,8 @@ public void indietro(){
 		vd.indietro();
 	}
 	@FXML
-public void quit(){
-		Sessione.azzera();
-		System.exit(0);
+	public void quit(){
+		vd.quit();
 	}
 	@FXML
 public void submit(){

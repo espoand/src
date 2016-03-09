@@ -66,7 +66,7 @@ public ArrayList<Agenzia> getAgenzie() {
 			String telefono)  {
 		// TODO Auto-generated method stub
 	boolean inserito;
-	String query="INSERT INTO Agenzia(Identificativo,Nome,Indirizzo,Telefono) " + "VALUES (?,?,?,?);";
+	String query="INSERT INTO Agenzia(Identificativo,Nome,Indirizzo,Telefono) VALUES (?,?,?,?);";
 	try{
 		Connection connessione = MySqlDaoFactory.getConnection();
 		PreparedStatement statement =connessione.prepareStatement(query);
@@ -106,7 +106,7 @@ public ArrayList<Agenzia> getAgenzie() {
 	public boolean modificaAgenzia(int id, String nome, String indirizzo,String telefono)  {
 		// TODO Auto-generated method stub
 		
-		String queryAggiornamento="UPDATE Agenzia SET Nome = ' ?' ,Indirizzo = '?' ,Telefono= '?' " + "WHERE Identificativo = " + Integer.toString(id);
+		String queryAggiornamento="UPDATE Agenzia SET Nome = ' ?' ,Indirizzo = '?' ,Telefono= '?' WHERE Identificativo =? " ;
 		//effettua la connessione al database e modifica i dati
 		boolean effettuato = false;
 		try{
@@ -115,6 +115,7 @@ public ArrayList<Agenzia> getAgenzie() {
 			statementAggiornamento.setString(1, nome);
 			statementAggiornamento.setString(2,indirizzo);
 			statementAggiornamento.setString(3, telefono);
+			statementAggiornamento.setString(4, Integer.toString(id));
 			statementAggiornamento.executeUpdate();
 			effettuato=true;
 			}

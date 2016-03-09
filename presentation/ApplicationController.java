@@ -57,6 +57,8 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			dispatcher.apriView("modificaOperatore");break;
 		case "ModificaTariffaBase":
 			dispatcher.apriView("modificaTariffaBase");break;
+		case "MostraAgenzia":
+			dispatcher.apriView("mostraAgenzia");break;
 		case "MostraAuto":
 			dispatcher.apriView("mostraAuto");break;
 		case "MostraCliente":
@@ -105,9 +107,7 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		case "InserisciAuto":
 			command = new InserisciAuto();
 			result= command.execute(parameters);break;
-		case "MostraAuto":
-			command = new MostraAuto();
-			result = command.execute(parameters);break;
+		
 	
 		case "CercaAuto":
 			command = new CercaAuto();

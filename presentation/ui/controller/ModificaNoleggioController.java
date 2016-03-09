@@ -66,8 +66,7 @@ ArrayList<Agenzia> tutteAgenzie;
 
 @FXML
 public void quit(){
-	Sessione.azzera();
-	System.exit(0);
+	vd.quit();
 }
 @FXML
 public void conferma(){

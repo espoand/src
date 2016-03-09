@@ -70,4 +70,13 @@ public void elimina(){
 	}
 	else vd.showMessage("Si è verificato un errore durante la cancellazione");
 	}
+
+@FXML
+public void quit(){
+	vd.quit();
+}
+@FXML
+public void home(){
+	fc.handleRequest("Home");
+}
 }

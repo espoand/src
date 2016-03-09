@@ -2,8 +2,10 @@ package utility;
 
 import java.time.LocalDate;
 
+import entity.Agenzia;
 import entity.Auto;
 import entity.Cliente;
+import entity.Contratto;
 import entity.Fascia;
 import entity.Noleggio;
 import entity.Operatore;
@@ -11,18 +13,45 @@ import entity.TariffaBase;
 import java.time.temporal.ChronoUnit;
 
 public  class Sessione {
-static String username;
-static TipoUtente tipo;
-static String viewAttuale;
-static String viewPrecedente;
-//utile per mostrare l'auto che l'utente ha cercato
-static Auto autoAttuale;
-static Cliente clienteAttuale;
-static Fascia fasciaAttuale;
-static TariffaBase tariffaAttuale;
-static Noleggio noleggioAttuale;
-static Operatore operatoreAttuale;
+static String username= null;
+public static Auto getAutoAttuale() {
+	return autoAttuale;
+}
 
+public static void setAutoAttuale(Auto autoAttuale) {
+	Sessione.autoAttuale = autoAttuale;
+}
+
+public static Contratto getContrattoAttuale() {
+	return contrattoAttuale;
+}
+
+public static void setContrattoAttuale(Contratto contrattoAttuale) {
+	Sessione.contrattoAttuale = contrattoAttuale;
+}
+
+
+static TipoUtente tipo= null;
+static String viewAttuale= null;
+static String viewPrecedente= null;
+//utile per mostrare l'auto che l'utente ha cercato
+static Auto autoAttuale= null;
+static Cliente clienteAttuale= null;
+static Fascia fasciaAttuale = null;
+static TariffaBase tariffaAttuale= null;
+static Noleggio noleggioAttuale = null;
+static Operatore operatoreAttuale = null;
+static Contratto contrattoAttuale = null;
+static Agenzia agenziaAttuale = null;
+
+
+public static Agenzia getAgenziaAttuale() {
+	return agenziaAttuale;
+}
+
+public static void setAgenziaAttuale(Agenzia agenziaAttuale) {
+	Sessione.agenziaAttuale = agenziaAttuale;
+}
 
 public static TipoUtente getTipo() {
 	return tipo;

@@ -45,6 +45,6 @@ public void submit(){
 	}
 }
 public void quit(){
-	System.exit(0);
+	vd.quit();
 }
 }

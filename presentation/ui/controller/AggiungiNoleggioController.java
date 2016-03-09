@@ -47,8 +47,7 @@ public void indietro(){
 }
 @FXML
 public void quit(){
-	Sessione.azzera();
-	System.exit(0);
+	vd.quit();
 }
 
 	@Override
