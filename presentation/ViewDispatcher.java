@@ -21,6 +21,15 @@ public void apriView(String view){
 	
 	
 }
+public void apriViewSenzaSalvare(String view){
+	try{
+		Parent root = FXMLLoader.load(getClass().getResource("ui/" +view));
+	
+} catch (IOException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+}
 
 
 public void indietro(){
@@ -38,4 +47,5 @@ public static void main(String[] args){
 public int areYouSure(String message){
 	return JOptionPane.showConfirmDialog(null, message);
 }
+
 }

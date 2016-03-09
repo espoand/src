@@ -33,7 +33,7 @@ DatePicker data;
 TextField totale;
 
 @FXML
-public void submit(){}
+public void submit(){asda;}
 @FXML
 public void calcolaTotale(){
 	if(tariffa.getValue().isEmpty() || data.getValue()==null ||data.getValue().isBefore(Sessione.today())){

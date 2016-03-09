@@ -57,6 +57,7 @@ ArrayList<Fascia> tutteFasce;
 		Iterator<Fascia> it1 = tutteFasce.iterator();
 		Fascia actual = null;
 		Fascia temp = null;
+		boolean eseguito = false;
 		while(it1.hasNext()){
 			temp = it1.next();
 			if(temp.getIdFascia().equals(fascia.getText())){
@@ -70,7 +71,15 @@ ArrayList<Fascia> tutteFasce;
 			ArrayList<String> parameters = new ArrayList<String>();
 			parameters.add(targa.getText());
 			parameters.add(km.getText());
-			fc.handleRequest("ModificaAuto",parameters);
+			eseguito = (boolean) fc.handleRequest("ModificaAuto",parameters);
+		}
+		if(eseguito){
+			vd.showMessage("Completato");
+			vd.indietro();
+		}
+		else{
+			vd.showMessage("Si è verificato un errore");
+			vd.indietro();
 		}
 	}
 	

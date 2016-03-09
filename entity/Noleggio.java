@@ -1,6 +1,7 @@
 package entity;
 
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class Noleggio {
 int nroOrdine;
@@ -9,10 +10,10 @@ ModalitaNoleggio modalità;
 boolean kmIllimitato;
 double nroKm;
 Auto autoNoleggiata;
-Date dataEffettivaRiconsegna;
+LocalDate dataEffettivaRiconsegna;
 double importoTotale;
 
-public Noleggio(int nroOrdine, TariffaBase tariffa, boolean kmIllimitato, double nroKm, Auto autoNoleggiata, java.sql.Date dataRiconsegna,
+public Noleggio(int nroOrdine, TariffaBase tariffa, boolean kmIllimitato, double nroKm, Auto autoNoleggiata, LocalDate dataRiconsegna,
 		double importoTotale) {
 	// TODO Auto-generated constructor stub
 	this.nroOrdine=nroOrdine;
@@ -59,10 +60,10 @@ public Auto getAutoNoleggiata() {
 public void setAutoNoleggiata(Auto autoNoleggiata) {
 	this.autoNoleggiata = autoNoleggiata;
 }
-public Date getDataEffettivaRiconsegna() {
+public LocalDate getDataEffettivaRiconsegna() {
 	return dataEffettivaRiconsegna;
 }
-public void setDataEffettivaRiconsegna(Date dataEffettivaRiconsegna) {
+public void setDataEffettivaRiconsegna(LocalDate dataEffettivaRiconsegna) {
 	this.dataEffettivaRiconsegna = dataEffettivaRiconsegna;
 }
 public double getImportoTotale() {

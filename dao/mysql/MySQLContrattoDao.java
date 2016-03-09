@@ -20,8 +20,8 @@ import utility.DateConverter;
 public class MySQLContrattoDao implements ContrattoDao{
 DateConverter dateConverter = new DateConverter();
 	@Override
-	public boolean inserisciContratto(Cliente cliente, Date dataInizio, double acconto, int nroOrdine,
-			Date finePrevista, Agenzia agenziaNoleggio, Agenzia agenziaRestituzione) {
+	public boolean inserisciContratto(Cliente cliente, LocalDate dataInizio, double acconto, int nroOrdine,
+			LocalDate finePrevista, Agenzia agenziaNoleggio, Agenzia agenziaRestituzione) {
 		// TODO Auto-generated method stub
 		DateConverter dateConverter = new DateConverter();
 		boolean inserito = false;
@@ -30,10 +30,10 @@ DateConverter dateConverter = new DateConverter();
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connessione.prepareStatement(query);
 			statement.setString(1, cliente.getCodiceFiscale());
-			statement.setDate(2,dateConverter.DateToSQLDate(dataInizio));
+			statement.setDate(2,dateConverter.LocalDateToSQLDate(dataInizio));
 			statement.setDouble(3, acconto);
 			statement.setInt(4, nroOrdine);
-			statement.setDate(5, dateConverter.DateToSQLDate(finePrevista));
+			statement.setDate(5, dateConverter.LocalDateToSQLDate(finePrevista));
 			statement.setInt(6, agenziaNoleggio.getIdentificativo());
 			statement.setInt(7, agenziaRestituzione.getIdentificativo());
 			
@@ -89,7 +89,7 @@ DateConverter dateConverter = new DateConverter();
 				ResultSet risultato = statement.executeQuery(query);
 				contratti = new ArrayList<Contratto>();
 				while(risultato.next()){
-					contratti.add(new Contratto(risultato.getInt("Nro_ordine"),clienteDao.getCliente(risultato.getString("Cliente")),risultato.getDate("Data_inizio"),risultato.getDouble("Acconto"),risultato.getDate("Fine_prevista"),agenziaDao.getAgenzia(risultato.getInt("Agenzia_noleggio")),agenziaDao.getAgenzia(risultato.getInt("Agenzia_restituzione"))));
+					contratti.add(new Contratto(risultato.getInt("Nro_ordine"),clienteDao.getCliente(risultato.getString("Cliente")),risultato.getDate("Data_inizio").toLocalDate(),risultato.getDouble("Acconto"),risultato.getDate("Fine_prevista").toLocalDate(),agenziaDao.getAgenzia(risultato.getInt("Agenzia_noleggio")),agenziaDao.getAgenzia(risultato.getInt("Agenzia_restituzione"))));
 				}
 
 			} catch (DatabaseConnectionException | SQLException e) {

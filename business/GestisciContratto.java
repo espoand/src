@@ -58,7 +58,7 @@ public class GestisciContratto {
 			
 		
 		}
-		Contratto c=new Contratto(cl,dataInizio,acconto,nroOrdine,finePrevista,ag,a);
+		Contratto c=new Contratto(nroOrdine,cl,dataInizio,acconto,finePrevista,ag,a);
 		
 		return cb.inserisciContratto(c);
 		
@@ -101,7 +101,7 @@ public class GestisciContratto {
 		
 		}
 		
-		Contratto c=new Contratto(cl,dataInizio,acconto,nroOrdine,finePrevista,age,agenz);
+		Contratto c=new Contratto(nroOrdine,cl,dataInizio,acconto,finePrevista,age,agenz);
 	
 	    return cb.eliminaContratto(c);
 	}

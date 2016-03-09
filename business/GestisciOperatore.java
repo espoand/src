@@ -10,12 +10,9 @@ public class GestisciOperatore {
 	private OperatoreBusiness ob;
 	
 	public GestisciOperatore() {
-		try {
+	
 			ob=new OperatoreBusiness();
-			
-		} catch (DatabaseInstantiationException e){
-			ob=null;
-		}
+		
 		
 	}
 	

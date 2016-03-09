@@ -23,6 +23,15 @@ static TariffaBase tariffaAttuale;
 static Noleggio noleggioAttuale;
 static Operatore operatoreAttuale;
 
+
+public static TipoUtente getTipo() {
+	return tipo;
+}
+
+public static void setTipo(TipoUtente tipo) {
+	Sessione.tipo = tipo;
+}
+
 public static Operatore getOperatoreAttuale() {
 	return operatoreAttuale;
 }

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -19,7 +20,7 @@ public class MySQLNoleggioDao implements NoleggioDao{
 DateConverter dateConverter = new DateConverter();
 	@Override
 	public boolean inserisciNoleggio(int nroOrdine, TariffaBase tariffaBase, boolean kmIllimitato, double nroKm,
-			Auto autoNoleggiata, Date dataEffettivaRiconsegna, double importoTotale) {
+			Auto autoNoleggiata, LocalDate dataEffettivaRiconsegna, double importoTotale) {
 		// TODO Auto-generated method stub
 		boolean eseguito = false;
 		String query = "INSERT INTO Noleggio(Nro_ordine,TariffaBase,Km_illimitato,Nro_km,Auto_noleggiata,Data_effettiva_riconsegna,Importo_totale) "+ "VALUES(?,?,?,?,?,?,?)";
@@ -32,7 +33,7 @@ DateConverter dateConverter = new DateConverter();
 			statement.setBoolean(3, kmIllimitato);
 			statement.setDouble(4, nroKm);
 			statement.setString(5, autoNoleggiata.getTarga());
-			statement.setDate(6,dateConverter.DateToSQLDate(dataEffettivaRiconsegna) );
+			statement.setDate(6,dateConverter.LocalDateToSQLDate(dataEffettivaRiconsegna) );
 			statement.setDouble(7, importoTotale);
 			statement.executeUpdate();
 			eseguito=true;
@@ -78,7 +79,7 @@ DateConverter dateConverter = new DateConverter();
 			risultato.next();
 			TariffaBase tariffa = tbDao.getTariffaBase(risultato.getString("Tariffa_base"));
 			Auto auto = autoDao.getAuto(risultato.getString("Auto_noleggiata"));
-			noleggioResult = new Noleggio(risultato.getInt("Nro_ordine"),tariffa,risultato.getBoolean("Km_illimitato"),risultato.getDouble("Nro_km"),auto,risultato.getDate("Data_effettiva_riconsegna"),risultato.getDouble("Importo_totale"));
+			noleggioResult = new Noleggio(risultato.getInt("Nro_ordine"),tariffa,risultato.getBoolean("Km_illimitato"),risultato.getDouble("Nro_km"),auto,risultato.getDate("Data_effettiva_riconsegna").toLocalDate(),risultato.getDouble("Importo_totale"));
 			
 		} catch (DatabaseConnectionException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -89,7 +90,7 @@ DateConverter dateConverter = new DateConverter();
 
 	@Override
 	public boolean modificaNoleggio(int nroOrdine, TariffaBase tariffaBase, boolean kmIllimitato, double nroKm,
-			Auto autoNoleggiata, Date dataEffettivaRiconsegna, double importoTotale) {
+			Auto autoNoleggiata, LocalDate dataEffettivaRiconsegna, double importoTotale) {
 		// TODO Auto-generated method stub
 		boolean eseguito = false;
 		String query = "UPDATE Noleggio SET Tariffa_base = ?,Km_illmitato= ? ,Auto_noleggiata=?,Data_effettiva_riconsegna=?,Importo_totale = ? WHERE Nro_ordine = ?";
@@ -100,7 +101,7 @@ DateConverter dateConverter = new DateConverter();
 			statement.setBoolean(2, kmIllimitato);
 			statement.setDouble(3,nroKm);
 			statement.setString(4, autoNoleggiata.getTarga());
-			statement.setDate(5, dateConverter.DateToSQLDate(dataEffettivaRiconsegna));
+			statement.setDate(5, dateConverter.LocalDateToSQLDate(dataEffettivaRiconsegna));
 			statement.setDouble(6, importoTotale);
 			statement.executeUpdate();
 			eseguito = true;
@@ -129,7 +130,7 @@ DateConverter dateConverter = new DateConverter();
 			Auto auto; 
 			TariffaBase tariffa;
 			while(risultato.next()){
-				noleggi.add(new Noleggio(risultato.getInt("Nro_ordine"),tbDao.getTariffaBase(risultato.getString("Tariffa_base")),risultato.getBoolean("Km_illimitato"),risultato.getDouble("Nro_km"),autoDao.getAuto(risultato.getString("Auto_noleggiata")),risultato.getDate("Data_effettiva_riconsegna"),risultato.getDouble("Importo_totale")));
+				noleggi.add(new Noleggio(risultato.getInt("Nro_ordine"),tbDao.getTariffaBase(risultato.getString("Tariffa_base")),risultato.getBoolean("Km_illimitato"),risultato.getDouble("Nro_km"),autoDao.getAuto(risultato.getString("Auto_noleggiata")),risultato.getDate("Data_effettiva_riconsegna").toLocalDate(),risultato.getDouble("Importo_totale")));
 			}
 			
 		

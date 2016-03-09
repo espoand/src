@@ -1,16 +1,17 @@
 package entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Contratto {
 Cliente cliente;
-Date dataInizio;
+LocalDate dataInizio;
 double acconto;
 int nroOrdine;
-Date finePrevista;
+LocalDate finePrevista;
 Agenzia agenziaNoleggio;
 Agenzia agenziaRestituzione;
-public Contratto(int nroOrdine,Cliente c,Date d,double acc,Date fine,Agenzia noleggio,Agenzia restituzione){
+public Contratto(int nroOrdine,Cliente c,LocalDate d,double acc,LocalDate fine,Agenzia noleggio,Agenzia restituzione){
 	this.cliente = c;
 	this.dataInizio=d;
 	this.acconto=acc;
@@ -22,7 +23,7 @@ public Contratto(int nroOrdine,Cliente c,Date d,double acc,Date fine,Agenzia nol
 public void setCliente(Cliente cliente) {
 	this.cliente = cliente;
 }
-public void setDataInizio(Date dataInizio) {
+public void setDataInizio(LocalDate dataInizio) {
 	this.dataInizio = dataInizio;
 }
 public void setAcconto(double acconto) {
@@ -31,7 +32,7 @@ public void setAcconto(double acconto) {
 public void setNroOrdine(int nroOrdine) {
 	this.nroOrdine = nroOrdine;
 }
-public void setFinePrevista(Date finePrevista) {
+public void setFinePrevista(LocalDate finePrevista) {
 	this.finePrevista = finePrevista;
 }
 public void setAgenziaNoleggio(Agenzia agenziaNoleggio) {
@@ -43,7 +44,7 @@ public void setAgenziaRestituzione(Agenzia agenziaRestituzione) {
 public Cliente getCliente() {
 	return cliente;
 }
-public Date getDataInizio() {
+public LocalDate getDataInizio() {
 	return dataInizio;
 }
 public double getAcconto() {
@@ -52,7 +53,7 @@ public double getAcconto() {
 public int getNroOrdine() {
 	return nroOrdine;
 }
-public Date getFinePrevista() {
+public LocalDate getFinePrevista() {
 	return finePrevista;
 }
 public Agenzia getAgenziaNoleggio() {

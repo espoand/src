@@ -3,6 +3,8 @@ package presentation;
 import java.util.ArrayList;
 
 import presentation.command.*;
+import utility.Sessione;
+import utility.TipoUtente;
 
 public class ApplicationController implements ApplicationControllerInterface{
 ViewDispatcher dispatcher = new ViewDispatcher();
@@ -12,6 +14,13 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		Command command;
 		Object risultato = null;
 		switch(request){
+		case "Home":
+			if(Sessione.getTipo()== TipoUtente.AMMINISTRATORE){
+				dispatcher.apriView("SchermataAmministratore");
+			}else{
+				dispatcher.apriView("SchermataOperatore");
+			}
+			break;
 		case "AggiungiAuto":
 			dispatcher.apriView("aggiungiAuto");break;
 		case "AggiungiCliente":
@@ -55,7 +64,7 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		case "MostraNoleggio":
 			dispatcher.apriView("mostraNoleggio");break;
 		case "MostraTariffaBase":
-			dispatcher.apriView("mostraTariffaBase");break;
+			dispatcher.apriViewSenzaSalvare("mostraTariffaBase");break;
 		case "MostraOperatore":
 			dispatcher.apriView("mostraOperatore");break;
 		case "SchermataAmministratore":
@@ -135,6 +144,18 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		case "CercaOperatore":
 			command = new CercaOperatore();
 			result = command.execute(parameters.get(0));break;
+		case "CercaTariffaBase":
+			command = new CercaTariffaBase();
+			result = command.execute(parameters.get(0));break;
+		case "ModificaFascia":
+			command = new ModificaFascia();
+			result = command.execute(parameters);break;
+		case "ModificaNoleggio":
+			command = new ModificaNoleggio();
+			result = command.execute(parameters);break;
+		case "ModificaTariffaBase":
+			command = new ModificaTariffaBase();
+			result = command.execute(parameters);break;
 		}
 		return result;
 		
