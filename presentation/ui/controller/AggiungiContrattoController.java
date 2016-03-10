@@ -8,8 +8,10 @@ import java.util.ResourceBundle;
 
 import entity.Agenzia;
 import entity.Cliente;
+import entity.Noleggio;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import presentation.FrontController;
@@ -33,9 +35,9 @@ TextField numeroOrdine;
 @FXML
 DatePicker dataFine;
 @FXML
-TextField agenziaNoleggio;
+ChoiceBox<String> agenziaNoleggio;
 @FXML
-TextField agenziaRiconsegna;
+ChoiceBox<String> agenziaRiconsegna;
 ArrayList<Agenzia> tutteAgenzie;
 ArrayList<Cliente> tuttiClienti;
 @FXML
@@ -48,27 +50,30 @@ public void quit(){
 }
 @FXML
 public void gestioneNoleggio(){
-	fc.handleRequest("GestioneNoleggio");
+	if(!ic.onlyNumbers(numeroOrdine.getText())){
+		vd.showMessage("Numero ordine non valido");
+	}
+	else{
+	ArrayList<String> parameters = new ArrayList<String>();
+	parameters.add(numeroOrdine.getText());
+	Noleggio noleggio = (Noleggio) fc.handleRequest("CercaNoleggio",parameters);
+	Sessione.setNoleggioAttuale(noleggio);
+	fc.handleRequest("MostraNoleggio");}
 }
 @FXML
 public void submit(){
-	if(cfCliente.getText().isEmpty() || dataNoleggio.getValue() == null|| acconto.getText().isEmpty() || dataFine.getValue()==null || agenziaNoleggio.getText().isEmpty() || agenziaRiconsegna.getText().isEmpty())
+	if(cfCliente.getText().isEmpty() || dataNoleggio.getValue() == null|| acconto.getText().isEmpty() || dataFine.getValue()==null || agenziaNoleggio.getValue().isEmpty() || agenziaRiconsegna.getValue().isEmpty())
 	{	vd.showMessage("Compilare tutti i campi");}
-	if(dataNoleggio.getValue().isBefore(Sessione.today())){
-		vd.showMessage("Data inizio noleggio non valida");
-	}
-	if(dataNoleggio.getValue().isBefore(Sessione.today())){
-		vd.showMessage("Data fine noleggio non valida");
+	if(dataNoleggio.getValue().isBefore(Sessione.today()) || dataNoleggio.getValue().isBefore(Sessione.today())){
+		vd.showMessage("Le date devono essere successive a quella odierna");
 	}
 	if(!ic.onlyNumbersAndLetters(cfCliente.getText())){
 		vd.showMessage("Codice fiscale non valido");
 	}
-	if(!ic.onlyNumbers(numeroOrdine.getText())){
-		vd.showMessage("Numero ordine non valido");
+	if(!ic.onlyNumbers(numeroOrdine.getText()) || !ic.onlyNumbers(acconto.getText())){
+		vd.showMessage("Numero ordine e/o acconto non valido");
 	}
-	if(!ic.onlyNumbers(acconto.getText())){
-		vd.showMessage("Il valore inserito nel campo acconto non è valido");
-	}
+	
 	Agenzia agenziaN = null;
 	Agenzia agenziaR = null;
 	Cliente cliente = null;
@@ -77,13 +82,13 @@ public void submit(){
 	Agenzia agenziaTmp = null;
 	while(it1.hasNext()){
 		agenziaTmp = it1.next();
-		if(agenziaTmp.getIdentificativo() == Integer.valueOf(agenziaNoleggio.getText())){
+		if(agenziaTmp.getIdentificativo() == Integer.valueOf(agenziaNoleggio.getValue())){
 			agenziaN = agenziaTmp;break;
 		}}
 	it1 = tutteAgenzie.iterator();
 	while(it1.hasNext()){
 		agenziaTmp = it1.next();
-		if(agenziaTmp.getIdentificativo() == Integer.valueOf(agenziaRiconsegna.getText())){
+		if(agenziaTmp.getIdentificativo() == Integer.valueOf(agenziaRiconsegna.getValue())){
 			agenziaR = agenziaTmp;break;
 		}}
 	Iterator<Cliente> it2 = tuttiClienti.iterator();
@@ -111,8 +116,8 @@ public void submit(){
 		parameters.add(acconto.getText());
 		parameters.add(numeroOrdine.getText());
 		parameters.add(dataFine.getValue().toString());
-		parameters.add(agenziaNoleggio.getText());
-		parameters.add(agenziaRiconsegna.getText());
+		parameters.add(agenziaNoleggio.getValue());
+		parameters.add(agenziaRiconsegna.getValue());
 		fc.handleRequest("InserisciContratto",parameters);
 	}
 	
@@ -122,6 +127,15 @@ public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
 	tutteAgenzie = (ArrayList<Agenzia>) fc.handleRequest("TutteAgenzie");
 	tuttiClienti=(ArrayList<Cliente>) fc.handleRequest("TuttiClienti");
+	
+	Iterator<Agenzia> it1 = tutteAgenzie.iterator();
+	Agenzia tmp = null;
+	while(it1.hasNext()){
+		tmp = it1.next();
+		agenziaNoleggio.getItems().add(Integer.toString(tmp.getIdentificativo()));
+		agenziaRiconsegna.getItems().add(Integer.toString(tmp.getIdentificativo()));
+		
+	}
 }
 	
 }

@@ -104,6 +104,9 @@ public void quit(){
 	vd.quit();
 }
 @Override
+/**
+ * 
+ */
 public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
 	fasce = (ArrayList<Fascia>) fc.handleRequest("TutteFasce");

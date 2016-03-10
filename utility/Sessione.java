@@ -43,6 +43,7 @@ static Noleggio noleggioAttuale = null;
 static Operatore operatoreAttuale = null;
 static Contratto contrattoAttuale = null;
 static Agenzia agenziaAttuale = null;
+static String cf = null;
 
 
 public static Agenzia getAgenziaAttuale() {
@@ -123,7 +124,16 @@ public static void azzera(){
 	tariffaAttuale = null;
 	noleggioAttuale = null;
 	operatoreAttuale = null;
+	cf = null;
 }
+public static String getCf() {
+	return cf;
+}
+
+public static void setCf(String cf) {
+	Sessione.cf = cf;
+}
+
 public static TariffaBase getTariffaAttuale() {
 	return tariffaAttuale;
 }

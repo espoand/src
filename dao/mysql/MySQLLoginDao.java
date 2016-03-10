@@ -22,6 +22,7 @@ static String myPassword;
 	public boolean login(String username, String password) {
 		// TODO Auto-generated method stub
 		String query = "SELECT * FROM Operatore WHERE Username =?";
+		String cf  = null;
 		TipoUtente tipo = null;
 		Cifratura cifratore = new Cifratura();
 		boolean loggato = false;
@@ -34,6 +35,7 @@ static String myPassword;
 			ResultSet risultato = statement.executeQuery();
 			risultato.next();
 			pw= risultato.getString("Password");
+			cf = risultato.getString("CF");
 			
 			
 			if(pw.compareTo(criptata)==0){
@@ -52,6 +54,7 @@ static String myPassword;
 		}
 		Sessione.setUsername(username);
 		Sessione.setTipoUtente(tipo);
+		Sessione.setCf(cf);
 		return loggato;
 	}
 public static void main(String[] args){

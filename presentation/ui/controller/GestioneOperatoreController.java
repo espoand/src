@@ -42,8 +42,8 @@ public void elimina(){
 	if(cf.getText().isEmpty()){
 		vd.showMessage("Compilare il campo codice fiscale");
 	}
-	if(!ic.onlyNumbersAndLetters(cf.getText())){
-		vd.showMessage("Codice fiscale non valido");
+	if(!ic.onlyNumbersAndLetters(cf.getText()) || Sessione.getUsername().equals(cf.getText())){
+		vd.showMessage("Codice fiscale non valido o utente attualmente loggato");
 	}
 	else{
 	 if(vd.areYouSure("Sei sicuro di voler procedere?") == 0){
