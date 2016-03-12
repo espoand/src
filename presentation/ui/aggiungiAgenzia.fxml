@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.AggiungiAgenziaController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
          <menus>
@@ -22,22 +23,31 @@
          </menus>
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-         <children>
-            <TextField layoutX="111.0" layoutY="103.0" />
-            <TextField layoutX="111.0" layoutY="186.0" />
-            <TextField layoutX="414.0" layoutY="103.0" />
-            <TextField layoutX="414.0" layoutY="186.0" />
-            <Text layoutX="31.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
-            <Text layoutX="31.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INDIRIZZO" />
-            <Text layoutX="352.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOME" />
-            <Text layoutX="337.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TELEFONO" />
-            <ButtonBar layoutX="14.0" layoutY="250.0" prefHeight="40.0" prefWidth="592.0">
+      <children>
+            <Text layoutX="30.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOME " />
+            <TextField fx:id="nome" layoutX="151.0" layoutY="72.0" />
+            <Text layoutX="337.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TELEFONO " />
+            <TextField fx:id="telefono" layoutX="429.0" layoutY="72.0">
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu></TextField>
+            <TextField fx:id="via" layoutX="429.0" layoutY="135.0" />
+            <Text layoutX="350.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VIA" />
+            <TextField fx:id="citta" layoutX="153.0" layoutY="135.0" />
+            <Text layoutX="30.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CITTA'" />
+            <TextField fx:id="cap" layoutX="153.0" layoutY="192.0" />
+            <Text layoutX="38.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CAP" />
+            <ButtonBar layoutX="17.0" layoutY="269.0" prefHeight="40.0" prefWidth="583.0">
               <buttons>
-                <Button mnemonicParsing="false" onAction="#submit" prefHeight="27.0" prefWidth="505.0" text="CONFERMA" />
-                  <Button mnemonicParsing="false" onAction="#indietro" text="INDIETRO" />
+                <Button mnemonicParsing="false" onAction="#submit" text="CONFERMA" />
+                  <Button mnemonicParsing="false" onAction="#indietro" prefHeight="27.0" prefWidth="312.0" text="INDIETRO" />
               </buttons>
             </ButtonBar>
-         </children>
+      </children>
     </AnchorPane>
   </children>
 </VBox>

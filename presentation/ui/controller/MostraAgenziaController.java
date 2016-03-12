@@ -17,7 +17,11 @@ TextField id;
 @FXML
 TextField nome;
 @FXML
-TextField indirizzo;
+TextField via;
+@FXML
+TextField citta;
+@FXML
+TextField cap;
 @FXML
 TextField telefono;
 Agenzia agenzia;
@@ -27,7 +31,9 @@ Agenzia agenzia;
 		agenzia = Sessione.getAgenziaAttuale();
 		id.setText(Integer.toString(agenzia.getIdentificativo()));
 		nome.setText(agenzia.getNome());
-		indirizzo.setText(agenzia.getIndirizzo());
+		via.setText(agenzia.getVia());
+		citta.setText(agenzia.getCitta());
+		cap.setText(agenzia.getCap());
 		telefono.setText(agenzia.getTelefono());
 	}
 @FXML

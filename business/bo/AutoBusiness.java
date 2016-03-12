@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
-import utility.Manutenzione;
 import dao.AutoDao;
 import dao.DaoFactory;
 import entity.Auto;
@@ -93,9 +92,7 @@ public ArrayList<Auto> getAutoDisponibili(){
  * 
  * @return true se l'inserimento va a buon fine,altrimenti false
  */
-public boolean aggiungiManutenzione(Auto a,LocalDate data,double costo,Manutenzione tipo){
-	return auto.aggiungiManutenzione(a.getTarga(), data, costo, tipo);
-}
+
 
 public Auto getAuto(String targa){
 	return auto.getAuto(targa);

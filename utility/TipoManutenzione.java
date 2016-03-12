@@ -1,5 +1,5 @@
 package utility;
 
-public enum Manutenzione {
+public enum TipoManutenzione {
 ORDINARIA,STRAORDINARIA;
 }

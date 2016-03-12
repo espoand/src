@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.mysql.jdbc.Statement;
+
 import dao.FasciaDao;
 import entity.Agenzia;
 import entity.Fascia;
@@ -78,7 +80,24 @@ public class MySQLFasciaDao implements FasciaDao{
 	@Override
 	public ArrayList<Fascia> getFasce() {
 		// TODO Auto-generated method stub
-		da implementare;
+		MySQLTariffaBaseDao tbDao=new MySQLTariffaBaseDao();
+		String query = "SELECT * FROM Fascia";
+		ArrayList<Fascia> tutteFasce= null;
+		try {
+			Connection connessione =MySqlDaoFactory.getConnection();
+			java.sql.Statement statement = connessione.createStatement();
+			ResultSet risultato = statement.executeQuery(query);
+			tutteFasce= new ArrayList<Fascia>();
+			while(risultato.next()){
+				
+				tutteFasce.add(new Fascia(risultato.getString("Id_fascia"),risultato.getString("Descrizione"),tbDao.getTariffaBase(risultato.getString("Tariffa_fascia"))));
+			}
+		} catch (DatabaseConnectionException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tutteFasce;
+		
 	}
 public Fascia getFascia(String idFascia){
 	MySQLTariffaBaseDao tbDao=new MySQLTariffaBaseDao();

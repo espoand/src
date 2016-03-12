@@ -22,9 +22,12 @@ public class GestisciAgenzia {
 		
 		int id=Integer.parseInt(param.get(0));
 		String nome=param.get(1);
-		String cognome=param.get(2);
-		String telefono=param.get(3);
-		Agenzia a=new Agenzia(id,nome,cognome,telefono);
+		String via=param.get(2);
+		String citta = param.get(3);
+		String cap = param.get(4);
+		String telefono=param.get(5);
+	
+		Agenzia a=new Agenzia(id,nome,via,citta,cap,telefono);
 		return ab.inserisciAgenzia(a);
 	}
 	
@@ -34,9 +37,11 @@ public class GestisciAgenzia {
 		
 		int id=Integer.parseInt(param.get(0));
 		String nome=param.get(1);
-		String cognome=param.get(2);
-		String telefono=param.get(3);
-		Agenzia a=new Agenzia(id,nome,cognome,telefono);
+		String via=param.get(2);
+		String citta = param.get(3);
+		String cap = param.get(4);
+		String telefono=param.get(5);
+		Agenzia a=new Agenzia(id,nome,via,citta,cap,telefono);
 		return ab.modificaAgenzia(a);
 	}
 	

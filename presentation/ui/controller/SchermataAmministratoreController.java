@@ -24,6 +24,15 @@ public void gestioneOperatori(){
 	
 }
 @FXML
+public void schermataOperatore(){
+	fc.handleRequest("SchermataOperatore");
+}
+@FXML
+public void gestioneAgenzia(){
+	fc.handleRequest("GestioneAgenzia");
+}
+
+@FXML
 public void gestioneTariffe(){
 	
 	fc.handleRequest("GestioneTariffe");

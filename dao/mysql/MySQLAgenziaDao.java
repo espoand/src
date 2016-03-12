@@ -34,7 +34,7 @@ public ArrayList<Agenzia> getAgenzie() {
 		
 		Agenzia tmp ;
 		while(risultato.next()){
-			tmp=new Agenzia(risultato.getInt(1),risultato.getString(2),risultato.getString(3),risultato.getString(4));
+			tmp=new Agenzia(risultato.getInt(1),risultato.getString(2),risultato.getString(3),risultato.getString(4),risultato.getString(5),risultato.getString(6));
 			result.add(tmp);
 			
 			
@@ -62,18 +62,19 @@ public ArrayList<Agenzia> getAgenzie() {
  * @throw DatabaseConnectionException
  */
 	@Override
-	public boolean inserisciAgenzia(int id, String nome, String indirizzo,
-			String telefono)  {
+	public boolean inserisciAgenzia(int id, String nome, String via,String citta,String cap,String telefono)  {
 		// TODO Auto-generated method stub
 	boolean inserito;
-	String query="INSERT INTO Agenzia(Identificativo,Nome,Indirizzo,Telefono) VALUES (?,?,?,?);";
+	String query="INSERT INTO Agenzia(Nome,Via,Citta,CAP,Telefono) VALUES (?,?,?,?,?);";
 	try{
 		Connection connessione = MySqlDaoFactory.getConnection();
 		PreparedStatement statement =connessione.prepareStatement(query);
-		statement.setInt(1, id);
+		
 		statement.setString(2, nome);
-		statement.setString(3,indirizzo);
-		statement.setString(4,telefono);
+		statement.setString(3,via);
+		statement.setString(4, citta);
+		statement.setString(5, cap);
+		statement.setString(6,telefono);
 		statement.executeUpdate();
 		
 		inserito = true;
@@ -103,19 +104,21 @@ public ArrayList<Agenzia> getAgenzie() {
 	 * @return true se la modifica è avvenuta correttamente,false se la modifica non è avvenuta
 	 * @throw DatabaseConnectionException
 	 */
-	public boolean modificaAgenzia(int id, String nome, String indirizzo,String telefono)  {
+	public boolean modificaAgenzia(int id, String nome, String via,String citta,String cap,String telefono)  {
 		// TODO Auto-generated method stub
 		
-		String queryAggiornamento="UPDATE Agenzia SET Nome = ' ?' ,Indirizzo = '?' ,Telefono= '?' WHERE Identificativo =? " ;
+		String queryAggiornamento="UPDATE Agenzia SET Nome = ' ?' ,Via = '?' ,Citta = ?,CAP = ? ,Telefono= '?' WHERE Identificativo =? " ;
 		//effettua la connessione al database e modifica i dati
 		boolean effettuato = false;
 		try{
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statementAggiornamento = connessione.prepareStatement(queryAggiornamento);
 			statementAggiornamento.setString(1, nome);
-			statementAggiornamento.setString(2,indirizzo);
-			statementAggiornamento.setString(3, telefono);
-			statementAggiornamento.setString(4, Integer.toString(id));
+			statementAggiornamento.setString(2,via);
+			statementAggiornamento.setString(3, citta);
+			statementAggiornamento.setString(4, cap);
+			statementAggiornamento.setString(5, telefono);
+			statementAggiornamento.setString(6, Integer.toString(id));
 			statementAggiornamento.executeUpdate();
 			effettuato=true;
 			}
@@ -167,7 +170,7 @@ public ArrayList<Agenzia> getAgenzie() {
 			statement.setInt(1, id);
 			ResultSet risultato = statement.executeQuery();
 			risultato.first();
-			agenzia = new Agenzia(risultato.getInt("Identificativo"),risultato.getString("Nome"),risultato.getString("Indirizzo"),risultato.getString("Telefono"));
+			agenzia = new Agenzia(risultato.getInt("Identificativo"),risultato.getString("Nome"),risultato.getString("Via"),risultato.getString("Citta"),risultato.getString("CAP"),risultato.getString("Telefono"));
 		} catch (DatabaseConnectionException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -175,29 +178,6 @@ public ArrayList<Agenzia> getAgenzie() {
 		return agenzia;
 		
 	}
-public static void main(String args[]) throws DatabaseConnectionException{
-	int id =1;
-	String nome="Hertz Carovigno";
-	String indirizzo="Via san michele 28/A ";
-	String telefono="3474794237";
-	MySQLAgenziaDao dao  = new MySQLAgenziaDao();
-	boolean inserito = dao.inserisciAgenzia(id, nome, indirizzo, telefono);
-	if(inserito){System.out.println("INSERITO");}
-	else System.out.println("NON INSERITO");
-	ArrayList<Agenzia> tutte = dao.getAgenzie();
-	System.out.println(tutte.get(0).getIdentificativo());
-	boolean rimosso= dao.rimuoviAgenzia(1);
-	if(rimosso) System.out.println("Rimosso");
-	else System.out.println("NON rimosso");
-	System.out.println("TESTO LA MODIFICA");
-	dao.inserisciAgenzia(id, nome, indirizzo, telefono);
-	String newName="Hertz Bari";
-	boolean modificato = dao.modificaAgenzia(id, newName, indirizzo, telefono);
-	tutte = dao.getAgenzie();
-	System.out.println(tutte.get(0).getNome());
-	
-	
-}
 
 	
 }

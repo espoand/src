@@ -16,6 +16,10 @@ ViewDispatcher vd = new ViewDispatcher();
 InputController ic = new InputController();
 @FXML
 TextField targa;
+@FXML
+public void manutenzione(){
+	fc.handleRequest("GestioneManutenzione");
+}
 @FXML 
 public void cerca(){
 	if(targa.getText().isEmpty()){

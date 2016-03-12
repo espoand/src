@@ -46,13 +46,16 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			dispatcher.apriView("gestioneContratto");break;
 		case "GestioneFascia":
 			dispatcher.apriView("gestioneFascia");break;
-		
+		case "GestioneAgenzia":
+			dispatcher.apriView("gestioneAgenzia");break;
 		case "GestioneOperatore":
 			dispatcher.apriView("gestioneOperatore");break;
 		case "GestioneTariffaBase":
 			dispatcher.apriView("gestioneTariffaBase");break;
 		case "ModificaAuto":
 			dispatcher.apriView("modificaAuto");break;
+		case "ModificaAgenzia":
+			dispatcher.apriView("modificaAgenzia");break;
 		case "ModificaContratto":
 			dispatcher.apriView("modificaContratto");break;
 		case "ModificaFascia":
@@ -170,6 +173,13 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			result = command.execute(parameters.get(0));break;
 		case "InserisciCliente":
 			command = new InserisciCliente();
+			result = command.execute(parameters);break;
+		
+		case "RimuoviAgenzia":
+			command = new RimuoviAgenzia();
+			result = command.execute(parameters.get(0));break;
+		case "ModificaAgenzia":
+			command = new ModificaAgenzia();
 			result = command.execute(parameters);break;
 		}
 		return result;

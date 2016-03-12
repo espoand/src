@@ -171,5 +171,16 @@ public static void chiudiConnessione(){
 		}
 		return null;
 	}
+	@Override
+	public ManutenzioneDao getManutenzioneDao() {
+		// TODO Auto-generated method stub
+		try {
+			return (ManutenzioneDao) createDao(MySQLManutenzioneDao.class);
+		} catch (InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import utility.DateConverter;
-import utility.Manutenzione;
 import dao.AutoDao;
 import entity.Auto;
 import entity.Fascia;
@@ -143,29 +142,7 @@ public class MySQLAutoDAO implements AutoDao{
 		
 	}
 
-	@Override
-	public boolean aggiungiManutenzione(String targa, LocalDate data, double costo,
-			Manutenzione tipo) {
-		// TODO Auto-generated method stub
-		boolean aggiunto = false;
-		DateConverter dateC = new DateConverter();
-		String query = "INSERT INTO Manutenzione(Targa,Data,Costo,Tipo) " + "VALUES (?,?,?,?)";
-		try{
-			Connection connessione = MySqlDaoFactory.getConnection();
-			PreparedStatement statement = connessione.prepareStatement(query);
-			statement.setString(1, targa);
-			statement.setDate(2,dateC.LocalDateToSQLDate(data));
-			statement.setBigDecimal(3,BigDecimal.valueOf(costo));
-			statement.executeUpdate();
-			aggiunto = true;
-			
-		}
-		catch(SQLException | DatabaseConnectionException e){
-			aggiunto = false;
-			e.printStackTrace();
-		}
-		return aggiunto;
-	}
+
 	public boolean setStato(String targa,boolean disponibile){
 		String query = "UPDATE AUTO SET Disponibile = ? WHERE Targa = ?";
 		boolean modificato = false;

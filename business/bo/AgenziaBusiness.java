@@ -20,14 +20,14 @@ private static	AgenziaDao agenziaDao = null;
 		}
 	}
 public boolean inserisciAgenzia(Agenzia a){
- return agenziaDao.inserisciAgenzia(a.getIdentificativo(), a.getNome(), a.getIndirizzo(), a.getTelefono());
+ return agenziaDao.inserisciAgenzia(a.getIdentificativo(), a.getNome(), a.getVia(),a.getCitta(),a.getCap(), a.getTelefono());
 }
 public boolean rimuoviAgenzia(int ag){
 	return agenziaDao.rimuoviAgenzia(ag);
 	
 }
 public boolean modificaAgenzia(Agenzia a){
-	return agenziaDao.modificaAgenzia(a.getIdentificativo(), a.getNome(), a.getIndirizzo(), a.getTelefono());
+	return agenziaDao.modificaAgenzia(a.getIdentificativo(), a.getNome(), a.getVia(),a.getCitta(),a.getCap(), a.getTelefono());
 }
 public ArrayList<Agenzia> getAgenzie(){
 	return agenziaDao.getAgenzie();

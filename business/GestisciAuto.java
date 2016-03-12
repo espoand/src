@@ -12,7 +12,6 @@ import entity.Auto;
 import entity.Fascia;
 import exceptions.DatabaseConnectionException;
 import exceptions.GenericException;
-import utility.Manutenzione;
 
 public class GestisciAuto {
  
@@ -88,20 +87,6 @@ public class GestisciAuto {
 				
 	
 	
-	public boolean aggiungiManutenzione(ArrayList<String> param){
-		Auto auto = car.getAuto(param.get(0));
-		if(!auto.isDisponibile()) return false;
-		LocalDate data = LocalDate.parse(param.get(1));
-		double costo = Double.parseDouble(param.get(2));
-		Manutenzione tipo;
-		if(param.get(0) == Manutenzione.ORDINARIA.toString()){
-			tipo=Manutenzione.ORDINARIA;
-		}
-		else tipo=Manutenzione.STRAORDINARIA;
-		return car.aggiungiManutenzione(auto, data, costo, tipo);
-		
-		
-	}
 	public Auto getAuto(String targa){
 		Auto a = car.getAuto(targa);;
 		if(a==null) throw new GenericException("Valore nullo");

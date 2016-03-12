@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.GestioneAgenziaController">
+   <children>
+      <MenuBar>
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" />
+              </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <TextField fx:id="id" layoutX="40.0" layoutY="27.0" prefHeight="25.0" prefWidth="218.0" promptText="inserisci l'id dell'agenzia" />
+            <Button fx:id="cerca" layoutX="460.0" layoutY="27.0" mnemonicParsing="false" text="Cerca Agenzia" />
+            <Button fx:id="aggiungi" layoutX="40.0" layoutY="100.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi Agenzia" />
+            <Button fx:id="elimina" layoutX="184.0" layoutY="100.0" mnemonicParsing="false" onAction="#elimina" text="Elimina Agenzia" />
+            <Button fx:id="modifica" layoutX="317.0" layoutY="100.0" mnemonicParsing="false" onAction="#modifica" text="Modifica Agenzia" />
+            <Button fx:id="home" layoutX="455.0" layoutY="100.0" mnemonicParsing="false" onAction="#home" text="Torna alla home" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="listaAgenzie" prefHeight="188.0" prefWidth="600.0">
+        <columns>
+          <TableColumn prefWidth="123.0" text="ID AGENZIA" />
+          <TableColumn prefWidth="130.0" text="NOME AGENZIA" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>

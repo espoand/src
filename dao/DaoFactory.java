@@ -12,6 +12,7 @@ public abstract FasciaDao getFasciaDao();
 public abstract OperatoreDao getOperatoreDao();
 public abstract TariffaBaseDao getTariffaBaseDao();
 public abstract LoginDao getLoginDao();
+public abstract ManutenzioneDao getManutenzioneDao();
 public static DaoFactory getDaoFactory(int whichFactory){
 	switch(whichFactory){
 	case MySQL:
