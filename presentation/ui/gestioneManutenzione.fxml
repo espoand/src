@@ -23,18 +23,18 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="286.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
       <children>
-            <TableView layoutX="14.0" layoutY="86.0" prefHeight="278.0" prefWidth="615.0">
+            <TableView fx:id="listaManutenzione" layoutX="14.0" layoutY="86.0" prefHeight="278.0" prefWidth="615.0">
               <columns>
-                <TableColumn prefWidth="108.0" text="Targa Auto" />
-                <TableColumn prefWidth="208.0" text="Tipo Intervento" />
-                  <TableColumn prefWidth="117.0" text="Data" />
-                  <TableColumn prefWidth="181.0" text="Costo (EURO)" />
+                <TableColumn fx:id="targa" prefWidth="108.0" text="Targa Auto" />
+                <TableColumn fx:id="tipo" prefWidth="208.0" text="Tipo Intervento" />
+                  <TableColumn fx:id="data" prefWidth="117.0" text="Data" />
+                  <TableColumn fx:id="costo" prefWidth="181.0" text="Costo (EURO)" />
               </columns>
             </TableView>
-            <ButtonBar layoutX="14.0" layoutY="21.0" prefHeight="40.0" prefWidth="599.0">
+            <ButtonBar layoutX="6.0" layoutY="21.0" prefHeight="40.0" prefWidth="607.0">
               <buttons>
-                  <Button mnemonicParsing="false" onAction="#mostraAuto" text="Mostra Dettagli Auto" />
-                  <Button mnemonicParsing="false" onAction="#elimina" prefHeight="27.0" text="Elimina Intervento" />
+                  <Button mnemonicParsing="false" onAction="#aggiungi" prefHeight="27.0" text="Aggiungi Intervento" />
+                  <Button mnemonicParsing="false" onAction="#mostraAuto" text="Mostra  Auto" />
                 <Button mnemonicParsing="false" onAction="#home" prefHeight="27.0" prefWidth="419.0" text="Torna alla home" />
               </buttons>
             </ButtonBar>

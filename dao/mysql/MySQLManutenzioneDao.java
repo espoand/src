@@ -65,7 +65,7 @@ public class MySQLManutenzioneDao implements ManutenzioneDao{
 	@Override
 	public boolean eliminaManutenzione(int id) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
