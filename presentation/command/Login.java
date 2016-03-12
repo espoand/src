@@ -1,24 +1,15 @@
 package presentation.command;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
-import business.BusinessDelegate;
+import business.GestisciLogin;
 
 public class Login implements Command{
-BusinessDelegate b;
+GestisciLogin b = new GestisciLogin();
 	@Override
 	public Object execute(ArrayList<String> parameters) {
 		// TODO Auto-generated method stub
-		boolean eseguito = false;
-		try {
-			eseguito = (boolean) b.handleRequest("Login", parameters);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return eseguito;
+		return b.login(parameters);
 	}
 
 	@Override

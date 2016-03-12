@@ -100,12 +100,24 @@ public static void chiudiConnessione(){
 	@Override
 	public ClienteDao getClienteDao() {
 		// TODO Auto-generated method stub
-		return null; //return (ClienteDao) createDao(MySQLClienteDao.class);
+	try {
+		return (ClienteDao) createDao(MySQLClienteDao.class);
+	} catch (InstantiationException | IllegalAccessException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return null;
 	}
 	@Override
 	public ContrattoDao getContrattoDao() {
 		// TODO Auto-generated method stub
-		return null;//return (ContrattoDao) createDao(MySQLContrattoDao.class);
+		try {
+			return (ContrattoDao) createDao(MySQLContrattoDao.class);
+		} catch (InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
@@ -120,12 +132,8 @@ public static void chiudiConnessione(){
 	return null;
 	}
 
-	@Override
-	public NoleggioDao getNoleggioDao() {
-		// TODO Auto-generated method stub
-		//return (NoleggioDao) createDao(MySQLNoleggioDao.class);
-		return null;
-	}
+
+	
 
 	@Override
 	public OperatoreDao getOperatoreDao() {

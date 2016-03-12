@@ -44,7 +44,8 @@ public void submit(){
 		parameters.add(cognome.getText());
 		parameters.add(telefono.getText());
 		parameters.add(indirizzo.getText());
-		if((boolean)fc.handleRequest("InserisciCliente", parameters)){
+		boolean eseguito = (boolean) fc.handleRequest("InserisciCliente", parameters);
+		if(eseguito){
 			vd.showMessage("Operazione avvenuta con successo");
 			vd.indietro();
 		}

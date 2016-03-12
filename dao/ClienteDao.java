@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.ArrayList;
+
 import entity.Cliente;
 
 public interface ClienteDao {
@@ -17,6 +19,7 @@ public boolean inserisciCliente(String nome,String cognome,String telefono,Strin
 public boolean cancellaCliente(String codiceFiscale);
 public boolean modificaCliente(String cf,String nome,String cognome,String telefono,String indirizzo);
 public Cliente getCliente(String cf);
+public ArrayList<Cliente> tuttiClienti();
 
 
 }

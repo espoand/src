@@ -2,10 +2,10 @@ package presentation.command;
 
 import java.util.ArrayList;
 
-import business.BusinessDelegate;
+import business.GestisciTariffaBase;
 
 public class TutteTariffe implements Command{
-BusinessDelegate b = new BusinessDelegate();
+GestisciTariffaBase b = new GestisciTariffaBase();
 	@Override
 	public Object execute(ArrayList<String> parameters) {
 		// TODO Auto-generated method stub
@@ -15,7 +15,7 @@ BusinessDelegate b = new BusinessDelegate();
 	@Override
 	public Object execute(String parameter) {
 		// TODO Auto-generated method stub
-		return b.handleRequest("TutteTariffe");
+		return b.getTariffe();
 	}
 
 }

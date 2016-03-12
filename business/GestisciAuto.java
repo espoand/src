@@ -1,17 +1,18 @@
 package business;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
 import business.bo.AutoBusiness;
 import business.bo.FasciaBusiness;
-import business.bo.NoleggioBusiness;
 import entity.Auto;
 import entity.Fascia;
-import entity.Noleggio;
 import exceptions.DatabaseConnectionException;
+import exceptions.GenericException;
+import utility.Manutenzione;
 
 public class GestisciAuto {
  
@@ -26,7 +27,7 @@ public class GestisciAuto {
 		}
 		
 	}
-	
+
 	public Object inserisciAuto(ArrayList<String> param) {
 		FasciaBusiness fb = new FasciaBusiness();
 		if(car==null)
@@ -38,19 +39,21 @@ public class GestisciAuto {
 		String idFascia=param.get(2);
 		Fascia fascia =null;
 		double ultimoKmtraggio=Double.parseDouble(param.get(3));
+		
 		ArrayList<Fascia> tutteFasce = fb.getFasce();
-		Iterator it1 = tutteFasce.iterator();
+		Iterator<Fascia> it1 = tutteFasce.iterator();
 		while(it1.hasNext()){
 			fascia=(Fascia) it1.next();
 			if(fascia.getIdFascia().equals(idFascia)) break;
-			else return null;
-				
+			
 		}
-	
+		if(fascia!=null){
 		
 		
-		a=new Auto(targa,modello,fascia,ultimoKmtraggio);
+		a=new Auto(targa,modello,fascia,true,ultimoKmtraggio);
 		return car.inserisciAuto(a);
+		}
+		return null;
 		
 	}
 	
@@ -63,6 +66,7 @@ public class GestisciAuto {
 		double ultimoKm=Double.parseDouble(param.get(1));
 		
 		a=car.getAuto(targa);
+		if(!a.isDisponibile()) return false;
 		
 		return car.modificaAuto(a,ultimoKm);
 		
@@ -72,24 +76,54 @@ public class GestisciAuto {
 	public Object rimuoviAuto(String param){
 		if(car==null)
 			return false;
-		
 	
-			NoleggioBusiness noleggioBusiness= new NoleggioBusiness();
-			ArrayList<Noleggio> noleggi= new ArrayList<Noleggio>();
-			noleggi=noleggioBusiness.getNoleggi();
-			Iterator<Noleggio> it=noleggi.iterator();
+			
 			Auto a = car.getAuto(param);
-			while(it.hasNext()) {
-				Noleggio current=it.next();
-				if(current.getAutoNoleggiata().equals(a))
-					return false;
-					}
-					return car.rimuoviAuto(a);
+			if(a.isDisponibile()){
+				return car.rimuoviAuto(param);
+			}
+			else return false;
+			
 				}
 				
 	
 	
-	public Object aggiungiManutenzione(ArrayList<String> param){
+	public boolean aggiungiManutenzione(ArrayList<String> param){
+		Auto auto = car.getAuto(param.get(0));
+		if(!auto.isDisponibile()) return false;
+		LocalDate data = LocalDate.parse(param.get(1));
+		double costo = Double.parseDouble(param.get(2));
+		Manutenzione tipo;
+		if(param.get(0) == Manutenzione.ORDINARIA.toString()){
+			tipo=Manutenzione.ORDINARIA;
+		}
+		else tipo=Manutenzione.STRAORDINARIA;
+		return car.aggiungiManutenzione(auto, data, costo, tipo);
 		
 		
-}}
+	}
+	public Auto getAuto(String targa){
+		Auto a = car.getAuto(targa);;
+		if(a==null) throw new GenericException("Valore nullo");
+		
+		return a;
+	}
+	public ArrayList<Auto> tutteAuto(){
+		ArrayList<Auto> tutteAuto=  car.getTutteAuto();
+		if(tutteAuto== null) throw new GenericException("Valore nullo");
+		return tutteAuto;
+	}
+	public ArrayList<Auto> getAutoDisponibili(){
+		ArrayList<Auto> disponibili = car.getAutoDisponibili();
+		if(disponibili == null) throw new GenericException("Valore nullo");
+		return disponibili;
+		
+	}
+	public boolean setStato(ArrayList<String> parameters){
+		boolean disponibile = Boolean.parseBoolean(parameters.get(1));
+		String targa = parameters.get(0);
+		return car.setStato(targa, disponibile);
+		
+		
+	}
+	}

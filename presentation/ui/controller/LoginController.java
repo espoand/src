@@ -26,6 +26,7 @@ public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
 	Sessione.azzera();
 }
+
 @FXML
 public void submit(){
 	if(username.getText().isEmpty() || password.getText().isEmpty()){
@@ -44,6 +45,7 @@ public void submit(){
 		fc.handleRequest("Login", parameters);
 	}
 }
+@FXML
 public void quit(){
 	vd.quit();
 }

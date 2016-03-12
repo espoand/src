@@ -14,28 +14,34 @@ import entity.Agenzia;
 import entity.Auto;
 import entity.Cliente;
 import entity.Contratto;
+import entity.TariffaBase;
 import exceptions.DatabaseConnectionException;
 import utility.DateConverter;
 
 public class MySQLContrattoDao implements ContrattoDao{
 DateConverter dateConverter = new DateConverter();
 	@Override
-	public boolean inserisciContratto(Cliente cliente, LocalDate dataInizio, double acconto, int nroOrdine,
-			LocalDate finePrevista, Agenzia agenziaNoleggio, Agenzia agenziaRestituzione) {
+	public boolean inserisciContratto(Cliente cliente, LocalDate dataInizio, double acconto,
+			LocalDate finePrevista, Agenzia agenziaNoleggio, Agenzia agenziaRestituzione,TariffaBase tariffa,boolean kmIllimitato,double nroKm,Auto auto,double importoTotale) {
 		// TODO Auto-generated method stub
 		DateConverter dateConverter = new DateConverter();
 		boolean inserito = false;
-		String query = "INSERT INTO Contratto(Cliente,Nro_ord,Data_inizio,Acconto,Fine_prevista,Agenzia_noleggio,Agenzia_restituzione) VALUES (?,?,?,?,?,?,?)";
+		String query = "INSERT INTO Contratto(Cliente,Data_inizio,Acconto,Fine_prevista,Agenzia_noleggio,Agenzia_restituzione,Tariffa_base,Km_illimitato,Nro_km,Auto_noleggiata,Importo_totale) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connessione.prepareStatement(query);
 			statement.setString(1, cliente.getCodiceFiscale());
 			statement.setDate(2,dateConverter.LocalDateToSQLDate(dataInizio));
 			statement.setDouble(3, acconto);
-			statement.setInt(4, nroOrdine);
-			statement.setDate(5, dateConverter.LocalDateToSQLDate(finePrevista));
-			statement.setInt(6, agenziaNoleggio.getIdentificativo());
-			statement.setInt(7, agenziaRestituzione.getIdentificativo());
+			
+			statement.setDate(4, dateConverter.LocalDateToSQLDate(finePrevista));
+			statement.setInt(5, agenziaNoleggio.getIdentificativo());
+			statement.setInt(6, agenziaRestituzione.getIdentificativo());
+			statement.setString(7, tariffa.getNome());
+			statement.setBoolean(8, kmIllimitato);
+			statement.setString(9, auto.getTarga());
+			statement.setDouble(10, importoTotale);
+			
 			
 
 			statement.executeUpdate();
@@ -81,6 +87,8 @@ DateConverter dateConverter = new DateConverter();
 			Connection connessione;
 			MySQLClienteDao clienteDao =new MySQLClienteDao();
 			MySQLAgenziaDao agenziaDao = new MySQLAgenziaDao();
+			MySQLTariffaBaseDao tbDao = new MySQLTariffaBaseDao();
+			MySQLAutoDAO autoDao= new MySQLAutoDAO();
 			ArrayList<Contratto> contratti = null;
 			
 			try {
@@ -89,7 +97,7 @@ DateConverter dateConverter = new DateConverter();
 				ResultSet risultato = statement.executeQuery(query);
 				contratti = new ArrayList<Contratto>();
 				while(risultato.next()){
-					contratti.add(new Contratto(risultato.getInt("Nro_ordine"),clienteDao.getCliente(risultato.getString("Cliente")),risultato.getDate("Data_inizio").toLocalDate(),risultato.getDouble("Acconto"),risultato.getDate("Fine_prevista").toLocalDate(),agenziaDao.getAgenzia(risultato.getInt("Agenzia_noleggio")),agenziaDao.getAgenzia(risultato.getInt("Agenzia_restituzione"))));
+					contratti.add(new Contratto(risultato.getInt("Nro_ordine"),clienteDao.getCliente(risultato.getString("Cliente")),risultato.getDate("Data_inizio").toLocalDate(),risultato.getDouble("Acconto"),risultato.getDate("Fine_prevista").toLocalDate(),agenziaDao.getAgenzia(risultato.getInt("Agenzia_noleggio")),agenziaDao.getAgenzia(risultato.getInt("Agenzia_restituzione")),tbDao.getTariffaBase(risultato.getString("Tariffa_base")),risultato.getBoolean("Km_illimitato"),risultato.getDouble("Nro_km"),autoDao.getAuto(risultato.getString("Auto_noleggiata")),risultato.getDouble("Importo_totale"),risultato.getBoolean("Chiuso")));
 				}
 
 			} catch (DatabaseConnectionException | SQLException e) {
@@ -97,6 +105,60 @@ DateConverter dateConverter = new DateConverter();
 				e.printStackTrace();
 			}
 			return contratti;
+	}
+
+	@Override
+	public boolean modificaContratto(Cliente cliente,LocalDate dataInizio,double acconto,int nroOrdine,LocalDate finePrevista,Agenzia agenziaNoleggio,Agenzia agenziaRestituzione,TariffaBase tariffaBase,boolean kmIllimitato,double nroKm,Auto autoNoleggiata,double importoTotale) {
+		// TODO Auto-generated method stub
+		boolean eseguito = false;
+		String query ="UPDATE Contratto SET Data_inizio = ?, Acconto = ?, Fine_prevista = ?,Agenzia_noleggio = ?,Agenzia_restituzione = ?,Tariffa_base =?,Km_illimitato = ?,Nro_km = ?,Auto_noleggiata = ?,Importo_totale = ? WHERE Cliente = ? AND Nro_ord = ?";
+		try {
+			Connection connessione = MySqlDaoFactory.getConnection();
+			PreparedStatement statement = connessione.prepareStatement(query);
+			statement.setDate(1,dateConverter.LocalDateToSQLDate(dataInizio) );
+			statement.setDouble(2, acconto);
+			statement.setDate(3, dateConverter.LocalDateToSQLDate(finePrevista));
+			statement.setInt(4,agenziaNoleggio.getIdentificativo());
+			statement.setInt(5, agenziaRestituzione.getIdentificativo());
+			statement.setString(6, tariffaBase.getNome());
+			statement.setBoolean(7, kmIllimitato);
+			statement.setString(8, autoNoleggiata.getTarga());
+			statement.setDouble(9, importoTotale);
+			
+		
+			statement.executeUpdate();
+			eseguito  = true;
+			
+		} catch (DatabaseConnectionException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return eseguito;
+		
+
+	}
+
+	
+	
+
+	@Override
+	public boolean chiudiContratto(int nroOrdine) {
+		// TODO Auto-generated method stub
+		boolean eseguito = false;
+		String query = "UPDATE Contratto SET Chiuso = TRUE WHERE Nro_ord = ?";
+		Connection connessione;
+		try {
+			connessione = MySqlDaoFactory.getConnection();
+			PreparedStatement statement = connessione.prepareStatement(query);
+			statement.setInt(0, nroOrdine);
+			statement.executeUpdate();
+			eseguito = true;
+		} catch (DatabaseConnectionException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return eseguito;
+		
 	}
 
 }

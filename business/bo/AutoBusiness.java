@@ -1,5 +1,6 @@
 package business.bo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -65,8 +66,8 @@ public boolean modificaAuto(Auto a,double ultimoKM){
  * @param a l'auto da rimuovere
  * @return true se viene rimossa,altrimenti false
  */
-public boolean rimuoviAuto(Auto a){
-	return auto.rimuoviAuto(a.getTarga());
+public boolean rimuoviAuto(String t){
+	return auto.rimuoviAuto(t);
 }
 /**
  * L'insieme di tutte le auto presenti nel database
@@ -92,12 +93,15 @@ public ArrayList<Auto> getAutoDisponibili(){
  * 
  * @return true se l'inserimento va a buon fine,altrimenti false
  */
-public boolean aggiungiManutenzione(Auto a,Date data,double costo,Manutenzione tipo){
+public boolean aggiungiManutenzione(Auto a,LocalDate data,double costo,Manutenzione tipo){
 	return auto.aggiungiManutenzione(a.getTarga(), data, costo, tipo);
 }
 
 public Auto getAuto(String targa){
 	return auto.getAuto(targa);
+}
+public boolean setStato(String targa,boolean disponibile){
+	return auto.setStato(targa, disponibile);
 }
 
 

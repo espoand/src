@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.mysql.jdbc.Statement;
 
 import dao.ClienteDao;
 import entity.Cliente;
@@ -96,6 +99,34 @@ public class MySQLClienteDao implements ClienteDao{
 			e.printStackTrace();
 		}
 		return cliente;
+		
+	}
+
+	@Override
+	public ArrayList<Cliente> tuttiClienti() {
+		// TODO Auto-generated method stub
+		String query = "SELECT * FROM Cliente";
+		Connection connessione ;
+		ArrayList<Cliente> tuttiClienti = null;
+		try {
+			connessione = MySqlDaoFactory.getConnection();
+			java.sql.Statement statement  = connessione.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			Cliente c = null;
+			
+			tuttiClienti = new ArrayList<Cliente>();
+			while(result.next()){
+				c = new Cliente(result.getString("Codice_fiscale"),result.getString("Nome"),result.getString("Cognome"),result.getString("Telefono"),result.getString("Indirizzo"));
+				
+			}
+			
+			
+			
+		} catch (DatabaseConnectionException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tuttiClienti;
 		
 	}
 

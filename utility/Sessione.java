@@ -7,9 +7,10 @@ import entity.Auto;
 import entity.Cliente;
 import entity.Contratto;
 import entity.Fascia;
-import entity.Noleggio;
 import entity.Operatore;
 import entity.TariffaBase;
+import javafx.scene.Scene;
+
 import java.time.temporal.ChronoUnit;
 
 public  class Sessione {
@@ -30,6 +31,14 @@ public static void setContrattoAttuale(Contratto contrattoAttuale) {
 	Sessione.contrattoAttuale = contrattoAttuale;
 }
 
+private static Scene sc = null;
+public static Scene getSc() {
+	return sc;
+}
+
+public static void setSc(Scene sc) {
+	Sessione.sc = sc;
+}
 
 static TipoUtente tipo= null;
 static String viewAttuale= null;
@@ -39,7 +48,7 @@ static Auto autoAttuale= null;
 static Cliente clienteAttuale= null;
 static Fascia fasciaAttuale = null;
 static TariffaBase tariffaAttuale= null;
-static Noleggio noleggioAttuale = null;
+
 static Operatore operatoreAttuale = null;
 static Contratto contrattoAttuale = null;
 static Agenzia agenziaAttuale = null;
@@ -70,13 +79,7 @@ public static void setOperatoreAttuale(Operatore operatoreAttuale) {
 	Sessione.operatoreAttuale = operatoreAttuale;
 }
 
-public static Noleggio getNoleggioAttuale() {
-	return noleggioAttuale;
-}
 
-public static void setNoleggioAttuale(Noleggio noleggioAttuale) {
-	Sessione.noleggioAttuale = noleggioAttuale;
-}
 
 //trova la data odierna
 public static LocalDate today(){
@@ -122,7 +125,7 @@ public static void azzera(){
 	clienteAttuale = null;
 	fasciaAttuale = null;
 	tariffaAttuale = null;
-	noleggioAttuale = null;
+
 	operatoreAttuale = null;
 	cf = null;
 }

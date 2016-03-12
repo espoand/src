@@ -12,10 +12,10 @@ public OperatoreBusiness(){
 public boolean inserisciOperatore(Operatore o){
 	return operatoreDao.inserisciOperatore(o.getCf(), o.getNome(), o.getCognome(), o.getUsername(), o.getPassword(),o.isAmministratore());
 }
-public boolean cancellaOperatore(Operatore o){
-	return operatoreDao.cancellaOperatore(o.getCf());
+public boolean cancellaOperatore(String o){
+	return operatoreDao.cancellaOperatore(o);
 }
-public Operatore getOperatore(Operatore o){
-	return o;
+public Operatore getOperatore(String cf){
+	return operatoreDao.getOperatore(cf);
 }
 }

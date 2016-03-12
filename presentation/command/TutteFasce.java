@@ -2,25 +2,22 @@ package presentation.command;
 
 import java.util.ArrayList;
 
-import business.BusinessDelegate;
-import entity.Fascia;
+import business.GestisciFascia;
 
 public class TutteFasce implements Command{
-BusinessDelegate b = new BusinessDelegate();
-ArrayList<Fascia> fasce = null;
+GestisciFascia b = new GestisciFascia();
 	@Override
 	public Object execute(ArrayList<String> parameters) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public Object execute(String parameter) {
 		// TODO Auto-generated method stub
 		
-		fasce= (ArrayList<Fascia>) b.handleRequest("TutteFasce");
-		return fasce;
+		return b.getFasce();
 	}
 
 }

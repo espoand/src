@@ -43,17 +43,18 @@ public Object modificaTariffaBase(ArrayList<String> param){
 		return tar.modificaTariffaBase(tarBas);
 	}
 
-public Object eliminaTariffaBase(ArrayList<String> param){
+public Object eliminaTariffaBase(String param){
 	
 	if(tar==null)
 		return false;
 	
-	String nome=param.get(0);
-	double costoAlKm=Double.parseDouble(param.get(1));
-	double costoAlKmExtra=Double.parseDouble(param.get(2));
-	double costoAlGiornoExtra=Double.parseDouble(param.get(3));
 	
-	TariffaBase tarBas=new TariffaBase(nome,costoAlKm,costoAlKmExtra,costoAlGiornoExtra);
-	return tar.eliminaTariffaBase(tarBas);
+	return tar.eliminaTariffaBase(param);
+}
+public TariffaBase getTariffaBase(String tb){
+	return tar.getTariffaBase(tb);
+}
+public ArrayList<TariffaBase> getTariffe(){
+	return tar.getTariffe();
 }
 }

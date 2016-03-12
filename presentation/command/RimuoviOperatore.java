@@ -1,12 +1,11 @@
 package presentation.command;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
-import business.BusinessDelegate;
+import business.GestisciOperatore;
 
 public class RimuoviOperatore implements Command{
-	BusinessDelegate b;
+	GestisciOperatore b = new GestisciOperatore();
 	@Override
 	public Object execute(ArrayList<String> parameters) {
 		// TODO Auto-generated method stub
@@ -16,23 +15,5 @@ public class RimuoviOperatore implements Command{
 	@Override
 	public Object execute(String parameter) {
 		// TODO Auto-generated method stub
-		boolean eseguito = false;
-		try {
-			eseguito = (boolean) b.handleRequest("RimuoviOperatore", parameter);
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return eseguito;
-	}
-
+		return b.cancellaOperatore(parameter);}
 }

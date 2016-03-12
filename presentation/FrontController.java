@@ -15,7 +15,7 @@ ApplicationControllerInterface controller;
 	public Object handleRequest(String request, ArrayList<String> parameters) {
 		// TODO Auto-generated method stub
 		controller = new ApplicationController();
-		return controller.handleRequest(request);
+		return controller.handleRequest(request,parameters);
 	}
 
 }

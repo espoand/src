@@ -2,11 +2,10 @@ package presentation.command;
 
 import java.util.ArrayList;
 
+import business.GestisciContratto;
 
-import business.GestisciAgenzia;
-
-public class CercaAgenzia implements Command{
-GestisciAgenzia b = new GestisciAgenzia();
+public class ChiudiContratto implements Command{
+GestisciContratto b = new GestisciContratto();
 	@Override
 	public Object execute(ArrayList<String> parameters) {
 		// TODO Auto-generated method stub
@@ -16,11 +15,13 @@ GestisciAgenzia b = new GestisciAgenzia();
 	@Override
 	public Object execute(String parameter) {
 		// TODO Auto-generated method stub
-		
-			return b.getAgenzia(parameter);
-		
+		try {
+			return b.chiudiContratto(parameter);
+		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
-		
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

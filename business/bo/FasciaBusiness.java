@@ -14,8 +14,8 @@ public FasciaBusiness(){
 public boolean inserisciFascia(Fascia f){
 	return fasciaDao.inserisciFascia(f.getIdFascia(), f.getDescrizioneFascia(), f.getTariffaFascia());
 }
-public boolean rimuoviFascia(Fascia f){
-	return fasciaDao.eliminaFascia(f.getIdFascia());
+public boolean rimuoviFascia(String f){
+	return fasciaDao.eliminaFascia(f);
 }
 public boolean modificaFascia(Fascia f){
 	return fasciaDao.modificaFascia(f.getIdFascia(), f.getTariffaFascia());

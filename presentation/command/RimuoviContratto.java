@@ -1,12 +1,12 @@
 package presentation.command;
 
-import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
-import business.BusinessDelegate;
+import business.GestisciContratto;
 
 public class RimuoviContratto implements Command{
-	BusinessDelegate b;
+	GestisciContratto b = new GestisciContratto();
 	@Override
 	public Object execute(ArrayList<String> parameters) {
 		// TODO Auto-generated method stub
@@ -16,23 +16,13 @@ public class RimuoviContratto implements Command{
 	@Override
 	public Object execute(String parameter) {
 		// TODO Auto-generated method stub
-		boolean eseguito = false;
 		try {
-			eseguito = (boolean) b.handleRequest("RimuoviContratto", parameter);
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
+			return b.eliminaContratto(parameter);
+		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return eseguito;
+		return null;
 	}
 
 }

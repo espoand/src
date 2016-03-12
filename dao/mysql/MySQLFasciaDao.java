@@ -78,7 +78,7 @@ public class MySQLFasciaDao implements FasciaDao{
 	@Override
 	public ArrayList<Fascia> getFasce() {
 		// TODO Auto-generated method stub
-		return null;
+		da implementare;
 	}
 public Fascia getFascia(String idFascia){
 	MySQLTariffaBaseDao tbDao=new MySQLTariffaBaseDao();

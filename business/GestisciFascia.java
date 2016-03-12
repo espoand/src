@@ -46,19 +46,14 @@ public class GestisciFascia {
 		return fb.modificaFascia(f);
 	}
 	
-	public Object eliminaFascia (ArrayList<String> param){
+	public Object eliminaFascia (String param){
 		if(fb==null)
 			return false;
-		TariffaBaseBusiness tb=new TariffaBaseBusiness();
-			
 		
-		String id=param.get(0);
-		String descrizione=param.get(1);
-		String tariffa=param.get(2);
-		TariffaBase tar=tb.getTariffaBase(tariffa);
-		
-		Fascia f=new Fascia(id,descrizione,tar);
-		return fb.rimuoviFascia(f);
+		return fb.rimuoviFascia(param);
+	}
+	public ArrayList<Fascia> getFasce(){
+		return fb.getFasce();
 	}
 	
 }

@@ -6,9 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
+import utility.DateConverter;
 import utility.Manutenzione;
 import dao.AutoDao;
 import entity.Auto;
@@ -25,7 +27,7 @@ public class MySQLAutoDAO implements AutoDao{
 			double ultimoKmtraggio)  {
 		// TODO Auto-generated method stub
 		boolean inserito= false;
-		String query = "INSERT INTO AUTO(Targa,Modello,Fascia,Disponibile,Ultimo_kmtraggio) " + "VALUES ('?','?','?',true,'?')";
+		String query = "INSERT INTO AUTO(Targa,Modello,Fascia,Disponibile,Ultimo_kmtraggio) " + "VALUES (?,?,?,true,?)";
 		try{
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement =connessione.prepareStatement(query);
@@ -67,7 +69,7 @@ public class MySQLAutoDAO implements AutoDao{
 	public boolean modificaAuto(String targa, double ultimoKm) {
 		// TODO Auto-generated method stub
 		boolean modificato;
-		String query = "UPDATE AUTO SET Ultimo_kmtraggio = '?' WHERE Targa = '?'";
+		String query = "UPDATE AUTO SET Ultimo_kmtraggio = ? WHERE Targa = ?";
 		try{
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connessione.prepareStatement(query);
@@ -116,20 +118,43 @@ public class MySQLAutoDAO implements AutoDao{
 	@Override
 	public ArrayList<Auto> getAutoDisponibili() {
 		// TODO Auto-generated method stub
-		return null;
+	
+		MySQLFasciaDao fasciaDao= new MySQLFasciaDao();
+		ArrayList<Auto>  autoDisponibili= null;
+		String query = "SELECT * FROM AUTO WHERE Disponibile=TRUE";
+		
+			Connection connessione;
+			try {
+				connessione = MySqlDaoFactory.getConnection();
+				Statement statement = connessione.createStatement();
+			ResultSet risultato= statement.executeQuery(query);
+			autoDisponibili=new ArrayList<Auto>();
+			while(risultato.next()){
+				
+					autoDisponibili.add(new Auto(risultato.getString("Targa"),risultato.getString("Modello"),fasciaDao.getFascia(risultato.getString("Fascia")),risultato.getBoolean("Disponibile"),risultato.getDouble("Ultimo_kmtraggio")));
+				
+			}
+			} catch (DatabaseConnectionException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return autoDisponibili;
+		
+		
 	}
 
 	@Override
-	public boolean aggiungiManutenzione(String targa, Date data, double costo,
+	public boolean aggiungiManutenzione(String targa, LocalDate data, double costo,
 			Manutenzione tipo) {
 		// TODO Auto-generated method stub
 		boolean aggiunto = false;
-		String query = "INSERT INTO Manutenzione(Targa,Data,Costo,Tipo) " + "VALUES ('?','?','?','?')";
+		DateConverter dateC = new DateConverter();
+		String query = "INSERT INTO Manutenzione(Targa,Data,Costo,Tipo) " + "VALUES (?,?,?,?)";
 		try{
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connessione.prepareStatement(query);
 			statement.setString(1, targa);
-			statement.setDate(2,(java.sql.Date) data);
+			statement.setDate(2,dateC.LocalDateToSQLDate(data));
 			statement.setBigDecimal(3,BigDecimal.valueOf(costo));
 			statement.executeUpdate();
 			aggiunto = true;
@@ -140,6 +165,24 @@ public class MySQLAutoDAO implements AutoDao{
 			e.printStackTrace();
 		}
 		return aggiunto;
+	}
+	public boolean setStato(String targa,boolean disponibile){
+		String query = "UPDATE AUTO SET Disponibile = ? WHERE Targa = ?";
+		boolean modificato = false;
+		try{
+			Connection connessione = MySqlDaoFactory.getConnection();
+			PreparedStatement statement = connessione.prepareStatement(query);
+			statement.setString(1, targa);
+			statement.setBoolean(0, disponibile);
+			statement.setString(2, targa);
+			statement.executeUpdate();
+			modificato = true;
+		}
+		catch( DatabaseConnectionException | SQLException e){
+			modificato=false;
+			e.printStackTrace();
+		}
+		return modificato;
 	}
 
 }

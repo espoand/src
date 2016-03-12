@@ -1,32 +1,22 @@
 package presentation.command;
 
-import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
-import business.BusinessDelegate;
+import business.GestisciContratto;
 
 public class InserisciContratto implements Command{
-BusinessDelegate b;
+GestisciContratto b = new GestisciContratto();
+
 	@Override
 	public Object execute(ArrayList<String> parameters) {
-		// TODO Auto-generated method stub
-		boolean eseguito = false;
-		try {
-			eseguito = (boolean) b.handleRequest("InserisciContratto", parameters);
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return eseguito;
+	try {
+		return b.InserisciContratto(parameters);
+	} catch (ParseException | InstantiationException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return null;
 	}
 
 	@Override

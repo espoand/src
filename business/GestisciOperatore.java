@@ -16,7 +16,7 @@ public class GestisciOperatore {
 		
 	}
 	
-	public Object InserisciOperatore(ArrayList<String> param) {
+	public Object inserisciOperatore(ArrayList<String> param) {
 		if(ob==null)
 			return false;
 		
@@ -25,24 +25,19 @@ public class GestisciOperatore {
 		String cognome=param.get(2);
 		String username=param.get(3);
 		String password=param.get(4);
+		boolean amministratore = Boolean.parseBoolean(param.get(5));
 		
-		Operatore operator=new Operatore(cf,nome,cognome,username,password);
+		Operatore operator=new Operatore(cf,nome,cognome,username,password,amministratore);
 		return ob.inserisciOperatore(operator);
 		
 	}
 	
-	public Object CancellaOperatore (ArrayList<String> param){
-		if(ob==null)
-			return false;
+	public Object cancellaOperatore (String param){
 		
-		String cf=param.get(0);
-		String nome=param.get(1);
-		String cognome=param.get(2);
-		String username=param.get(3);
-		String password=param.get(4);
 		
-		Operatore operator=new Operatore(cf,nome,cognome,username,password);
-		
-		return ob.cancellaOperatore(operator);
+		return ob.cancellaOperatore(param);
+	}
+	public Operatore getOperatore(String parameter){
+		return ob.getOperatore(parameter);
 	}
 }

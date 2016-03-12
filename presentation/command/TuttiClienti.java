@@ -2,11 +2,11 @@ package presentation.command;
 
 import java.util.ArrayList;
 
-import business.BusinessDelegate;
+import business.GestisciCliente;
 
 public class TuttiClienti implements Command{
-BusinessDelegate b = new BusinessDelegate();
-	@Override
+GestisciCliente b = new GestisciCliente();
+@Override
 	public Object execute(ArrayList<String> parameters) {
 		// TODO Auto-generated method stub
 		return null;
@@ -15,7 +15,7 @@ BusinessDelegate b = new BusinessDelegate();
 	@Override
 	public Object execute(String parameter) {
 		// TODO Auto-generated method stub
-		return b.handleRequest("TuttiClienti");
+		return b.tuttiClienti();
 	}
 
 }

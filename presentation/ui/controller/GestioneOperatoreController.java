@@ -21,7 +21,7 @@ public void cerca(){
 	if(cf.getText().isEmpty()){
 		vd.showMessage("Compilare il campo codice fiscale");
 	}
-	if(!ic.onlyNumbersAndLetters(cf.getText())){
+	else if(!ic.onlyNumbersAndLetters(cf.getText())){
 		vd.showMessage("Codice fiscale non valido");
 	}
 	else{

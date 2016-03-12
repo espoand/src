@@ -22,8 +22,8 @@ private static	AgenziaDao agenziaDao = null;
 public boolean inserisciAgenzia(Agenzia a){
  return agenziaDao.inserisciAgenzia(a.getIdentificativo(), a.getNome(), a.getIndirizzo(), a.getTelefono());
 }
-public boolean rimuoviAgenzia(Agenzia a){
-	return agenziaDao.rimuoviAgenzia(a.getIdentificativo());
+public boolean rimuoviAgenzia(int ag){
+	return agenziaDao.rimuoviAgenzia(ag);
 	
 }
 public boolean modificaAgenzia(Agenzia a){
@@ -31,6 +31,9 @@ public boolean modificaAgenzia(Agenzia a){
 }
 public ArrayList<Agenzia> getAgenzie(){
 	return agenziaDao.getAgenzie();
+}
+public Agenzia getAgenzia(int id){
+	return agenziaDao.getAgenzia(id);
 }
 
 }

@@ -1,32 +1,15 @@
 package presentation.command;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
-import business.BusinessDelegate;
+import business.GestisciAuto;
 
 public class ModificaAuto implements Command{
-	BusinessDelegate b;
-	@Override
+GestisciAuto b = new GestisciAuto();
+@Override
 	public Object execute(ArrayList<String> parameters) {
 		// TODO Auto-generated method stub
-		boolean eseguito = false;
-		try {
-			eseguito =(boolean) b.handleRequest("ModificaAuto", parameters);
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return eseguito;
+		return b.modificaAuto(parameters);
 	}
 
 	@Override

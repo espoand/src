@@ -1,5 +1,7 @@
 package business.bo;
 
+import java.util.ArrayList;
+
 import dao.ClienteDao;
 import dao.DaoFactory;
 import entity.Cliente;
@@ -16,10 +18,13 @@ public boolean inserisciCliente(Cliente c){
 public boolean modificaCliente(Cliente c){
 	return clienteDao.modificaCliente(c.getCodiceFiscale(), c.getNome(), c.getCognome(), c.getTelefono(),c.getIndirizzo());
 }
-public boolean rimuoviCliente(Cliente c){
-	return clienteDao.cancellaCliente(c.getCodiceFiscale());
+public boolean rimuoviCliente(String cf){
+	return clienteDao.cancellaCliente(cf);
 }
 public Cliente getCliente(String c){
 	return clienteDao.getCliente(c);
+}
+public ArrayList<Cliente> tuttiClienti(){
+	return clienteDao.tuttiClienti();
 }
 }

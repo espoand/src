@@ -1,33 +1,15 @@
 package presentation.command;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
-import business.BusinessDelegate;
+import business.GestisciAgenzia;
 
 public class InserisciAgenzia implements Command{
-BusinessDelegate b;
+GestisciAgenzia b = new GestisciAgenzia();
 	@Override
 	public Object execute(ArrayList<String> parameters) {
 		// TODO Auto-generated method stub
-		boolean eseguito = false;
-		b = new BusinessDelegate();
-		try {
-			eseguito = (boolean) b.handleRequest("InserisciAgenzia", parameters);
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return eseguito;
+		return b.inserisciAgenzia(parameters);
 	}
 
 	@Override

@@ -9,7 +9,6 @@ public abstract AutoDao getAutoDao();
 public abstract ClienteDao getClienteDao();
 public abstract ContrattoDao getContrattoDao();
 public abstract FasciaDao getFasciaDao();
-public abstract NoleggioDao getNoleggioDao();
 public abstract OperatoreDao getOperatoreDao();
 public abstract TariffaBaseDao getTariffaBaseDao();
 public abstract LoginDao getLoginDao();

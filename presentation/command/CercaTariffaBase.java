@@ -2,8 +2,10 @@ package presentation.command;
 
 import java.util.ArrayList;
 
-public class CercaTariffaBase implements Command{
+import business.GestisciTariffaBase;
 
+public class CercaTariffaBase implements Command{
+GestisciTariffaBase b = new GestisciTariffaBase();
 	@Override
 	public Object execute(ArrayList<String> parameters) {
 		// TODO Auto-generated method stub
@@ -13,7 +15,7 @@ public class CercaTariffaBase implements Command{
 	@Override
 	public Object execute(String parameter) {
 		// TODO Auto-generated method stub
-		return null;
+		return b.getTariffaBase(parameter);
 	}
 
 }
