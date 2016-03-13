@@ -25,11 +25,11 @@ public class MySQLAgenziaDao implements AgenziaDao{
 	 */
 public ArrayList<Agenzia> getAgenzie() {
 	ArrayList<Agenzia> result = new ArrayList<Agenzia>();
-	String query = "SELECT * FROM Agenzia";
+	String query = "SELECT Identificativo,Nome,Via,Citta,CAP,Telefono FROM Agenzia";
 	boolean eseguito= false;
 	try{
 		Connection connessione = MySqlDaoFactory.getConnection();
-		Statement statement =connessione.createStatement();
+		PreparedStatement statement =connessione.prepareStatement(query);
 		ResultSet risultato=statement.executeQuery(query);
 		
 		Agenzia tmp ;
@@ -40,6 +40,7 @@ public ArrayList<Agenzia> getAgenzie() {
 			
 		}
 		eseguito=true;
+		statement.close();
 		
 		
 	}
@@ -70,15 +71,16 @@ public ArrayList<Agenzia> getAgenzie() {
 		Connection connessione = MySqlDaoFactory.getConnection();
 		PreparedStatement statement =connessione.prepareStatement(query);
 		
-		statement.setString(2, nome);
-		statement.setString(3,via);
-		statement.setString(4, citta);
-		statement.setString(5, cap);
-		statement.setString(6,telefono);
+		statement.setString(1, nome);
+		statement.setString(2,via);
+		statement.setString(3, citta);
+		statement.setString(4, cap);
+		statement.setString(5,telefono);
 		statement.executeUpdate();
 		
 		inserito = true;
-		
+		statement.close();
+
 		
 		
 	}
@@ -121,6 +123,8 @@ public ArrayList<Agenzia> getAgenzie() {
 			statementAggiornamento.setString(6, Integer.toString(id));
 			statementAggiornamento.executeUpdate();
 			effettuato=true;
+			statementAggiornamento.close();
+
 			}
 			
 			
@@ -150,7 +154,8 @@ public ArrayList<Agenzia> getAgenzie() {
 			statement1.setInt(1, id);
 			statement1.executeUpdate();
 			cancellato = true;
-			
+			statement1.close();
+
 			
 		}
 		catch(SQLException | DatabaseConnectionException e){
@@ -161,7 +166,7 @@ public ArrayList<Agenzia> getAgenzie() {
 	}
 	public Agenzia getAgenzia(int id){
 		// TODO Auto-generated method stub
-		String query = "SELECT * FROM Agenzia WHERE Identificativo = ? ";
+		String query = "SELECT Identificativo,Nome,Via,Citta,CAP,Telefono FROM Agenzia WHERE Identificativo = ? ";
 		Connection connessione;
 		Agenzia agenzia = null;
 		try {
@@ -170,7 +175,10 @@ public ArrayList<Agenzia> getAgenzie() {
 			statement.setInt(1, id);
 			ResultSet risultato = statement.executeQuery();
 			risultato.first();
+			
 			agenzia = new Agenzia(risultato.getInt("Identificativo"),risultato.getString("Nome"),risultato.getString("Via"),risultato.getString("Citta"),risultato.getString("CAP"),risultato.getString("Telefono"));
+			statement.close();
+
 		} catch (DatabaseConnectionException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

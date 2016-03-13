@@ -46,6 +46,8 @@ DateConverter dateConverter = new DateConverter();
 
 			statement.executeUpdate();
 			inserito=true;
+			statement.close();
+
 		} catch (DatabaseConnectionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,7 +71,8 @@ DateConverter dateConverter = new DateConverter();
 					statement1.setInt(1, nroOrdine);
 					statement1.executeUpdate();
 					cancellato = true;
-					
+					statement1.close();
+
 					
 				}
 				catch(SQLException | DatabaseConnectionException e){
@@ -83,7 +86,7 @@ DateConverter dateConverter = new DateConverter();
 	@Override
 	public ArrayList<Contratto> getContratti() {
 		// TODO Auto-generated method stub
-			String query = "SELECT * FROM Contratto";
+			String query = "SELECT Cliente,Nro_ord,Data_inizio,Acconto,Fine_prevista,Agenzia_noleggio,Agenzia_restituzione,Tariffa_base,Km_illimitato,Nro_km,Auto_noleggiata,Importo_totale FROM Contratto";
 			Connection connessione;
 			MySQLClienteDao clienteDao =new MySQLClienteDao();
 			MySQLAgenziaDao agenziaDao = new MySQLAgenziaDao();
@@ -93,12 +96,13 @@ DateConverter dateConverter = new DateConverter();
 			
 			try {
 				connessione = MySqlDaoFactory.getConnection();
-				Statement statement = connessione.createStatement();
+				PreparedStatement statement = connessione.prepareStatement(query);
 				ResultSet risultato = statement.executeQuery(query);
 				contratti = new ArrayList<Contratto>();
 				while(risultato.next()){
 					contratti.add(new Contratto(risultato.getInt("Nro_ordine"),clienteDao.getCliente(risultato.getString("Cliente")),risultato.getDate("Data_inizio").toLocalDate(),risultato.getDouble("Acconto"),risultato.getDate("Fine_prevista").toLocalDate(),agenziaDao.getAgenzia(risultato.getInt("Agenzia_noleggio")),agenziaDao.getAgenzia(risultato.getInt("Agenzia_restituzione")),tbDao.getTariffaBase(risultato.getString("Tariffa_base")),risultato.getBoolean("Km_illimitato"),risultato.getDouble("Nro_km"),autoDao.getAuto(risultato.getString("Auto_noleggiata")),risultato.getDouble("Importo_totale"),risultato.getBoolean("Chiuso")));
 				}
+				statement.close();
 
 			} catch (DatabaseConnectionException | SQLException e) {
 				// TODO Auto-generated catch block
@@ -128,7 +132,8 @@ DateConverter dateConverter = new DateConverter();
 		
 			statement.executeUpdate();
 			eseguito  = true;
-			
+			statement.close();
+
 		} catch (DatabaseConnectionException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -153,6 +158,8 @@ DateConverter dateConverter = new DateConverter();
 			statement.setInt(0, nroOrdine);
 			statement.executeUpdate();
 			eseguito = true;
+			statement.close();
+
 		} catch (DatabaseConnectionException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

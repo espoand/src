@@ -81,11 +81,11 @@ public class MySQLFasciaDao implements FasciaDao{
 	public ArrayList<Fascia> getFasce() {
 		// TODO Auto-generated method stub
 		MySQLTariffaBaseDao tbDao=new MySQLTariffaBaseDao();
-		String query = "SELECT * FROM Fascia";
+		String query = "SELECT Id_fascia,Descrizione,Tariffa_fascia FROM Fascia";
 		ArrayList<Fascia> tutteFasce= null;
 		try {
 			Connection connessione =MySqlDaoFactory.getConnection();
-			java.sql.Statement statement = connessione.createStatement();
+			PreparedStatement statement = connessione.prepareStatement(query);
 			ResultSet risultato = statement.executeQuery(query);
 			tutteFasce= new ArrayList<Fascia>();
 			while(risultato.next()){
@@ -101,7 +101,7 @@ public class MySQLFasciaDao implements FasciaDao{
 	}
 public Fascia getFascia(String idFascia){
 	MySQLTariffaBaseDao tbDao=new MySQLTariffaBaseDao();
-	String query = "SELECT * FROM Fascia WHERE Id_fascia = ? ";
+	String query = "SELECT Id_fascia,Descrizione,Tariffa_fascia FROM Fascia WHERE Id_fascia = ? ";
 	Connection connessione;
 	Fascia fascia = null;
 	try {
@@ -110,7 +110,10 @@ public Fascia getFascia(String idFascia){
 		statement.setString(1, idFascia);
 		ResultSet risultato = statement.executeQuery();
 		risultato.first();
+		
 		fascia = new Fascia(risultato.getString("Id_fascia"),risultato.getString("Descrizione"),tbDao.getTariffaBase(risultato.getString("Tariffa_fascia")));
+		statement.close();
+
 	} catch (DatabaseConnectionException | SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

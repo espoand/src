@@ -30,10 +30,10 @@ public class Calculator {
 		
 	}
 		
-	public static void main(String[] args){
+/*	public static void main(String[] args){
 		Calculator c = new Calculator();
 		LocalDate oggi = LocalDate.parse("2016-03-13");
 		LocalDate esame = LocalDate.parse("2016-04-12");
 		System.out.println(c.calcoloTotale(oggi, esame));
-	}
+	}*/
 }

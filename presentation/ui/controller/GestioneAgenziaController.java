@@ -17,7 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import presentation.FrontController;
 import presentation.ViewDispatcher;
-import presentation.ui.controller.GestioneContrattoController.Record;
 import utility.InputController;
 import utility.Sessione;
 

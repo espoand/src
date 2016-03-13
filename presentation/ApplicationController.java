@@ -33,6 +33,8 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			dispatcher.apriView("aggiungiTariffaBase");break;
 		case "AggiungiContratto":
 			dispatcher.apriView("aggiungiContratto");break;
+		case "AggiungiAgenzia":
+			dispatcher.apriView("aggiungiAgenzia");break;
 		case "GestioneManutenzione":
 			dispatcher.apriView("gestioneManutenzione");break;
 	

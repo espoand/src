@@ -1,4 +1,7 @@
 package entity;
+
+import exceptions.GenericException;
+
 public class Auto {
 String targa;
 String modello;
@@ -21,8 +24,8 @@ public void setDataManutenzioneStraordinaria(
 	this.dataManutenzioneStraordinaria = dataManutenzioneStraordinaria;
 }
 public Auto(String targa,String modello,Fascia fascia,boolean b, double ultimoKmtraggio) throws RuntimeException{
-	if(targa.length()<3 || targa.length()>10) throw new RuntimeException("Targa non valida!");
-	if(modello == null || fascia == null ) throw new RuntimeException("Modello e/o fascia non valido/i");
+	if(targa.length()<3 || targa.length()>10) throw new GenericException("Targa non valida!");
+	if(modello == null || fascia == null ) throw new GenericException("Modello e/o fascia non valido/i");
 	this.targa=targa;
 	this.modello=modello;
 	this.fascia=fascia;

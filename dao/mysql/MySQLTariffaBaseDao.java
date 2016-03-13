@@ -30,6 +30,7 @@ public class MySQLTariffaBaseDao implements TariffaBaseDao{
 			statement.setBigDecimal(2,BigDecimal.valueOf(costoAlGiornoExtra));
 			statement.executeUpdate();
 			inserito= true;
+			statement.close();
 
 		}
 		catch(DatabaseConnectionException | SQLException e){
@@ -49,6 +50,8 @@ public class MySQLTariffaBaseDao implements TariffaBaseDao{
 			PreparedStatement statement = connessione.prepareStatement(query);
 			statement.setString(1, nome);
 			eliminato = true;
+			statement.close();
+
 		}
 		catch(DatabaseConnectionException | SQLException e){
 			eliminato = false;
@@ -68,7 +71,8 @@ public class MySQLTariffaBaseDao implements TariffaBaseDao{
 			PreparedStatement statement = connessione.prepareStatement(query);
 			ResultSet risultato = statement.executeQuery();
 			tariffaBase = new TariffaBase(risultato.getString(0),risultato.getDouble(1),risultato.getDouble(2),risultato.getDouble(3));
-				
+			statement.close();
+
 		}
 		catch(DatabaseConnectionException | SQLException e){
 			e.printStackTrace();
@@ -90,6 +94,8 @@ public class MySQLTariffaBaseDao implements TariffaBaseDao{
 			statement.setBigDecimal(3, BigDecimal.valueOf(costoAlGiornoExtra));
 			statement.executeUpdate();
 			effettuato = true;
+			statement.close();
+
 		}
 		catch(SQLException | DatabaseConnectionException e){
 			e.printStackTrace();
@@ -103,18 +109,20 @@ public class MySQLTariffaBaseDao implements TariffaBaseDao{
 		// TODO Auto-generated method stub
 		
 		ArrayList<TariffaBase>  tutteTariffe= null;
-		String query = "SELECT * FROM TariffaBase";
+		String query = "SELECT Nome,Costo_al_km,Costo_al_km_extra,Costo_al_giorno_extra FROM TariffaBase";
 		
 			Connection connessione;
 			try {
 				connessione = MySqlDaoFactory.getConnection();
-				Statement statement = connessione.createStatement();
+				PreparedStatement statement = connessione.prepareStatement(query);
 			ResultSet risultato= statement.executeQuery(query);
 			tutteTariffe=new ArrayList<TariffaBase>();
 			while(risultato.next()){
 				
 				tutteTariffe.add(new TariffaBase(risultato.getString("Nome"),risultato.getDouble("Costo_al_km"),risultato.getDouble("Costo_al_giorno_extra"),risultato.getDouble("Costo_al_giorno_extra")));
 			}
+			statement.close();
+
 			} catch (DatabaseConnectionException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

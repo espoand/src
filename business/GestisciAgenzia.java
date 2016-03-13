@@ -16,7 +16,7 @@ public class GestisciAgenzia {
 	
 	}
 	
-	public Object inserisciAgenzia(ArrayList<String> param){
+	public boolean inserisciAgenzia(ArrayList<String> param){
 		if(ab==null)
 			return false;
 		
@@ -31,7 +31,7 @@ public class GestisciAgenzia {
 		return ab.inserisciAgenzia(a);
 	}
 	
-	public Object modificaAgenzia(ArrayList<String> param){
+	public boolean modificaAgenzia(ArrayList<String> param){
 		if(ab==null)
 			return false;
 		
@@ -45,7 +45,7 @@ public class GestisciAgenzia {
 		return ab.modificaAgenzia(a);
 	}
 	
-	public Object eliminaAgenzia(String parameter){
+	public boolean eliminaAgenzia(String parameter){
 		if(ab==null)
 			return false;
 		

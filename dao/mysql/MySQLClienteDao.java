@@ -30,6 +30,8 @@ public class MySQLClienteDao implements ClienteDao{
 			statement.setString(5, indirizzo);
 			statement.executeUpdate();
 			inserito=true;
+			statement.close();
+
 		} catch (DatabaseConnectionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,6 +53,8 @@ public class MySQLClienteDao implements ClienteDao{
 			statement.setString(1, codiceFiscale);
 			statement.executeUpdate();
 			eliminato = true;
+			statement.close();
+
 		} catch (DatabaseConnectionException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,6 +78,8 @@ public class MySQLClienteDao implements ClienteDao{
 			statement.setString(5, cf);
 			statement.executeUpdate();
 			modificato = true;
+			statement.close();
+
 		} catch (DatabaseConnectionException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,7 +90,7 @@ public class MySQLClienteDao implements ClienteDao{
 	@Override
 	public Cliente getCliente(String cf) {
 		// TODO Auto-generated method stub
-		String query = "SELECT * FROM Cliente WHERE Codice_fiscale = ? ";
+		String query = "SELECT Codice_fiscale,Nome,Cognome,Telefono,Indirizzo FROM Cliente WHERE Codice_fiscale = ? ";
 		Connection connessione;
 		Cliente cliente = null;
 		try {
@@ -94,7 +100,9 @@ public class MySQLClienteDao implements ClienteDao{
 			ResultSet risultato = statement.executeQuery();
 			risultato.first();
 			cliente = new Cliente(risultato.getString(2),risultato.getString(3),risultato.getString(4),cf,risultato.getString(5));
-		} catch (DatabaseConnectionException | SQLException e) {
+			statement.close();
+
+			} catch (DatabaseConnectionException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -105,20 +113,21 @@ public class MySQLClienteDao implements ClienteDao{
 	@Override
 	public ArrayList<Cliente> tuttiClienti() {
 		// TODO Auto-generated method stub
-		String query = "SELECT * FROM Cliente";
+		String query = "SELECT Codice_fiscale,Nome,Cognome,Telefono,Indirizzo FROM Cliente";
 		Connection connessione ;
 		ArrayList<Cliente> tuttiClienti = null;
 		try {
 			connessione = MySqlDaoFactory.getConnection();
-			java.sql.Statement statement  = connessione.createStatement();
+			PreparedStatement statement  = connessione.prepareStatement(query);
 			ResultSet result = statement.executeQuery(query);
-			Cliente c = null;
 			
 			tuttiClienti = new ArrayList<Cliente>();
 			while(result.next()){
-				c = new Cliente(result.getString("Codice_fiscale"),result.getString("Nome"),result.getString("Cognome"),result.getString("Telefono"),result.getString("Indirizzo"));
+				tuttiClienti.add( new Cliente(result.getString("Codice_fiscale"),result.getString("Nome"),result.getString("Cognome"),result.getString("Telefono"),result.getString("Indirizzo")));
 				
 			}
+			statement.close();
+
 			
 			
 			

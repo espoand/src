@@ -12,10 +12,7 @@ public class SchermataOperatoreController {
 public void gestioneClienti(){
 	fc.handleRequest("GestioneCliente");
 }
-@FXML
-public void gestioneNoleggi(){
-	fc.handleRequest("GestioneNoleggio");
-}
+
 @FXML
 public void gestioneAuto(){
 	fc.handleRequest("GestioneAuto");

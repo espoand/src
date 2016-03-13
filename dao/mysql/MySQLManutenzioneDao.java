@@ -14,6 +14,7 @@ import dao.ManutenzioneDao;
 import entity.Auto;
 import entity.Manutenzione;
 import exceptions.DatabaseConnectionException;
+import exceptions.GenericException;
 import utility.DateConverter;
 import utility.TipoManutenzione;
 
@@ -89,20 +90,22 @@ public class MySQLManutenzioneDao implements ManutenzioneDao{
 	@Override
 	public ArrayList<Manutenzione> getManutenzioni() {
 		// TODO Auto-generated method stub
-		String query = "SELECT * FROM Manutenzione";
+		String query = "SELECT Id,Targa,Data,Costo,Tipo FROM Manutenzione";
 		ArrayList<Manutenzione> tutteManutenzioni = null;
 		MySQLAutoDAO autoDao = new MySQLAutoDAO();
 		try{
 			Connection connessione = MySqlDaoFactory.getConnection();
-			java.sql.Statement statement = connessione.createStatement();
+			PreparedStatement statement = connessione.prepareStatement(query);
 			ResultSet risultato = statement.executeQuery(query);
 			tutteManutenzioni = new ArrayList<Manutenzione>();
 			
-			while(risultato.next()){}
-			tutteManutenzioni.add(new Manutenzione(risultato.getInt("Id"),autoDao.getAuto(risultato.getString("Targa")),risultato.getDate("Data").toLocalDate(),(TipoManutenzione)risultato.getObject("Tipo"),risultato.getDouble("Costo")));
+			while(risultato.next()){			tutteManutenzioni.add(new Manutenzione(risultato.getInt("Id"),autoDao.getAuto(risultato.getString("Targa")),risultato.getDate("Data").toLocalDate(),(TipoManutenzione)risultato.getObject("Tipo"),risultato.getDouble("Costo")));
+}
+			statement.close();
+
 		}
 		catch(SQLException | DatabaseConnectionException e){
-			
+			throw new GenericException("Si è verificato un errore con la connessione al database");
 		}
 		return tutteManutenzioni;
 	}

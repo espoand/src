@@ -21,7 +21,7 @@ static String myPassword;
 	@Override
 	public boolean login(String username, String password) {
 		// TODO Auto-generated method stub
-		String query = "SELECT * FROM Operatore WHERE Username =?";
+		String query = "SELECT CF,Nome,Cognome,Username,Password,Amministratore FROM Operatore WHERE Username =?";
 		String cf  = null;
 		TipoUtente tipo = null;
 		
@@ -42,13 +42,14 @@ static String myPassword;
 				loggato = true;
 				
 			}
-			//else throw new WrongPasswordException();
+			else throw new WrongPasswordException();
 			
 			if(risultato.getBoolean("Amministratore") ==true){
 				tipo = TipoUtente.AMMINISTRATORE;
 			}
 			else tipo=TipoUtente.OPERATORE;
-			
+			statement.close();
+
 		} catch (DatabaseConnectionException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,14 +57,15 @@ static String myPassword;
 		Sessione.setUsername(username);
 		Sessione.setTipoUtente(tipo);
 		Sessione.setCf(cf);
+		
 		return loggato;
 	}
-public static void main(String[] args){
+/*public static void main(String[] args){
 	MySQLLoginDao logindao  = new MySQLLoginDao();
 	boolean logged = logindao.login("espoand", "28f719c89ef7f33ce2e178490676b5ab");	
 	
 
 	System.out.println(Boolean.toString(logged));
 
-}
+}*/
 }

@@ -16,17 +16,17 @@ public void gestioneAuto(){
 }
 @FXML
 public void gestioneClienti(){
-	fc.handleRequest("GestioneClienti");
+	fc.handleRequest("GestioneCliente");
 	
 }
 @FXML
 public void gestioneOperatori(){
-	fc.handleRequest("GestioneOperatori");
+	fc.handleRequest("GestioneOperatore");
 	
 }
 @FXML
-public void schermataOperatore(){
-	fc.handleRequest("SchermataOperatore");
+public void gestioneContratti(){
+	fc.handleRequest("GestioneContratto");
 }
 @FXML
 public void gestioneAgenzia(){
@@ -36,18 +36,14 @@ public void gestioneAgenzia(){
 @FXML
 public void gestioneTariffe(){
 	
-	fc.handleRequest("GestioneTariffe");
+	fc.handleRequest("GestioneTariffaBase");
 	
 }
 @FXML
 public void gestioneFasce(){
-	fc.handleRequest("GestioneFasce");
+	fc.handleRequest("GestioneFascia");
 }
-@FXML
-public void login(){
-	fc.handleRequest("Login");
-	Sessione.azzera();
-}
+
 @FXML
 public void quit(){
 	vd.quit();

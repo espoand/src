@@ -27,7 +27,7 @@ public class GestisciAuto {
 		
 	}
 
-	public Object inserisciAuto(ArrayList<String> param) {
+	public boolean inserisciAuto(ArrayList<String> param) {
 		FasciaBusiness fb = new FasciaBusiness();
 		if(car==null)
 			return false;
@@ -52,11 +52,11 @@ public class GestisciAuto {
 		a=new Auto(targa,modello,fascia,true,ultimoKmtraggio);
 		return car.inserisciAuto(a);
 		}
-		return null;
+		return false;
 		
 	}
 	
-	public Object modificaAuto(ArrayList<String> param){
+	public boolean modificaAuto(ArrayList<String> param){
 		
 		if(car==null)
 			return false;
@@ -72,7 +72,7 @@ public class GestisciAuto {
 		
 	}
 	
-	public Object rimuoviAuto(String param){
+	public boolean rimuoviAuto(String param){
 		if(car==null)
 			return false;
 	

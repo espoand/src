@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
-import java.util.Iterator;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

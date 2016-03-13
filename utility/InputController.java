@@ -23,7 +23,7 @@ public boolean telephoneNumber(String s){
 public boolean isDouble(String s){
 	return s.matches("^[0-9]+\\.?[0-9]*$");
 }
-public static void main(String[] args){
+/*public static void main(String[] args){
 	InputController ic = new InputController();
 	System.out.println(Boolean.toString(ic.onlyNumbers("andrea")));
 	System.out.println(Boolean.toString(ic.onlyNumbers("333")));
@@ -37,5 +37,5 @@ public static void main(String[] args){
 
 
 
-}
+}*/
 }

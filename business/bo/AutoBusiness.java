@@ -23,14 +23,12 @@ private static AutoDao auto;
  * 
  */
 public AutoBusiness() throws InstantiationException{
-try{
+
 	auto = DaoFactory.getDaoFactory(DaoFactory.MySQL).getAutoDao();
 	
-}
-catch(NullPointerException e){
-	auto = null;
-	throw new InstantiationException();
-}
+
+	
+
 
 
 }

@@ -45,7 +45,6 @@ public void submit(){
 		parameters.add(username.getText());
 		parameters.add(password.getText());
 		parameters.add(Boolean.toString(isAmministratore));
-		vd.showMessage(Boolean.toString(Boolean.parseBoolean(parameters.get(5))));
 		boolean eseguito = (boolean) fc.handleRequest("AggiungiOperatore",parameters);
 		if(eseguito){vd.showMessage("Completato");vd.indietro();}
 		else {vd.showMessage("Si è verificato un errore");vd.indietro();}

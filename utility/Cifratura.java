@@ -24,7 +24,7 @@ public String cripta(String messaggio){
 		return null;
 	}
 }
-public static void main(String[] args){
+/*public static void main(String[] args){
 	Cifratura cifratura = new Cifratura();
 	String stringa = "Andrea";
 	int i = 0;
@@ -34,5 +34,5 @@ public static void main(String[] args){
 	
 	}
 	
-}
+}*/
 }

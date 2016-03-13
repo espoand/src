@@ -31,11 +31,13 @@ public class MySQLAutoDAO implements AutoDao{
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement =connessione.prepareStatement(query);
 			statement.setString(1, targa);
-			statement.setString(2, modello.toString());
+			statement.setString(2, modello);
 			statement.setString(3, fascia.toString());
 			statement.setBigDecimal(4, BigDecimal.valueOf(ultimoKmtraggio));
 			statement.executeUpdate();
 			inserito = true;
+			statement.close();
+
 		}
 		catch(SQLException | DatabaseConnectionException e){
 			inserito = false;
@@ -56,6 +58,8 @@ public class MySQLAutoDAO implements AutoDao{
 			statement.setString(1, targa);
 			statement.executeUpdate();
 			rimosso = true;
+			statement.close();
+
 		}
 		catch(DatabaseConnectionException | SQLException e){
 			rimosso = false;
@@ -76,6 +80,8 @@ public class MySQLAutoDAO implements AutoDao{
 			statement.setString(2, targa);
 			statement.executeUpdate();
 			modificato = true;
+			statement.close();
+
 		}
 		catch( DatabaseConnectionException | SQLException e){
 			modificato=false;
@@ -92,12 +98,12 @@ public class MySQLAutoDAO implements AutoDao{
 		// TODO Auto-generated method stub
 		MySQLFasciaDao fasciaDao= new MySQLFasciaDao();
 		ArrayList<Auto>  tutteAuto= null;
-		String query = "SELECT * FROM AUTO";
+		String query = "SELECT Targa,Modello,Fascia,Disponibile,Ultimo_kmtraggio FROM AUTO";
 		
 			Connection connessione;
 			try {
 				connessione = MySqlDaoFactory.getConnection();
-				Statement statement = connessione.createStatement();
+				PreparedStatement statement = connessione.prepareStatement(query);
 			ResultSet risultato= statement.executeQuery(query);
 			tutteAuto=new ArrayList<Auto>();
 			while(risultato.next()){
@@ -105,6 +111,8 @@ public class MySQLAutoDAO implements AutoDao{
 				tutteAuto.add(new Auto(risultato.getString("Targa"),risultato.getString("Modello"),fasciaDao.getFascia(risultato.getString("Fascia")),risultato.getBoolean("Disponibile"),risultato.getDouble("Ultimo_kmtraggio")));
 				
 			}
+			statement.close();
+
 			} catch (DatabaseConnectionException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -120,12 +128,12 @@ public class MySQLAutoDAO implements AutoDao{
 	
 		MySQLFasciaDao fasciaDao= new MySQLFasciaDao();
 		ArrayList<Auto>  autoDisponibili= null;
-		String query = "SELECT * FROM AUTO WHERE Disponibile=TRUE";
+		String query = "SELECT Targa,Modello,Fascia,Disponibile,Ultimo_kmtraggio FROM AUTO WHERE Disponibile=TRUE";
 		
 			Connection connessione;
 			try {
 				connessione = MySqlDaoFactory.getConnection();
-				Statement statement = connessione.createStatement();
+				PreparedStatement statement = connessione.prepareStatement(query);
 			ResultSet risultato= statement.executeQuery(query);
 			autoDisponibili=new ArrayList<Auto>();
 			while(risultato.next()){
@@ -133,6 +141,8 @@ public class MySQLAutoDAO implements AutoDao{
 					autoDisponibili.add(new Auto(risultato.getString("Targa"),risultato.getString("Modello"),fasciaDao.getFascia(risultato.getString("Fascia")),risultato.getBoolean("Disponibile"),risultato.getDouble("Ultimo_kmtraggio")));
 				
 			}
+			statement.close();
+
 			} catch (DatabaseConnectionException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -154,6 +164,8 @@ public class MySQLAutoDAO implements AutoDao{
 			statement.setString(2, targa);
 			statement.executeUpdate();
 			modificato = true;
+			statement.close();
+
 		}
 		catch( DatabaseConnectionException | SQLException e){
 			modificato=false;

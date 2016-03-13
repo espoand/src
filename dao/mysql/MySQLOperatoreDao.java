@@ -31,6 +31,8 @@ public class MySQLOperatoreDao implements OperatoreDao{
 			
 			statement.executeUpdate();
 			inserito = true;
+			statement.close();
+
 		} catch (DatabaseConnectionException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,6 +52,8 @@ public class MySQLOperatoreDao implements OperatoreDao{
 			statement.setString(1, cf);
 			statement.executeUpdate();
 			eseguito = true;
+			statement.close();
+
 		} catch (DatabaseConnectionException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,7 +67,7 @@ public class MySQLOperatoreDao implements OperatoreDao{
 	@Override
 	public Operatore getOperatore(String cf)  {
 		// TODO Auto-generated method stub
-		String query = "SELECT * FROM Operatore WHERE CF= ?";
+		String query = "SELECT CF,Nome,Cognome,Username,Password,Amministratore FROM Operatore WHERE CF= ?";
 		Operatore operatore = null;
 		try {
 			Connection connessione = MySqlDaoFactory.getConnection();
@@ -72,6 +76,8 @@ public class MySQLOperatoreDao implements OperatoreDao{
 			ResultSet risultato = statement.executeQuery();
 			risultato.next();
 			operatore = new Operatore(cf,risultato.getString("Nome"),risultato.getString("Cognome"),risultato.getString("Username"),risultato.getString("Password"),risultato.getBoolean("Amministratore"));
+			statement.close();
+
 		} catch (DatabaseConnectionException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
