@@ -14,12 +14,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import presentation.FrontController;
 import presentation.ViewDispatcher;
+import presentation.ui.controller.GestioneManutenzioneController.Record;
 import utility.Calculator;
 import utility.InputController;
 import utility.Sessione;
-sada;
 
 public class GestioneContrattoController implements Initializable{
 	FrontController fc = new FrontController();
@@ -122,13 +123,39 @@ public class GestioneContrattoController implements Initializable{
 			tmp= it1.next();
 			lista.add(new Record(Integer.toString(tmp.getNroOrdine()),tmp.getCliente().getCodiceFiscale(),tmp.getAutoNoleggiata().getTarga()));
 		}
-		listaContratti.setItems(lista);		
+		 tabNroOrdine.setCellValueFactory(new PropertyValueFactory<Record,String>("nroOrdine"));
+		 tabCf.setCellValueFactory(new PropertyValueFactory<Record,String>("cf"));
+		 tabTarga.setCellValueFactory(new PropertyValueFactory<Record,String>("targa"));
+		 listaContratti.setItems(lista);
+		 listaContratti.getColumns().setAll(tabNroOrdine,tabCf,tabTarga);
 	}
 public class Record{
-	private String nroOrdine;
-	private String cf;
-	private String targa;
+	private SimpleStringProperty nroOrdine;
+	private SimpleStringProperty cf;
+	private SimpleStringProperty targa;
 	public Record(String a,String b ,String c){
-		nroOrdine = a; cf = b;targa = c;}
+		
+	nroOrdine.set(a);
+	cf.set(b);
+	targa.set(c);
+	}
+	public SimpleStringProperty getNroOrdine() {
+		return nroOrdine;
+	}
+	public void setNroOrdine(String nroOrdine) {
+		this.nroOrdine.set(nroOrdine);
+	}
+	public SimpleStringProperty getCf() {
+		return cf;
+	}
+	public void setCf(String cf) {
+		this.cf.set(cf);
+	}
+	public SimpleStringProperty getTarga() {
+		return targa;
+	}
+	public void setTarga(String targa) {
+		this.targa.set(targa);
+	}
 }
 }

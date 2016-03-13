@@ -17,11 +17,7 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		Object risultato = null;
 		switch(request){
 		case "Home":
-			if(Sessione.getTipo()== TipoUtente.AMMINISTRATORE){
-				dispatcher.apriView("SchermataAmministratore");
-			}else{
-				dispatcher.apriView("SchermataOperatore");
-			}
+		dispatcher.home();
 			break;
 		case "AggiungiAuto":
 			dispatcher.apriView("aggiungiAuto");break;
@@ -29,14 +25,16 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			dispatcher.apriView("aggiungiCliente");break;
 		case "AggiungiFascia":
 			dispatcher.apriView("aggiungiFascia");break;
-		
+		case "AggiungiManutenzione":
+			dispatcher.apriView("aggiungiManutenzione");break;
 		case "AggiungiOperatore":
 			dispatcher.apriView("aggiungiOperatore");break;
 		case "AggiungiTariffaBase":
 			dispatcher.apriView("aggiungiTariffaBase");break;
 		case "AggiungiContratto":
-			dispatcher.apriView("aggiungContratto");break;
-		
+			dispatcher.apriView("aggiungiContratto");break;
+		case "GestioneManutenzione":
+			dispatcher.apriView("gestioneManutenzione");break;
 	
 		case "GestioneAuto":
 			dispatcher.apriView("gestioneAuto");break;
@@ -180,6 +178,12 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			result = command.execute(parameters.get(0));break;
 		case "ModificaAgenzia":
 			command = new ModificaAgenzia();
+			result = command.execute(parameters);break;
+		case "AggiungiManutenzione":
+			command = new AggiungiManutenzione();
+			result = command.execute(parameters);break;
+		case "AggiungiOperatore":
+			command = new InserisciOperatore();
 			result = command.execute(parameters);break;
 		}
 		return result;

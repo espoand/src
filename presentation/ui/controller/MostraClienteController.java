@@ -34,11 +34,11 @@ public void initialize(URL location, ResourceBundle resources) {
 		vd.showMessage("Si è verificato un'errore");
 		vd.indietro();
 	}
-	cf.insertText(0, cliente.getCodiceFiscale());
-	nome.insertText(0, cliente.getNome());
-	cognome.insertText(0, cliente.getCognome());
-	telefono.insertText(0, cliente.getTelefono());
-	indirizzo.insertText(0, cliente.getIndirizzo());
+	cf.setText(cliente.getCodiceFiscale());
+	nome.setText(cliente.getNome());
+	cognome.setText(cliente.getCognome());
+	telefono.setText(cliente.getTelefono());
+	indirizzo.setText(cliente.getIndirizzo());
 }
 @FXML 
 public void indietro(){

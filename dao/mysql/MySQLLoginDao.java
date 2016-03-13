@@ -24,9 +24,9 @@ static String myPassword;
 		String query = "SELECT * FROM Operatore WHERE Username =?";
 		String cf  = null;
 		TipoUtente tipo = null;
-		Cifratura cifratore = new Cifratura();
+		
 		boolean loggato = false;
-		String criptata = cifratore.cripta(password);
+		
 		String pw = null;
 		 try {
 			Connection connection = MySqlDaoFactory.getConnection();
@@ -38,11 +38,12 @@ static String myPassword;
 			cf = risultato.getString("CF");
 			
 			
-			if(pw.compareTo(criptata)==0){
+			if(pw.equalsIgnoreCase(password)){
 				loggato = true;
 				
 			}
-			else throw new WrongPasswordException();
+			//else throw new WrongPasswordException();
+			
 			if(risultato.getBoolean("Amministratore") ==true){
 				tipo = TipoUtente.AMMINISTRATORE;
 			}
@@ -59,7 +60,7 @@ static String myPassword;
 	}
 public static void main(String[] args){
 	MySQLLoginDao logindao  = new MySQLLoginDao();
-	boolean logged = logindao.login("Espoand", "Andrea");	
+	boolean logged = logindao.login("espoand", "28f719c89ef7f33ce2e178490676b5ab");	
 	
 
 	System.out.println(Boolean.toString(logged));

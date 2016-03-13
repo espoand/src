@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -37,13 +38,13 @@
                     </items>
                   </ContextMenu>
                </contextMenu></TextField>
-            <TextField fx:id="password" accessibleRole="PASSWORD_FIELD" layoutX="447.0" layoutY="217.0" />
             <Text layoutX="336.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PASSWORD" />
             <Button layoutX="465.0" layoutY="277.0" mnemonicParsing="false" onAction="#indietro" text="INDIETRO" />
             <Button fx:id="submit" layoutX="157.0" layoutY="277.0" mnemonicParsing="false" onAction="#submit" text="CONFERMA" />
             <Text layoutX="30.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C. FISCALE" />
             <TextField fx:id="cf" layoutX="119.0" layoutY="43.0" />
             <CheckBox fx:id="amministratore" layoutX="447.0" layoutY="48.0" mnemonicParsing="false" text="AMMINISTRATORE" />
+            <PasswordField fx:id="password" layoutX="447.0" layoutY="209.0" />
       </children>
     </AnchorPane>
   </children>

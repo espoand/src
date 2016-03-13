@@ -23,7 +23,7 @@ import javafx.scene.layout.BorderPane;
 			
 			
 
-			Parent root = FXMLLoader.load(getClass().getResource("/presentation/ui/aggiungiAuto.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/presentation/ui/Login.fxml"));
 			
 			Scene sc = new Scene(root,650,500);
 			Sessione.setSc(sc);

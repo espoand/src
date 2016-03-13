@@ -12,6 +12,7 @@ import presentation.FrontController;
 import presentation.ViewDispatcher;
 import utility.InputController;
 import utility.Sessione;
+import utility.TipoUtente;
 
 public class LoginController implements Initializable{
 FrontController fc = new FrontController();
@@ -42,7 +43,13 @@ public void submit(){
 		ArrayList<String> parameters = new ArrayList<String>();
 		parameters.add(username.getText());
 		parameters.add(password.getText());
-		fc.handleRequest("Login", parameters);
+		boolean loggato = (boolean) fc.handleRequest("Login", parameters);
+		if(loggato){
+			if(Sessione.getTipo() == TipoUtente.AMMINISTRATORE){
+				fc.handleRequest("SchermataAmministratore");
+			}
+			else fc.handleRequest("SchermataOperatore");
+		}
 	}
 }
 @FXML

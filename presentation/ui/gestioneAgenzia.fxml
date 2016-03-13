@@ -33,8 +33,8 @@
       </AnchorPane>
       <TableView fx:id="listaAgenzie" prefHeight="188.0" prefWidth="600.0">
         <columns>
-          <TableColumn prefWidth="123.0" text="ID AGENZIA" />
-          <TableColumn prefWidth="130.0" text="NOME AGENZIA" />
+          <TableColumn fx:id="idTable" prefWidth="123.0" text="ID AGENZIA" />
+          <TableColumn fx:id="nomeTable" prefWidth="130.0" text="NOME AGENZIA" />
         </columns>
       </TableView>
    </children>

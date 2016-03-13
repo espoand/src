@@ -1,13 +1,19 @@
 package presentation.ui.controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import presentation.FrontController;
 import presentation.ViewDispatcher;
 import utility.Sessione;
 
-public class SchermataAmministratoreController {
+public class AmministratoreController implements Initializable{
+
 	FrontController fc = new FrontController();
 	ViewDispatcher vd = new ViewDispatcher();
+	
 @FXML
 public void gestioneAuto(){
 	fc.handleRequest("GestioneAuto");
@@ -50,5 +56,10 @@ public void login(){
 @FXML
 public void quit(){
 	vd.quit();
+}
+@Override
+public void initialize(URL location, ResourceBundle resources) {
+	// TODO Auto-generated method stub
+	
 }
 }

@@ -52,9 +52,9 @@ public class GestisciCliente {
 		
 		
 	}
-	public Cliente getCliente(Object param){
-		ArrayList<String> parameters = (ArrayList<String>) param;
-		return cb.getCliente(parameters.get(0));
+	public Cliente getCliente(String param){
+		
+		return cb.getCliente(param);
 	}
 	public ArrayList<Cliente> tuttiClienti(){
 		return cb.tuttiClienti();

@@ -6,8 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
-import dao.ArrayList;
+import com.mysql.jdbc.Statement;
+
 import dao.ManutenzioneDao;
 import entity.Auto;
 import entity.Manutenzione;
@@ -65,14 +67,44 @@ public class MySQLManutenzioneDao implements ManutenzioneDao{
 	@Override
 	public boolean eliminaManutenzione(int id) {
 		// TODO Auto-generated method stub
-		return false;
+		boolean eseguito = false;
+		String query = "DELETE FROM Manutenzione WHERE Id= ?";
+		
+		try {
+			Connection connessione = MySqlDaoFactory.getConnection();
+		PreparedStatement statement;
+			statement = connessione.prepareStatement(query);
+			statement.setInt(0, id);
+		statement.executeUpdate();
+		eseguito = true;
+		} catch (SQLException | DatabaseConnectionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return eseguito;
+
 	}
 
 	@Override
 	public ArrayList<Manutenzione> getManutenzioni() {
 		// TODO Auto-generated method stub
-		return null;
-		da implementare;
+		String query = "SELECT * FROM Manutenzione";
+		ArrayList<Manutenzione> tutteManutenzioni = null;
+		MySQLAutoDAO autoDao = new MySQLAutoDAO();
+		try{
+			Connection connessione = MySqlDaoFactory.getConnection();
+			java.sql.Statement statement = connessione.createStatement();
+			ResultSet risultato = statement.executeQuery(query);
+			tutteManutenzioni = new ArrayList<Manutenzione>();
+			
+			while(risultato.next()){}
+			tutteManutenzioni.add(new Manutenzione(risultato.getInt("Id"),autoDao.getAuto(risultato.getString("Targa")),risultato.getDate("Data").toLocalDate(),(TipoManutenzione)risultato.getObject("Tipo"),risultato.getDouble("Costo")));
+		}
+		catch(SQLException | DatabaseConnectionException e){
+			
+		}
+		return tutteManutenzioni;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import presentation.FrontController;
 import presentation.ViewDispatcher;
@@ -24,7 +25,7 @@ TextField cognome;
 @FXML
 TextField username;
 @FXML
-TextField password;
+PasswordField password;
 @FXML
 CheckBox amministratore;
 @FXML
@@ -44,7 +45,10 @@ public void submit(){
 		parameters.add(username.getText());
 		parameters.add(password.getText());
 		parameters.add(Boolean.toString(isAmministratore));
-		fc.handleRequest("AggiungiOperatore",parameters);
+		vd.showMessage(Boolean.toString(Boolean.parseBoolean(parameters.get(5))));
+		boolean eseguito = (boolean) fc.handleRequest("AggiungiOperatore",parameters);
+		if(eseguito){vd.showMessage("Completato");vd.indietro();}
+		else {vd.showMessage("Si è verificato un errore");vd.indietro();}
 	}
 	
 }

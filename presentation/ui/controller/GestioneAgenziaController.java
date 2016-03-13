@@ -6,12 +6,15 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import entity.Agenzia;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import presentation.FrontController;
 import presentation.ViewDispatcher;
 import presentation.ui.controller.GestioneContrattoController.Record;
@@ -25,7 +28,11 @@ public class GestioneAgenziaController implements Initializable{
 @FXML
 TextField id;
 @FXML
-TableView<String> listaAgenzie;
+TableView<Record> listaAgenzie;
+@FXML
+TableColumn idTable;
+@FXML
+TableColumn nomeTable;
 @FXML
 public void cerca(){
 	if(!ic.onlyNumbers(id.getText())){
@@ -93,9 +100,39 @@ public void home(){fc.handleRequest("Home");}
 		ObservableList<Record> lista =  FXCollections.observableArrayList();
 		Agenzia tmp = null;
 		while(it1.hasNext()){
-			tmp.
+			tmp= it1.next();
+			lista.add(new Record(Integer.toString(tmp.getIdentificativo()),tmp.getNome()));
 		}
+		 idTable.setCellValueFactory(new PropertyValueFactory<Record,String>("idAgenzia"));
+		 nomeTable.setCellValueFactory(new PropertyValueFactory<Record,String>("nomeAgenzia"));
+		 listaAgenzie.setItems(lista);
+		 listaAgenzie.getColumns().addAll(idTable,nomeTable);
+
+
 		
+		
+		
+	}
+	public class Record{
+		private SimpleStringProperty idAgenzia;
+		private SimpleStringProperty nomeAgenzia;
+		public Record(String id,String nome){
+			this.idAgenzia = new SimpleStringProperty(id);
+			this.nomeAgenzia = new SimpleStringProperty(nome);
+			
+		}
+		public SimpleStringProperty getIdAgenzia() {
+			return idAgenzia;
+		}
+		public void setIdAgenzia(String idAgenzia) {
+			this.idAgenzia.set(idAgenzia); 
+		}
+		public SimpleStringProperty getNomeAgenzia() {
+			return nomeAgenzia;
+		}
+		public void setNomeAgenzia(String nomeAgenzia) {
+			this.nomeAgenzia.set(nomeAgenzia);
+		}
 		
 		
 	}

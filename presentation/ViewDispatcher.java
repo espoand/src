@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import utility.Sessione;
+import utility.TipoUtente;
 
 public class ViewDispatcher {
 Alert alert;
@@ -64,6 +65,13 @@ public int areYouSure(String message){
 public void quit(){
 	Sessione.azzera();
 	System.exit(0);
+}
+public void home(){
+	if(Sessione.getTipo()== TipoUtente.AMMINISTRATORE){
+		apriView("SchermataAmministratore");
+	}else{
+		apriView("SchermataOperatore");
+	}
 }
 
 }
