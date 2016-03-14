@@ -78,7 +78,7 @@ public void elimina(){
 @FXML
 public void indietro(){
 	
-	vd.indietro();
+	vd.home();
 }
 public void quit(){
 	vd.quit();

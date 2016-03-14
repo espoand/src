@@ -25,9 +25,9 @@ public class MySQLTariffaBaseDao implements TariffaBaseDao{
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connessione.prepareStatement(query);
 			statement.setString(1, nome);
-			statement.setBigDecimal(2,BigDecimal.valueOf(costoAlKm));
-			statement.setBigDecimal(3,BigDecimal.valueOf(costoAlKmExtra));
-			statement.setBigDecimal(2,BigDecimal.valueOf(costoAlGiornoExtra));
+			statement.setDouble(2,costoAlKm);
+			statement.setDouble(3,costoAlKmExtra);
+			statement.setDouble(4,costoAlGiornoExtra);
 			statement.executeUpdate();
 			inserito= true;
 			statement.close();
@@ -44,11 +44,12 @@ public class MySQLTariffaBaseDao implements TariffaBaseDao{
 	public boolean eliminaTariffaBase(String nome) {
 		// TODO Auto-generated method stub
 		boolean eliminato= false;
-		String query ="DELETE FROM TariffaBase WHERE Nome = '?'";
+		String query ="DELETE FROM TariffaBase WHERE Nome = ?";
 		try{
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connessione.prepareStatement(query);
 			statement.setString(1, nome);
+			statement.executeUpdate();
 			eliminato = true;
 			statement.close();
 
@@ -69,8 +70,10 @@ public class MySQLTariffaBaseDao implements TariffaBaseDao{
 		try{
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connessione.prepareStatement(query);
+			statement.setString(1, nome);
 			ResultSet risultato = statement.executeQuery();
-			tariffaBase = new TariffaBase(risultato.getString(0),risultato.getDouble(1),risultato.getDouble(2),risultato.getDouble(3));
+			risultato.next();
+			tariffaBase = new TariffaBase(risultato.getString(1),risultato.getDouble(2),risultato.getDouble(3),risultato.getDouble(4));
 			statement.close();
 
 		}
@@ -92,6 +95,7 @@ public class MySQLTariffaBaseDao implements TariffaBaseDao{
 			statement.setBigDecimal(1, BigDecimal.valueOf(costoAlKm));
 			statement.setBigDecimal(2, BigDecimal.valueOf(costoAlKmExtra));
 			statement.setBigDecimal(3, BigDecimal.valueOf(costoAlGiornoExtra));
+			statement.setString(4, nome);
 			statement.executeUpdate();
 			effettuato = true;
 			statement.close();

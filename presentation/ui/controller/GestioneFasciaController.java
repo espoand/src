@@ -96,7 +96,7 @@ public void modifica(){
 }
 @FXML
 public void indietro(){
-	vd.indietro();
+	vd.home();
 }
 @FXML
 public void quit(){

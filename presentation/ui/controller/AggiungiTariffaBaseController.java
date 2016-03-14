@@ -21,8 +21,9 @@ TextField costoKm;
 TextField costoKmExtra;
 @FXML
 TextField costoGiornoExtra;
+
 @FXML
-public void sumbit(){
+public void submit(){
 	if(nome.getText().isEmpty() || costoKm.getText().isEmpty() || costoKmExtra.getText().isEmpty() || costoGiornoExtra.getText().isEmpty()){
 		vd.showMessage("Compilare tutti i campi");
 	}
@@ -35,7 +36,14 @@ public void sumbit(){
 		parameters.add(costoKm.getText());
 		parameters.add(costoKmExtra.getText());
 		parameters.add(costoGiornoExtra.getText());
-		fc.handleRequest("AggiungiTariffaBase", parameters);
+		boolean eseguito = (boolean) fc.handleRequest("AggiungiTariffaBase", parameters);
+		if(eseguito){
+			vd.showMessage("Completato");
+			vd.home();
+		}
+		else{
+			vd.showMessage("Si è verificato un errore");vd.home();
+		}
 	}
 }
 @FXML
@@ -44,7 +52,7 @@ public void quit(){
 }
 @FXML
 public void indietro(){
-	vd.indietro();
+	vd.home();
 }
 
 }

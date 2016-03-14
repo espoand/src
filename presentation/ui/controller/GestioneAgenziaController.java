@@ -28,10 +28,10 @@ public class GestioneAgenziaController implements Initializable{
 TextField id;
 @FXML
 TableView<Record> listaAgenzie;
-@FXML
-TableColumn idTable;
-@FXML
-TableColumn nomeTable;
+//@FXML
+//TableColumn<Record,String> idTable;
+//@FXML
+//TableColumn<Record,String> nomeTable;
 @FXML
 public void cerca(){
 	if(!ic.onlyNumbers(id.getText())){
@@ -89,11 +89,19 @@ public void modifica(){
 	}
 }
 @FXML
-public void home(){fc.handleRequest("Home");}
+public void home(){vd.home();}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		// TODO Auto-generated method stub
+		TableColumn<Record,String> idTable = new TableColumn<>("ID Agenzia");
+		TableColumn<Record,String> nomeTable = new TableColumn<>("Nome Agenzia");
+		idTable.setEditable(false);
+		nomeTable.setEditable(false);
+		idTable.prefWidthProperty().bind(listaAgenzie.widthProperty().divide(2));
+		nomeTable.prefWidthProperty().bind(listaAgenzie.widthProperty().divide(2));
+
 		ArrayList<Agenzia> tutteAgenzie = (ArrayList<Agenzia>) fc.handleRequest("TutteAgenzie");
 		Iterator<Agenzia> it1 = tutteAgenzie.iterator();
 		ObservableList<Record> lista =  FXCollections.observableArrayList();
@@ -101,6 +109,7 @@ public void home(){fc.handleRequest("Home");}
 		while(it1.hasNext()){
 			tmp= it1.next();
 			lista.add(new Record(Integer.toString(tmp.getIdentificativo()),tmp.getNome()));
+		
 		}
 		 idTable.setCellValueFactory(new PropertyValueFactory<Record,String>("idAgenzia"));
 		 nomeTable.setCellValueFactory(new PropertyValueFactory<Record,String>("nomeAgenzia"));
@@ -120,14 +129,14 @@ public void home(){fc.handleRequest("Home");}
 			this.nomeAgenzia = new SimpleStringProperty(nome);
 			
 		}
-		public SimpleStringProperty getIdAgenzia() {
-			return idAgenzia;
+		public String getIdAgenzia() {
+			return idAgenzia.get();
 		}
 		public void setIdAgenzia(String idAgenzia) {
 			this.idAgenzia.set(idAgenzia); 
 		}
-		public SimpleStringProperty getNomeAgenzia() {
-			return nomeAgenzia;
+		public String getNomeAgenzia() {
+			return nomeAgenzia.get();
 		}
 		public void setNomeAgenzia(String nomeAgenzia) {
 			this.nomeAgenzia.set(nomeAgenzia);

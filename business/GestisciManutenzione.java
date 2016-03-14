@@ -28,6 +28,7 @@ ManutenzioneBusiness mb;
 		}
 		String targa = parameters.get(0);
 		Auto auto = ab.getAuto(targa);
+		if(auto== null) throw new GenericException("Auto nulla");
 		LocalDate data = LocalDate.parse(parameters.get(1));
 		TipoManutenzione tipo;
 		if(parameters.get(2) == TipoManutenzione.ORDINARIA.toString()){

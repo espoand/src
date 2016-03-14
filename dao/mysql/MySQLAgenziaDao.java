@@ -14,6 +14,7 @@ import dao.*;
 import entity.Agenzia;
 import entity.Cliente;
 import exceptions.DatabaseConnectionException;
+import exceptions.GenericException;
 
 public class MySQLAgenziaDao implements AgenziaDao{
 	
@@ -51,7 +52,7 @@ public ArrayList<Agenzia> getAgenzie() {
 	}
 	
 	if(eseguito) return result;
-	else return null;
+	else throw new GenericException("Errore nella ricerca di tutte le agenzie");
 	
 	
 }

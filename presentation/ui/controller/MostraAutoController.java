@@ -7,6 +7,8 @@ import entity.Auto;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import presentation.FrontController;
 import presentation.ViewDispatcher;
 import utility.Sessione;
@@ -22,6 +24,8 @@ TextField modello;
 TextField fascia;
 @FXML
 TextField km;
+@FXML
+TextField stato;
 Auto a;
 @FXML
 public void indietro(){
@@ -35,14 +39,17 @@ public void quit(){
 public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
 	a = Sessione.getAuto();
+	stato.setEditable(false);
 	if(a==null){
 		vd.showMessage("Si è verificato un errore");
 		quit();
 		}
-	else {targa.insertText(0, a.getTarga());
+	else {
+		targa.insertText(0, a.getTarga());
 			modello.insertText(0, a.getModello());
-			fascia.insertText(0, a.getFascia().getDescrizioneFascia());
+			fascia.insertText(0, a.getFascia().getIdFascia());
 			km.insertText(0, Double.toString(a.getUltimoKmtraggio()));
+			if(a.isDisponibile()){stato.setText("DISPONIBILE");}else stato.setText("NON DISPONIBILE");
 	}
 	
 }

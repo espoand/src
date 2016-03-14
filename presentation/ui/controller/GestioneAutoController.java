@@ -81,6 +81,6 @@ public void quit(){
 }
 @FXML
 public void home(){
-	fc.handleRequest("Home");
+	vd.home();
 }
 }

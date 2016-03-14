@@ -29,7 +29,7 @@ InputController ic = new InputController();
 
 //Quando si clicca su illimitato si disabilita il nroKm e viceversa
 @FXML
-TextField cfCliente;
+ChoiceBox<String> cfCliente;
 @FXML
 DatePicker dataNoleggio;
 @FXML
@@ -63,12 +63,12 @@ public void quit(){
 
 @FXML
 public void submit(){
-	if(tariffa.getValue().isEmpty() || auto.getValue().isEmpty() || importoTotale.getText().isEmpty() || cfCliente.getText().isEmpty() || dataNoleggio.getValue() == null|| acconto.getText().isEmpty() || dataFine.getValue()==null || agenziaNoleggio.getValue().isEmpty() || agenziaRiconsegna.getValue().isEmpty())
+	if(tariffa.getValue().isEmpty() || auto.getValue().isEmpty() || importoTotale.getText().isEmpty() || cfCliente.getValue() == null || dataNoleggio.getValue() == null|| acconto.getText().isEmpty() || dataFine.getValue()==null || agenziaNoleggio.getValue().isEmpty() || agenziaRiconsegna.getValue().isEmpty())
 	{	vd.showMessage("Compilare tutti i campi");}
-	if(dataNoleggio.getValue().isBefore(Sessione.today()) || dataNoleggio.getValue().isBefore(Sessione.today())){
-		vd.showMessage("Le date devono essere successive a quella odierna");
+	if(dataNoleggio.getValue().isBefore(Sessione.today()) || dataNoleggio.getValue().isBefore(Sessione.today()) || dataNoleggio.getValue().isAfter(dataFine.getValue())){
+		vd.showMessage("Le date devono essere successive a quella odierna e la data di restituzione successiva a quella di noleggio");
 	}
-	if(!ic.onlyNumbersAndLetters(cfCliente.getText()) || !ic.onlyNumbers(acconto.getText())){
+	if(!ic.onlyNumbersAndLetters(cfCliente.getValue()) || !ic.onlyNumbers(acconto.getText())){
 		vd.showMessage("Codice fiscale e/o acconto non valido");
 	}
 	if(nroKm.getText().isEmpty() && !illimitati.isSelected()){
@@ -85,7 +85,7 @@ public void submit(){
 	Agenzia agenziaR =null;
 	agenziaR=(Agenzia) fc.handleRequest("CercaAgenzia",parameter);
 	parameter = new ArrayList<String>();
-	parameter.add(cfCliente.getText());
+	parameter.add(cfCliente.getValue());
 	Cliente cliente =null;
 	cliente=(Cliente) fc.handleRequest("CercaCliente",parameter);
 	
@@ -97,7 +97,7 @@ public void submit(){
 	
 	else{
 		ArrayList<String> parameters = new ArrayList<String>();
-		parameters.add(cfCliente.getText());
+		parameters.add(cfCliente.getValue());
 		parameters.add(dataNoleggio.getValue().toString());
 		parameters.add(acconto.getText());
 		
@@ -138,10 +138,17 @@ public void initialize(URL location, ResourceBundle resources) {
 	while(it3.hasNext()){
 		tariffa.getItems().add(it3.next().getNome());
 	}
+	
+	ArrayList<Cliente> tuttiClienti = (ArrayList<Cliente>) fc.handleRequest("TuttiClienti");
+	Iterator<Cliente> it4 = tuttiClienti.iterator();
+	while(it4.hasNext()){
+		cfCliente.getItems().add(it4.next().getCodiceFiscale());
+	}
+	
 }
 @FXML
 public void totale(){
-	if(dataNoleggio.getValue() == null || dataFine.getValue() == null || tariffa.getValue().isEmpty() ){
+	if(dataNoleggio.getValue() == null || dataFine.getValue() == null || tariffa.getValue() == null ){
 		vd.showMessage("Compilare i campi Data Inizio,data fine,tariffa ed inserire un numero di km o selezionare km illimitati ");
 		}
 	if(!illimitati.isSelected() && nroKm.getText().isEmpty()){
@@ -155,18 +162,19 @@ public void totale(){
 		double importo = calculator.calcolaTotale(dataNoleggio.getValue(), dataFine.getValue(), illimitati.isSelected(),tb, Double.parseDouble(nroKm.getText()));
 		importoTotale.setText(Double.toString(importo));
 	}
-
+	
 
 }
+
 @FXML
 public void mostraCliente(){
-	if(cfCliente.getText().isEmpty()){
+	if(cfCliente.getValue()== null){
 		vd.showMessage("Inserire un codice fiscale");
 	}
 	else{
 	 Cliente c = null;
 	 ArrayList<String> parameters = new ArrayList<String>();
-	 parameters.add(cfCliente.getText());
+	 parameters.add(cfCliente.getValue());
 	 
 	 c = (Cliente) fc.handleRequest("CercaCliente",parameters);
 	 if(c!=null){

@@ -123,7 +123,7 @@ public class MySQLClienteDao implements ClienteDao{
 			
 			tuttiClienti = new ArrayList<Cliente>();
 			while(result.next()){
-				tuttiClienti.add( new Cliente(result.getString("Codice_fiscale"),result.getString("Nome"),result.getString("Cognome"),result.getString("Telefono"),result.getString("Indirizzo")));
+				tuttiClienti.add( new Cliente(result.getString("Nome"),result.getString("Cognome"),result.getString("Telefono"),result.getString("Codice_fiscale"),result.getString("Indirizzo")));
 				
 			}
 			statement.close();

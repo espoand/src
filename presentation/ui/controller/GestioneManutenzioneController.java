@@ -51,7 +51,7 @@ public void mostraAuto(){
 }
 
 @FXML
-public void indietro(){
+public void home(){
 	fc.handleRequest("Home");
 }
 @FXML
@@ -63,6 +63,22 @@ public void quit(){
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		TableColumn<Record,String> targa = new TableColumn<>("Targa");
+		
+		TableColumn<Record,String> tipo = new TableColumn<>("Tipo");
+		
+		TableColumn<Record,String> data = new TableColumn<>("Data");
+		
+		
+		TableColumn<Record,String> costo = new TableColumn<>("Costo");
+		targa.setEditable(false);
+		tipo.setEditable(false);
+		data.setEditable(false);
+		costo.setEditable(false);
+		targa.prefWidthProperty().bind(listaManutenzione.widthProperty().divide(4));
+		tipo.prefWidthProperty().bind(listaManutenzione.widthProperty().divide(4));
+		data.prefWidthProperty().bind(listaManutenzione.widthProperty().divide(4));
+		costo.prefWidthProperty().bind(listaManutenzione.widthProperty().divide(4));
 	 ObservableList<Record> lista = FXCollections.observableArrayList();
 	 ArrayList<Manutenzione> tutteManutenzioni = (ArrayList<Manutenzione>) fc.handleRequest("TutteManutenzioni");
 	 Iterator<Manutenzione> it1 = tutteManutenzioni.iterator();
@@ -98,17 +114,17 @@ public class Record{
     	this.costo =new  SimpleStringProperty(costo);
     	
     }
-	public SimpleStringProperty getTarga() {
-		return targa;
+	public String getTarga() {
+		return targa.get();
 	}
-	public SimpleStringProperty getTipo() {
-		return tipo;
+	public String getTipo() {
+		return tipo.get();
 	}
-	public SimpleStringProperty getData() {
-		return data;
+	public String getData() {
+		return data.get();
 	}
-	public SimpleStringProperty getCosto() {
-		return costo;
+	public String getCosto() {
+		return costo.get();
 	}
 	public void setTarga(String t ){
 		targa.set(t);

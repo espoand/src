@@ -35,17 +35,11 @@ public class GestisciAuto {
 		Auto a;
 		String targa=param.get(0);
 		String modello=param.get(1);
-		String idFascia=param.get(2);
-		Fascia fascia =null;
+		
+		Fascia fascia =fb.getFascia(param.get(2));
 		double ultimoKmtraggio=Double.parseDouble(param.get(3));
 		
-		ArrayList<Fascia> tutteFasce = fb.getFasce();
-		Iterator<Fascia> it1 = tutteFasce.iterator();
-		while(it1.hasNext()){
-			fascia=(Fascia) it1.next();
-			if(fascia.getIdFascia().equals(idFascia)) break;
-			
-		}
+		
 		if(fascia!=null){
 		
 		
@@ -89,7 +83,7 @@ public class GestisciAuto {
 	
 	public Auto getAuto(String targa){
 		Auto a = car.getAuto(targa);;
-		if(a==null) throw new GenericException("Valore nullo");
+		if(a==null) throw new GenericException("Auto non trovata");
 		
 		return a;
 	}

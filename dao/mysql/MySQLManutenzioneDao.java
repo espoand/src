@@ -25,13 +25,17 @@ public class MySQLManutenzioneDao implements ManutenzioneDao{
 		// TODO Auto-generated method stub
 		boolean aggiunto = false;
 		DateConverter dateC = new DateConverter();
-		String query = "INSERT INTO Manutenzione(Targa,Data,Costo,Tipo) " + "VALUES (?,?,?,?)";
+		String query = "INSERT INTO Manutenzione (Targa,Data,Costo,Tipo) " + "VALUES (?,?,?,?)";
 		try{
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connessione.prepareStatement(query);
 			statement.setString(1, auto.getTarga());
 			statement.setDate(2,dateC.LocalDateToSQLDate(data));
 			statement.setBigDecimal(3,BigDecimal.valueOf(costo));
+			if(tipo.equals(TipoManutenzione.ORDINARIA)){
+				statement.setString(4, "ORDINARIA");
+			}
+			else statement.setString(4, "STRAORDINARIA");
 			statement.executeUpdate();
 			aggiunto = true;
 			
@@ -98,8 +102,13 @@ public class MySQLManutenzioneDao implements ManutenzioneDao{
 			PreparedStatement statement = connessione.prepareStatement(query);
 			ResultSet risultato = statement.executeQuery(query);
 			tutteManutenzioni = new ArrayList<Manutenzione>();
-			
-			while(risultato.next()){			tutteManutenzioni.add(new Manutenzione(risultato.getInt("Id"),autoDao.getAuto(risultato.getString("Targa")),risultato.getDate("Data").toLocalDate(),(TipoManutenzione)risultato.getObject("Tipo"),risultato.getDouble("Costo")));
+			TipoManutenzione tipo;
+			while(risultato.next()){	
+				if(risultato.getString("Tipo").equals(TipoManutenzione.ORDINARIA)){
+					tipo = TipoManutenzione.ORDINARIA;
+				}
+				else tipo = TipoManutenzione.STRAORDINARIA;
+				tutteManutenzioni.add(new Manutenzione(risultato.getInt("Id"),autoDao.getAuto(risultato.getString("Targa")),risultato.getDate("Data").toLocalDate(),tipo,risultato.getDouble("Costo")));
 }
 			statement.close();
 

@@ -137,6 +137,8 @@ public class GestisciContratto {
 		String targaAuto= contratto.getAutoNoleggiata().getTarga();
 		AutoBusiness ab = new AutoBusiness();
 		ab.setStato(targaAuto, true);
+		Auto a = ab.getAuto(targaAuto);
+		ab.modificaAuto(a, a.getUltimoKmtraggio() + contratto.getNroKm());
 		return cb.chiudiContratto(Integer.parseInt(param));
 	}
 	public ArrayList<Contratto> getContratti(){

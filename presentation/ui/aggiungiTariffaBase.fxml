@@ -25,10 +25,10 @@
       <children>
             <Text layoutX="14.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOME" />
             <Text layoutX="337.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COSTO AL KM" />
-            <TextField fx:id="nome" editable="false" layoutX="151.0" layoutY="117.0" />
-            <TextField fx:id="costoKm" editable="false" layoutX="447.0" layoutY="116.0" />
+            <TextField fx:id="nome" editable="true" layoutX="151.0" layoutY="117.0" />
+            <TextField fx:id="costoKm" editable="true" layoutX="447.0" layoutY="116.0" />
             <Text layoutX="14.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COSTO AL KM EXTRA" />
-            <TextField fx:id="costoKmExtra" editable="false" layoutX="151.0" layoutY="217.0">
+            <TextField fx:id="costoKmExtra" editable="true" layoutX="151.0" layoutY="217.0">
                <contextMenu>
                   <ContextMenu>
                     <items>
@@ -36,7 +36,7 @@
                     </items>
                   </ContextMenu>
                </contextMenu></TextField>
-            <TextField fx:id="costoGiornoExtra" editable="false" layoutX="447.0" layoutY="217.0" />
+            <TextField fx:id="costoGiornoExtra" editable="true" layoutX="447.0" layoutY="217.0" />
             <Text layoutX="333.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GIORNO EXTRA" />
             <Button fx:id="indietro" layoutX="491.0" layoutY="279.0" mnemonicParsing="false" onAction="#indietro" text="INDIETRO" />
             <Button fx:id="submit" layoutX="201.0" layoutY="279.0" mnemonicParsing="false" onAction="#submit" text="CONFERMA" />

@@ -23,4 +23,7 @@ public boolean modificaFascia(Fascia f){
 public ArrayList<Fascia> getFasce(){
 	return fasciaDao.getFasce();
 }
+public Fascia getFascia(String id){
+	return fasciaDao.getFascia(id);
+}
 }

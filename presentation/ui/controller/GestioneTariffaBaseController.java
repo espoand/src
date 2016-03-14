@@ -17,6 +17,7 @@ public class GestioneTariffaBaseController {
 	
 @FXML
 TextField nome;
+
 @FXML
 public void cerca(){
 	if(nome.getText().isEmpty()){
@@ -35,6 +36,7 @@ public void cerca(){
 public void aggiungi(){
 	fc.handleRequest("AggiungiTariffaBase");
 }
+
 @FXML
 public void modifica(){
 	if(nome.getText().isEmpty()){
@@ -49,6 +51,7 @@ public void modifica(){
 		fc.handleRequest("ModificaTariffaBase");
 	}
 }
+
 @FXML
 public void elimina(){
 	if(nome.getText().isEmpty()){
@@ -63,10 +66,12 @@ public void elimina(){
 			vd.showMessage("Operazione completata");
 	}}
 }
+
 @FXML
 public void indietro(){
-	vd.indietro();
+	vd.home();
 }
+
 @FXML
 public void quit(){
 	vd.quit();

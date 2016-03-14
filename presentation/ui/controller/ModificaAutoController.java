@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import entity.Auto;
+import entity.Contratto;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -27,7 +28,8 @@ TextField modello;
 TextField fascia;
 @FXML
 TextField km;
-
+@FXML
+TextField stato;
 ArrayList<Fascia> tutteFasce;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -38,11 +40,13 @@ ArrayList<Fascia> tutteFasce;
 		fascia.setText(a.getFascia().getIdFascia());
 		km.setText(Double.toString(a.getUltimoKmtraggio()));
 		tutteFasce = (ArrayList<Fascia>) fc.handleRequest("TutteFasce");
+		if(a.isDisponibile()) stato.setText("DISPONIBILE");
+		else stato.setText("NON DISPONIBILE");
 		
 	}
 	@FXML
 	public void indietro(){
-		vd.indietro();
+		vd.home();
 	}
 	@FXML
 	public void quit(){
@@ -81,5 +85,36 @@ ArrayList<Fascia> tutteFasce;
 			vd.indietro();
 		}
 	}
+	@FXML
+	public void cambiaStato(){
+		ArrayList<Contratto> tuttiContratti = (ArrayList<Contratto>) fc.handleRequest("TuttiContratti");
+		Iterator<Contratto> it1 = tuttiContratti.iterator();
+		boolean trovata = false;
+		boolean eseguito = false;
+		boolean statoB = false;
 	
+		while(it1.hasNext()){
+			if(it1.next().getAutoNoleggiata().getTarga().equals(targa.getText())){
+				trovata = true;break;
+			}
+		}
+		if(trovata){
+			vd.showMessage("L'auto è attualmente in noleggio,è necessario chiudere il contratto prima di procedere");
+			
+		}
+		else{
+			statoB  = a.isDisponibile();
+			if(statoB) statoB = false; else statoB = true;
+			ArrayList<String> parameters = new ArrayList<String>();
+			parameters.add(targa.getText());
+			parameters.add(Boolean.toString(statoB));
+			eseguito =(boolean) fc.handleRequest("CambiaStatoAuto",parameters);
+		}
+		if(eseguito){vd.showMessage("Completato");
+		a.setDisponibile(statoB);
+		Sessione.setAutoAttuale(a);
+		fc.handleRequest("ModificaAuto");
+		} else vd.showMessage("Si è verificato un errore");
+		
+	}
 }

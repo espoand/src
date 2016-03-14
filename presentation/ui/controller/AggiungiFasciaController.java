@@ -44,7 +44,12 @@ ArrayList<String> parameters = new ArrayList<String>();
 parameters.add(idFascia.getText());
 parameters.add(descrizioneFascia.getText());
 parameters.add(tariffaSelezionata);
-fc.handleRequest("AggiungiFascia",parameters);
+boolean eseguito = (boolean) fc.handleRequest("AggiungiFascia",parameters);
+if(eseguito){
+	vd.showMessage("Completato");vd.home();
+	
+}
+else {vd.showMessage("Si è verificato un errore");vd.home();}
 }
 	
 }

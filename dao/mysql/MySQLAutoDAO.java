@@ -17,8 +17,24 @@ import entity.Fascia;
 import exceptions.DatabaseConnectionException;
 
 public class MySQLAutoDAO implements AutoDao{
-	public Auto getAuto(String targ){
-		return null;
+	public Auto getAuto(String targa){
+		String query = "SELECT Targa,Modello,Fascia,Disponibile,Ultimo_kmtraggio FROM Auto WHERE Targa = ?";
+		Auto a = null;
+		try {
+			Connection connessione = MySqlDaoFactory.getConnection();
+			PreparedStatement statement = connessione.prepareStatement(query);
+			statement.setString(1, targa);
+
+			ResultSet risultato = statement.executeQuery();
+			risultato.next();
+			MySQLFasciaDao fd = new MySQLFasciaDao();
+			a = new Auto(risultato.getString("Targa"),risultato.getString("Modello"),fd.getFascia(risultato.getString("Fascia")),risultato.getBoolean("Disponibile"),risultato.getDouble("Ultimo_kmtraggio"));
+					
+		} catch (DatabaseConnectionException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return a;
 	
 }
 	@Override
@@ -32,7 +48,7 @@ public class MySQLAutoDAO implements AutoDao{
 			PreparedStatement statement =connessione.prepareStatement(query);
 			statement.setString(1, targa);
 			statement.setString(2, modello);
-			statement.setString(3, fascia.toString());
+			statement.setString(3, fascia.getIdFascia());
 			statement.setBigDecimal(4, BigDecimal.valueOf(ultimoKmtraggio));
 			statement.executeUpdate();
 			inserito = true;
@@ -159,9 +175,9 @@ public class MySQLAutoDAO implements AutoDao{
 		try{
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connessione.prepareStatement(query);
-			statement.setString(1, targa);
-			statement.setBoolean(0, disponibile);
 			statement.setString(2, targa);
+			statement.setBoolean(1, disponibile);
+			
 			statement.executeUpdate();
 			modificato = true;
 			statement.close();

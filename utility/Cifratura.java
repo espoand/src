@@ -24,9 +24,9 @@ public String cripta(String messaggio){
 		return null;
 	}
 }
-/*public static void main(String[] args){
+public static void main(String[] args){
 	Cifratura cifratura = new Cifratura();
-	String stringa = "Andrea";
+	String stringa = "andrea";
 	int i = 0;
 	while(i<4){
 		System.out.println(cifratura.cripta(stringa));
@@ -34,5 +34,5 @@ public String cripta(String messaggio){
 	
 	}
 	
-}*/
+}
 }

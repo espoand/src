@@ -100,6 +100,9 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		case "TutteFasce":
 			command = new TutteFasce();
 			risultato = command.execute("");break;
+		case "TutteManutenzioni":
+			command = new TutteManutenzioni();
+			risultato = command.execute("");break;
 		
 		}
 		return risultato;
@@ -147,7 +150,7 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			result = command.execute(parameters.get(0));break;
 		case "ModificaAuto":
 			command = new ModificaAuto();
-			result = command.execute(parameters);
+			result = command.execute(parameters);break;
 		
 		case "CercaOperatore":
 			command = new CercaOperatore();
@@ -186,6 +189,18 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			result = command.execute(parameters);break;
 		case "AggiungiOperatore":
 			command = new InserisciOperatore();
+			result = command.execute(parameters);break;
+		case "AggiungiTariffaBase":
+			command = new InserisciTariffaBase();
+			result = command.execute(parameters);break;
+		case "RimuoviTariffaBase":
+			command = new RimuoviTariffaBase();
+			result = command.execute(parameters.get(0));break;
+		case "AggiungiFascia":
+			command = new InserisciFascia();
+			result = command.execute(parameters);break;
+		case "CambiaStatoAuto":
+			command = new CambiaStatoAuto();
 			result = command.execute(parameters);break;
 		}
 		return result;

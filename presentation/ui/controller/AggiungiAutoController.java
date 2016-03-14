@@ -45,7 +45,11 @@ public void submit(){
 		parameters.add(modello.getText());
 		parameters.add(fascia.getValue());
 		parameters.add(km.getText());
-		fc.handleRequest("InserisciAuto",parameters);
+		boolean eseguito = (boolean) fc.handleRequest("InserisciAuto",parameters);
+		if(eseguito){
+			vd.showMessage("Completato");vd.home();
+		}
+		else {vd.showMessage("Si è verificato un errore");vd.home();}
 	}
 }
 @FXML
