@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import entity.Agenzia;
 import entity.Auto;
+import entity.Cliente;
 import entity.Contratto;
 import entity.TariffaBase;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import presentation.FrontController;
 import presentation.ViewDispatcher;
+import utility.Calculator;
 import utility.InputController;
 import utility.Sessione;
 
@@ -132,7 +134,7 @@ Contratto contratto;
 	}
 	@FXML
 	public void indietro(){
-		fc.handleRequest("Home");
+		vd.home();
 		
 	}
 	@FXML
@@ -151,6 +153,30 @@ Contratto contratto;
 				vd.showMessage("Si è verificato un errore");
 			}
 }
+		
 }
+	@FXML
+	public void mostraCliente(){
+		Cliente c = contratto.getCliente();
+		Sessione.setClienteAttuale(c);
+		fc.handleRequest("MostraCliente");
+	}
+	@FXML
+	public void totale(){
+		if(dataNoleggio.getValue() == null || dataFine.getValue() == null || tariffa.getValue() == null ){
+			vd.showMessage("Compilare i campi Data Inizio,data fine,tariffa ed inserire un numero di km o selezionare km illimitati ");
+			}
+		if(!illimitati.isSelected() && nroKm.getText().isEmpty()){
+			vd.showMessage("Selezionare Km illimitati o inserire un numero di km da percorrere");
+		}
+		else{
+			ArrayList<String> params = new ArrayList<String>();
+			params.add(tariffa.getValue());
+			TariffaBase tb = (TariffaBase) fc.handleRequest("CercaTariffaBase",params);
+			Calculator calculator  = new Calculator();
+			double importo = calculator.calcolaTotale(dataNoleggio.getValue(), dataFine.getValue(), illimitati.isSelected(),tb, Double.parseDouble(nroKm.getText()));
+			importoTotale.setText(Double.toString(importo));
+		}
+	}
 	
 }

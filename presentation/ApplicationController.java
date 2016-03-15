@@ -202,6 +202,9 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		case "CambiaStatoAuto":
 			command = new CambiaStatoAuto();
 			result = command.execute(parameters);break;
+		case "ModificaContratto":
+			command = new ModificaContratto();
+			result = command.execute(parameters);break;
 		}
 		return result;
 		

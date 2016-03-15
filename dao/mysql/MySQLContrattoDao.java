@@ -39,8 +39,9 @@ DateConverter dateConverter = new DateConverter();
 			statement.setInt(6, agenziaRestituzione.getIdentificativo());
 			statement.setString(7, tariffa.getNome());
 			statement.setBoolean(8, kmIllimitato);
-			statement.setString(9, auto.getTarga());
-			statement.setDouble(10, importoTotale);
+			statement.setDouble(9, nroKm);
+			statement.setString(10, auto.getTarga());
+			statement.setDouble(11, importoTotale);
 			
 			
 
@@ -100,7 +101,7 @@ DateConverter dateConverter = new DateConverter();
 				ResultSet risultato = statement.executeQuery(query);
 				contratti = new ArrayList<Contratto>();
 				while(risultato.next()){
-					contratti.add(new Contratto(risultato.getInt("Nro_ordine"),clienteDao.getCliente(risultato.getString("Cliente")),risultato.getDate("Data_inizio").toLocalDate(),risultato.getDouble("Acconto"),risultato.getDate("Fine_prevista").toLocalDate(),agenziaDao.getAgenzia(risultato.getInt("Agenzia_noleggio")),agenziaDao.getAgenzia(risultato.getInt("Agenzia_restituzione")),tbDao.getTariffaBase(risultato.getString("Tariffa_base")),risultato.getBoolean("Km_illimitato"),risultato.getDouble("Nro_km"),autoDao.getAuto(risultato.getString("Auto_noleggiata")),risultato.getDouble("Importo_totale"),risultato.getBoolean("Chiuso")));
+					contratti.add(new Contratto(risultato.getInt("Nro_ord"),clienteDao.getCliente(risultato.getString("Cliente")),risultato.getDate("Data_inizio").toLocalDate(),risultato.getDouble("Acconto"),risultato.getDate("Fine_prevista").toLocalDate(),agenziaDao.getAgenzia(risultato.getInt("Agenzia_noleggio")),agenziaDao.getAgenzia(risultato.getInt("Agenzia_restituzione")),tbDao.getTariffaBase(risultato.getString("Tariffa_base")),risultato.getBoolean("Km_illimitato"),risultato.getDouble("Nro_km"),autoDao.getAuto(risultato.getString("Auto_noleggiata")),risultato.getDouble("Importo_totale"),risultato.getBoolean("Chiuso")));
 				}
 				statement.close();
 
@@ -166,6 +167,30 @@ DateConverter dateConverter = new DateConverter();
 		}
 		return eseguito;
 		
+	}
+
+	@Override
+	public Contratto getContratto(int nroOrdine) {
+		// TODO Auto-generated method stub
+		MySQLClienteDao clienteDao = new MySQLClienteDao();
+		MySQLAgenziaDao agenziaDao = new MySQLAgenziaDao();
+		MySQLTariffaBaseDao tbDao = new MySQLTariffaBaseDao();
+		MySQLAutoDAO autoDao = new MySQLAutoDAO();
+		Contratto c = null;
+		String query = "SELECT Cliente,Nro_ord,Data_inizio,Acconto,Fine_prevista,Agenzia_noleggio,Agenzia_restituzione,Tariffa_base,Km_illimitato,Nro_km,Auto_noleggiata,Importo_totale FROM Contratto WHERE Nro_ord = ?";
+		try {
+			Connection connessione = MySqlDaoFactory.getConnection();
+			PreparedStatement statement = connessione.prepareStatement(query);
+			statement.setInt(1, nroOrdine);
+			ResultSet risultato = statement.executeQuery();
+			risultato.next();
+			c = new Contratto(risultato.getInt("Nro_ord"),clienteDao.getCliente(risultato.getString("Cliente")),risultato.getDate("Data_inizio").toLocalDate(),risultato.getDouble("Acconto"),risultato.getDate("Fine_prevista").toLocalDate(),agenziaDao.getAgenzia(risultato.getInt("Agenzia_noleggio")),agenziaDao.getAgenzia(risultato.getInt("Agenzia_restituzione")),tbDao.getTariffaBase(risultato.getString("Tariffa_base")),risultato.getBoolean("Km_illimitato"),risultato.getDouble("Nro_km"),autoDao.getAuto(risultato.getString("Auto_noleggiata")),risultato.getDouble("Importo_totale"),risultato.getBoolean("Chiuso"));
+		} catch (DatabaseConnectionException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return c;
+
 	}
 
 }

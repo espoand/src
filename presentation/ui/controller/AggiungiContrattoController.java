@@ -63,13 +63,13 @@ public void quit(){
 
 @FXML
 public void submit(){
-	if(tariffa.getValue().isEmpty() || auto.getValue().isEmpty() || importoTotale.getText().isEmpty() || cfCliente.getValue() == null || dataNoleggio.getValue() == null|| acconto.getText().isEmpty() || dataFine.getValue()==null || agenziaNoleggio.getValue().isEmpty() || agenziaRiconsegna.getValue().isEmpty())
+	if(tariffa.getValue() == null || auto.getValue() == null || importoTotale.getText().isEmpty() || cfCliente.getValue() == null || dataNoleggio.getValue() == null|| acconto.getText().isEmpty() || dataFine.getValue()==null || agenziaNoleggio.getValue()== null|| agenziaRiconsegna.getValue()== null)
 	{	vd.showMessage("Compilare tutti i campi");}
 	if(dataNoleggio.getValue().isBefore(Sessione.today()) || dataNoleggio.getValue().isBefore(Sessione.today()) || dataNoleggio.getValue().isAfter(dataFine.getValue())){
 		vd.showMessage("Le date devono essere successive a quella odierna e la data di restituzione successiva a quella di noleggio");
 	}
-	if(!ic.onlyNumbersAndLetters(cfCliente.getValue()) || !ic.onlyNumbers(acconto.getText())){
-		vd.showMessage("Codice fiscale e/o acconto non valido");
+	if(!ic.onlyNumbersAndLetters(cfCliente.getValue()) || !ic.onlyNumbers(acconto.getText()) || !ic.isDouble(importoTotale.getText())){
+		vd.showMessage("Codice fiscale e/o acconto e/o totale non valido");
 	}
 	if(nroKm.getText().isEmpty() && !illimitati.isSelected()){
 		vd.showMessage("Selezionare Km illimitati o inserire il numero di Km");
@@ -109,9 +109,11 @@ public void submit(){
 		if(illimitati.isSelected()){parameters.add("1");}
 		else{
 		parameters.add(nroKm.getText());}
+		
 		parameters.add(auto.getValue());
 		parameters.add(importoTotale.getText());
-		fc.handleRequest("InserisciContratto",parameters);
+		boolean eseguito= (boolean) fc.handleRequest("InserisciContratto",parameters);
+		if(eseguito){vd.showMessage("Completato");vd.home();}else {vd.showMessage("Si è verificato un errore");vd.home();}
 	}
 	
 	}

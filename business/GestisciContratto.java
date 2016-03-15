@@ -75,9 +75,10 @@ public class GestisciContratto {
 		
 		
 		Contratto c=new Contratto(0,cl,dataInizio,acconto,finePrevista,agenziaNoleggio,agenziaRestituzione,tb,kmIllimitati,nroKm,auto,totale);
-		boolean autoModificata = false;
-		autoModificata = autoBusiness.setStato(auto.getTarga(), false);
-		if(autoModificata){return cb.inserisciContratto(c);}
+		boolean eseguito = false;
+		eseguito =cb.inserisciContratto(c);
+		
+		if(eseguito){return 		autoBusiness.setStato(auto.getTarga(), false);}
 		return false;
 	
 		
@@ -100,6 +101,7 @@ public class GestisciContratto {
 		ClienteBusiness clientiBusiness=new ClienteBusiness();
 		AutoBusiness autoBusiness = new AutoBusiness();
 		TariffaBaseBusiness tbBusiness = new TariffaBaseBusiness();
+		Contratto contr = cb.getContratto(Integer.parseInt(parameters.get(0)));
 		Cliente cliente = clientiBusiness.getCliente(parameters.get(0));
 		LocalDate dataInizio = LocalDate.parse(parameters.get(1));
 		double acconto = Double.parseDouble(parameters.get(2));

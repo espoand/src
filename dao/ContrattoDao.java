@@ -17,5 +17,5 @@ public boolean eliminaContratto(int nroOrdine);
 public ArrayList<Contratto> getContratti();
 public boolean modificaContratto(Cliente cliente,LocalDate dataInizio,double acconto,int nroOrdine,LocalDate finePrevista,Agenzia agenziaNoleggio,Agenzia agenziaRestituzione,TariffaBase tariffaBase,boolean kmIllimitato,double nroKm,Auto autoNoleggiata,double importoTotale);
 public boolean chiudiContratto(int nroOrdine);
-
+public Contratto getContratto(int nroOrdine);
 }

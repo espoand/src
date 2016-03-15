@@ -69,12 +69,10 @@ public class GestioneContrattoController implements Initializable{
 			parameters.add(nroOrdine.getText());
 			Contratto c = (Contratto) fc.handleRequest("CercaContratto",parameters);
 			Sessione.setContrattoAttuale(c);
-			boolean eseguito = (boolean) fc.handleRequest("ModificaContratto");
-			if(eseguito){
-				vd.showMessage("Completato");
+			fc.handleRequest("ModificaContratto");
+			
 				
-			}
-			else vd.showMessage("Si è verificato un errore");
+			
 		}
 	}
 	@FXML
