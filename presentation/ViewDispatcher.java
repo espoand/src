@@ -73,5 +73,7 @@ public void home(){
 		apriView("SchermataOperatore");
 	}
 }
-
+public void ricarica(){
+	apriView(Sessione.getViewAttuale());
+}
 }

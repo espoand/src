@@ -36,7 +36,7 @@ public class GestisciCliente {
 		String cognome=param.get(2);
 		String telefono=param.get(3);
 		String indirizzo=param.get(4);
-		Cliente c= new Cliente(codiceFiscale,nome,cognome,telefono,indirizzo);
+		Cliente c= new Cliente(nome,cognome,telefono,codiceFiscale,indirizzo);
 		return cb.modificaCliente(c);
 		
 	}

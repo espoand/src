@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.MostraClienteController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.ModificaClienteController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
          <menus>
@@ -28,16 +28,16 @@
             <TextField fx:id="cognome" layoutX="440.0" layoutY="103.0" />
             <Text layoutX="17.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TELEFONO" />
             <TextField fx:id="telefono" layoutX="119.0" layoutY="172.0" />
-            <TextField fx:id="indirizzo" layoutX="440.0" layoutY="172.0" />
+            <TextField fx:id="via" layoutX="440.0" layoutY="172.0" />
             <Text layoutX="336.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VIA" />
             <Text layoutX="278.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CODICE FISCALE" />
             <TextField fx:id="cf" editable="false" layoutX="247.0" layoutY="50.0" />
             <Button layoutX="208.0" layoutY="296.0" mnemonicParsing="false" onAction="#indietro" text="INDIETRO" />
-            <TextField layoutX="119.0" layoutY="235.0" />
+            <TextField fx:id="citta" layoutX="119.0" layoutY="235.0" />
             <Text layoutX="18.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CITTA'" />
-            <TextField layoutX="440.0" layoutY="235.0" />
+            <TextField fx:id="cap" layoutX="440.0" layoutY="235.0" />
             <Text layoutX="333.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CAP" />
-            <Button layoutX="339.0" layoutY="296.0" mnemonicParsing="false" text="CONFERMA" />
+            <Button layoutX="339.0" layoutY="296.0" mnemonicParsing="false" onAction="#submit" text="CONFERMA" />
       </children>
     </AnchorPane>
   </children>

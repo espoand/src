@@ -2,6 +2,7 @@ package presentation.ui.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import entity.TariffaBase;
@@ -88,6 +89,11 @@ public void quit(){
 public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
 	ArrayList<TariffaBase> tutteTariffe = (ArrayList<TariffaBase>) fc.handleRequest("TutteTariffe");
+	Iterator<TariffaBase> it1 = tutteTariffe.iterator();
+	while(it1.hasNext()){
+		tabella.getItems().add(it1.next().getNome());
+	}
+	
 	
 }
 

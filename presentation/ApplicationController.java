@@ -211,6 +211,12 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		case "ModificaContratto":
 			command = new ModificaContratto();
 			result = command.execute(parameters);break;
+		case "ModificaCliente":
+			command = new ModificaCliente();
+			result = command.execute(parameters);break;
+		case "RimuoviOperatore":
+			command = new RimuoviOperatore();
+			result = command.execute(parameters.get(0));break;
 		}
 		return result;
 		

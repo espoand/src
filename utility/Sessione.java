@@ -26,7 +26,9 @@ public static void setAutoAttuale(Auto autoAttuale) {
 public static Contratto getContrattoAttuale() {
 	return contrattoAttuale;
 }
-
+public static  String getViewAttuale(){
+	return viewAttuale;
+}
 public static void setContrattoAttuale(Contratto contrattoAttuale) {
 	Sessione.contrattoAttuale = contrattoAttuale;
 }

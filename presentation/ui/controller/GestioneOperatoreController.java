@@ -27,21 +27,18 @@ public class GestioneOperatoreController implements Initializable{
 FrontController fc = new FrontController();
 ViewDispatcher vd = new ViewDispatcher();
 InputController ic = new InputController();
-@FXML
-TextField cf;
+
 @FXML
 TableView<Record> tabella;
 @FXML
 public void cerca(){
-	if(cf.getText().isEmpty()){
-		vd.showMessage("Compilare il campo codice fiscale");
+	if(tabella.getSelectionModel().getSelectedItem() == null){
+		vd.showMessage("Selezionare un elemento");
 	}
-	else if(!ic.onlyNumbersAndLetters(cf.getText())){
-		vd.showMessage("Codice fiscale non valido");
-	}
+	
 	else{
 		ArrayList<String> parameters = new ArrayList<String>();
-		parameters.add(cf.getText());
+		parameters.add(tabella.getSelectionModel().getSelectedItem().getCf());
 		Operatore operatore = (Operatore) fc.handleRequest("CercaOperatore", parameters);
 		Sessione.setOperatoreAttuale(operatore);
 		fc.handleRequest("MostraOperatore");
@@ -54,36 +51,38 @@ public void aggiungi(){
 }
 @FXML
 public void elimina(){
-	if(cf.getText().isEmpty()){
-		vd.showMessage("Compilare il campo codice fiscale");
+	if(tabella.getSelectionModel().getSelectedItem() == null){
+		vd.showMessage("Selezionare un elemento");
 	}
-	if(!ic.onlyNumbersAndLetters(cf.getText()) || Sessione.getUsername().equals(cf.getText())){
-		vd.showMessage("Codice fiscale non valido o utente attualmente loggato");
+	if(Sessione.getUsername().equals(tabella.getSelectionModel().getSelectedItem())){
+		vd.showMessage("Utente attualmente loggato");
 	}
 	else{
 	 if(vd.areYouSure("Sei sicuro di voler procedere?") == 0){
 		 ArrayList<String> parameters = new ArrayList<String>();
-		 parameters.add(cf.getText());
-		 fc.handleRequest("RimuoviOperatore", parameters);
+		 parameters.add(tabella.getSelectionModel().getSelectedItem().getCf());
+		boolean eseguito= (boolean) fc.handleRequest("RimuoviOperatore", parameters);
+		if(eseguito){vd.showMessage("Completato");vd.ricarica();}
+		else{vd.showMessage("Si è verificato un errore");}
+		 
 	 }
 	 
 	}
 }
 @FXML
 public void modifica(){	
-	if(cf.getText().isEmpty()){
-	vd.showMessage("Compilare il campo codice fiscale");
+	if(tabella.getSelectionModel().getSelectedItem() == null){
+	vd.showMessage("Selezionare un elemento");
 }
-if(!ic.onlyNumbersAndLetters(cf.getText())){
-	vd.showMessage("Codice fiscale non valido");
-}
+
 else{
 	ArrayList<String> parameters = new ArrayList<String>();
-	parameters.add(cf.getText());
+	
+	parameters.add(tabella.getSelectionModel().getSelectedItem().getCf());
 	Operatore operatore = (Operatore) fc.handleRequest("CercaOperatore", parameters);
 	Sessione.setOperatoreAttuale(operatore);
 	fc.handleRequest("ModificaOperatore");
-	
+
 }
 }
 
