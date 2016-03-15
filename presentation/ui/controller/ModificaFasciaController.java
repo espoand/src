@@ -36,7 +36,7 @@ ArrayList<TariffaBase> tutteTariffe;
 		tariffaAttuale = fascia.getTariffaFascia();
 		if(fascia == null || tariffaAttuale == null){
 			vd.showMessage("Si è verificato un'errore");
-			vd.indietro();
+			vd.home();
 		}
 		tutteTariffe = (ArrayList<TariffaBase>) fc.handleRequest("TutteTariffe");
 		Iterator<TariffaBase> it1 = tutteTariffe.iterator();
@@ -57,11 +57,11 @@ public void conferma(){
 	parameters.add(tariffa.getValue());
 	boolean eseguito = (boolean) fc.handleRequest("ModificaFascia",parameters);
 	if(eseguito){ vd.showMessage("Completato");
-	vd.indietro();
+	vd.home();
 	}
 	else {
 		vd.showMessage("Si è verificato un errore");
-		vd.indietro();
+		vd.home();
 	}
 	
 }

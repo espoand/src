@@ -66,11 +66,11 @@ public void submit(){
 		boolean eseguito = (boolean) fc.handleRequest("ModificaOperatore",parameters);
 		if(eseguito){
 			vd.showMessage("Completato");
-			vd.indietro();
+			vd.home();
 		}
 		else{
 			vd.showMessage("Si è verificato un errore");
-			vd.indietro();
+			vd.home();
 		}
 	}
 	

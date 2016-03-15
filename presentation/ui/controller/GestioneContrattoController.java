@@ -84,10 +84,10 @@ public class GestioneContrattoController implements Initializable{
 				
 			}
 			if(eseguito){
-				vd.showMessage("Completato");vd.indietro();
+				vd.showMessage("Completato");vd.ricarica();
 			}
 			else{
-				vd.showMessage("Si è verificato un errore");vd.indietro();
+				vd.showMessage("Si è verificato un errore");
 			}
 		}
 	}

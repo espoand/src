@@ -40,13 +40,8 @@ public void cerca(){
 		ArrayList<String> parameters = new ArrayList<String>();
 		parameters.add(listaAgenzie.getSelectionModel().getSelectedItem().getIdAgenzia());
 		Agenzia ag = (Agenzia) fc.handleRequest("CercaAgenzia",parameters);
-		if(ag!=null){
-			Sessione.setAgenziaAttuale(ag);
-			fc.handleRequest("MostraAgenzia");
-		}
-		else{
-			vd.showMessage("Agenzia non trovata");
-		}
+		Sessione.setAgenziaAttuale(ag);
+		fc.handleRequest("MostraAgenzia");
 	}
 }
 @FXML
@@ -65,6 +60,7 @@ public void elimina(){
 			boolean eseguito = (boolean) fc.handleRequest("RimuoviAgenzia",parameters);
 			if(eseguito){
 				vd.showMessage("Completato");
+				vd.ricarica();
 		}
 			else vd.showMessage("Si è verificato un errore");
 	}}

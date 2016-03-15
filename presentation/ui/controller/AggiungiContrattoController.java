@@ -54,7 +54,7 @@ ArrayList<Agenzia> tutteAgenzie;
 
 @FXML
 public void indietro(){
-	fc.handleRequest("Home");
+	vd.home();
 }
 @FXML
 public void quit(){

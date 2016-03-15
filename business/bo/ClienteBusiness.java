@@ -13,10 +13,10 @@ public ClienteBusiness(){
 	
 }
 public boolean inserisciCliente(Cliente c){
-	return clienteDao.inserisciCliente(c.getNome(), c.getCognome(), c.getTelefono(), c.getCodiceFiscale(), c.getIndirizzo());
+	return clienteDao.inserisciCliente(c.getNome(), c.getCognome(), c.getTelefono(), c.getCodiceFiscale(), c.getVia(),c.getCitta(),c.getCap());
 }
 public boolean modificaCliente(Cliente c){
-	return clienteDao.modificaCliente(c.getCodiceFiscale(), c.getNome(), c.getCognome(), c.getTelefono(),c.getIndirizzo());
+	return clienteDao.modificaCliente(c.getCodiceFiscale(), c.getNome(), c.getCognome(), c.getTelefono(),c.getVia(),c.getCitta(),c.getCap());
 }
 public boolean rimuoviCliente(String cf){
 	return clienteDao.cancellaCliente(cf);

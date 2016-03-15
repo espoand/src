@@ -36,7 +36,7 @@ Operatore operatore;
 	}
 	@FXML
 	public void indietro(){
-		vd.indietro();
+		vd.home();
 	}
 
 }

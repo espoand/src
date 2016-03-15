@@ -15,9 +15,9 @@ public interface ClienteDao {
  * @return false se l'inserimento dei dati è fallito
  * 
  */
-public boolean inserisciCliente(String nome,String cognome,String telefono,String codiceFiscale,String indirizzo);
+public boolean inserisciCliente(String nome,String cognome,String telefono,String codiceFiscale,String via,String citta,String cap);
 public boolean cancellaCliente(String codiceFiscale);
-public boolean modificaCliente(String cf,String nome,String cognome,String telefono,String indirizzo);
+public boolean modificaCliente(String cf,String nome,String cognome,String telefono,String via,String citta,String cap);
 public Cliente getCliente(String cf);
 public ArrayList<Cliente> tuttiClienti();
 

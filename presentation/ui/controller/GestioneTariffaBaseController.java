@@ -70,8 +70,9 @@ public void elimina(){
 		if(vd.areYouSure("Sei sicuro di voler procedere?")== 0){
 			ArrayList<String> parameters = new ArrayList<String>();
 			parameters.add(tabella.getSelectionModel().getSelectedItem());
-			fc.handleRequest("RimuoviTariffaBase", parameters);
-			vd.showMessage("Operazione completata");
+			boolean eseguito = (boolean) fc.handleRequest("RimuoviTariffaBase", parameters);
+			if(eseguito){vd.showMessage("Operazione completata");vd.ricarica();}
+			else vd.showMessage("Si è verificato un errore");
 	}}
 }
 

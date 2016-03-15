@@ -40,7 +40,9 @@ public class ModificaClienteController implements Initializable{
 		nome.setText(cliente.getNome());
 		cognome.setText(cliente.getCognome());
 		telefono.setText(cliente.getTelefono());
-		via.setText(cliente.getIndirizzo());
+		via.setText(cliente.getVia());
+		citta.setText(cliente.getCitta());
+		cap.setText(cliente.getCap());
 		
 	}
 	@FXML
@@ -69,10 +71,12 @@ public class ModificaClienteController implements Initializable{
 			parameters.add(cognome.getText());
 			parameters.add(telefono.getText());
 			parameters.add(via.getText());
+			parameters.add(citta.getText());
+			parameters.add(cap.getText());
 			boolean eseguito = (boolean) fc.handleRequest("ModificaCliente", parameters);
 			if(eseguito){
 				vd.showMessage("Operazione avvenuta con successo");
-				vd.indietro();
+				vd.home();
 			}
 			else{
 				vd.showMessage("Si è verificato un errore");

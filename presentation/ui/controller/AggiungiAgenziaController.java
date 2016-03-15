@@ -30,7 +30,7 @@ public class AggiungiAgenziaController {
 	}
 	@FXML
 	public void indietro(){
-		vd.indietro();
+		vd.home();
 	}
 	@FXML
 	public void submit(){

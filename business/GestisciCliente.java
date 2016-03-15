@@ -22,8 +22,11 @@ public class GestisciCliente {
 		String cognome=param.get(2);
 		String telefono=param.get(3);
 		String codiceFiscale=param.get(0);
-		String indirizzo=param.get(4);
-		Cliente c= new Cliente(nome,cognome,telefono,codiceFiscale,indirizzo);
+		String via=param.get(4);
+		String citta = param.get(5);
+		String cap = param.get(6);
+		
+		Cliente c= new Cliente(nome,cognome,telefono,codiceFiscale,via,citta,cap);
 		return cb.inserisciCliente(c);
 		
 	}
@@ -35,8 +38,10 @@ public class GestisciCliente {
 		String nome=param.get(1);
 		String cognome=param.get(2);
 		String telefono=param.get(3);
-		String indirizzo=param.get(4);
-		Cliente c= new Cliente(nome,cognome,telefono,codiceFiscale,indirizzo);
+		String via=param.get(4);
+		String citta = param.get(5);
+		String cap = param.get(6);
+		Cliente c= new Cliente(nome,cognome,telefono,codiceFiscale,via,citta,cap);
 		return cb.modificaCliente(c);
 		
 	}

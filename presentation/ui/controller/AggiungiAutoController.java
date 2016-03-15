@@ -58,7 +58,7 @@ public void quit(){
 }
 @FXML
 public void indietro(){
-	vd.indietro();
+	vd.home();
 }
 @Override
 public void initialize(URL location, ResourceBundle resources) {

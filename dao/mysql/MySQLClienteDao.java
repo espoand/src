@@ -16,10 +16,10 @@ public class MySQLClienteDao implements ClienteDao{
 
 	@Override
 	public boolean inserisciCliente(String nome, String cognome,
-			String telefono, String codiceFiscale, String indirizzo) {
+			String telefono, String codiceFiscale, String via,String citta,String cap) {
 		// TODO Auto-generated method stub
 		boolean inserito = false;
-		String query = "INSERT INTO Cliente(Codice_fiscale,Nome,Cognome,Telefono,Indirizzo) VALUES (?,?,?,?,?)";
+		String query = "INSERT INTO Cliente(Codice_fiscale,Nome,Cognome,Telefono,Via,Citta,CAP) VALUES (?,?,?,?,?,?,?)";
 		try {
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connessione.prepareStatement(query);
@@ -27,7 +27,9 @@ public class MySQLClienteDao implements ClienteDao{
 			statement.setString(2, nome);
 			statement.setString(3, cognome);
 			statement.setString(4, telefono);
-			statement.setString(5, indirizzo);
+			statement.setString(5, via);
+			statement.setString(6, citta);
+			statement.setString(7, cap);
 			statement.executeUpdate();
 			inserito=true;
 			statement.close();
@@ -64,18 +66,20 @@ public class MySQLClienteDao implements ClienteDao{
 
 	@Override
 	public boolean modificaCliente(String cf, String nome, String cognome,
-			String telefono,String indirizzo) {
+			String telefono,String via,String citta,String cap) {
 		// TODO Auto-generated method stub
 		boolean modificato = false;
-		String query ="UPDATE Cliente SET Nome = ?,Cognome=?,Telefono=?,Indirizzo=? WHERE Codice_fiscale = ? ";
+		String query ="UPDATE Cliente SET Nome = ?,Cognome=?,Telefono=?,Via=?, Citta = ?,CAP = ? WHERE Codice_fiscale = ? ";
 		try {
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connessione.prepareStatement(query);
 			statement.setString(1, nome);
 			statement.setString(2, cognome);
 			statement.setString(3, telefono);
-			statement.setString(4, indirizzo);
-			statement.setString(5, cf);
+			statement.setString(4, via);
+			statement.setString(5, citta);
+			statement.setString(6, cap);
+			statement.setString(7, cf);
 			statement.executeUpdate();
 			modificato = true;
 			statement.close();
@@ -90,7 +94,7 @@ public class MySQLClienteDao implements ClienteDao{
 	@Override
 	public Cliente getCliente(String cf) {
 		// TODO Auto-generated method stub
-		String query = "SELECT Codice_fiscale,Nome,Cognome,Telefono,Indirizzo FROM Cliente WHERE Codice_fiscale = ? ";
+		String query = "SELECT Codice_fiscale,Nome,Cognome,Telefono,Via,Citta,CAP FROM Cliente WHERE Codice_fiscale = ? ";
 		Connection connessione;
 		Cliente cliente = null;
 		try {
@@ -99,7 +103,7 @@ public class MySQLClienteDao implements ClienteDao{
 			statement.setString(1, cf);
 			ResultSet risultato = statement.executeQuery();
 			risultato.first();
-			cliente = new Cliente(risultato.getString(2),risultato.getString(3),risultato.getString(4),cf,risultato.getString(5));
+			cliente = new Cliente(risultato.getString(2),risultato.getString(3),risultato.getString(4),cf,risultato.getString(5),risultato.getString(6),risultato.getString(7));
 			statement.close();
 
 			} catch (DatabaseConnectionException | SQLException e) {
@@ -113,7 +117,7 @@ public class MySQLClienteDao implements ClienteDao{
 	@Override
 	public ArrayList<Cliente> tuttiClienti() {
 		// TODO Auto-generated method stub
-		String query = "SELECT Codice_fiscale,Nome,Cognome,Telefono,Indirizzo FROM Cliente";
+		String query = "SELECT Codice_fiscale,Nome,Cognome,Telefono,Via,Citta,CAP FROM Cliente";
 		Connection connessione ;
 		ArrayList<Cliente> tuttiClienti = null;
 		try {
@@ -123,7 +127,7 @@ public class MySQLClienteDao implements ClienteDao{
 			
 			tuttiClienti = new ArrayList<Cliente>();
 			while(result.next()){
-				tuttiClienti.add( new Cliente(result.getString("Nome"),result.getString("Cognome"),result.getString("Telefono"),result.getString("Codice_fiscale"),result.getString("Indirizzo")));
+				tuttiClienti.add( new Cliente(result.getString("Nome"),result.getString("Cognome"),result.getString("Telefono"),result.getString("Codice_fiscale"),result.getString("Via"),result.getString("Citta"),result.getString("CAP")));
 				
 			}
 			statement.close();

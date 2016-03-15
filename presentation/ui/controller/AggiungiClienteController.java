@@ -23,10 +23,14 @@ TextField cognome;
 @FXML
 TextField telefono;
 @FXML
-TextField indirizzo;
+TextField via;
+@FXML
+TextField citta;
+@FXML
+TextField cap;
 @FXML
 public void submit(){
-	if(cf.getText().isEmpty() || cognome.getText().isEmpty() || nome.getText().isEmpty() || telefono.getText().isEmpty() || indirizzo.getText().isEmpty()){
+if(cf.getText().isEmpty() || cognome.getText().isEmpty() || nome.getText().isEmpty() || telefono.getText().isEmpty() || via.getText().isEmpty() || citta.getText().isEmpty() || cap.getText().isEmpty()){
 		vd.showMessage("Compilare tutti i campi");
 		
 	}
@@ -43,7 +47,9 @@ public void submit(){
 		parameters.add(nome.getText());
 		parameters.add(cognome.getText());
 		parameters.add(telefono.getText());
-		parameters.add(indirizzo.getText());
+		parameters.add(via.getText());
+		parameters.add(citta.getText());
+		parameters.add(cap.getText());
 		boolean eseguito = (boolean) fc.handleRequest("InserisciCliente", parameters);
 		if(eseguito){
 			vd.showMessage("Operazione avvenuta con successo");

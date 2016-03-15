@@ -79,7 +79,12 @@ public void elimina(){
 	else{
 		ArrayList<String> parameters = new ArrayList<String>();
 		parameters.add(tabella.getSelectionModel().getSelectedItem().getCf());
-		fc.handleRequest("RimuoviCliente", parameters);
+		boolean eseguito =(boolean) fc.handleRequest("RimuoviCliente", parameters);
+		if(eseguito){
+			vd.showMessage("Completato");vd.ricarica();
+			
+		}
+		else vd.showMessage("Si è verificato un errore");
 	}
 }
 @FXML

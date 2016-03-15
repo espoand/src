@@ -36,7 +36,7 @@
                     </items>
                   </ContextMenu>
                </contextMenu></TextField>
-            <Button layoutX="292.0" layoutY="312.0" mnemonicParsing="false" text="INDIETRO" />
+            <Button layoutX="292.0" layoutY="312.0" mnemonicParsing="false" onAction="#indietro" text="INDIETRO" />
             <TextField fx:id="via" editable="false" layoutX="429.0" layoutY="135.0" />
             <Text layoutX="350.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VIA" />
             <TextField fx:id="citta" editable="false" layoutX="151.0" layoutY="200.0" />

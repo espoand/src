@@ -37,6 +37,6 @@ public class MostraTariffaBaseController implements Initializable{
 	}
 	@FXML
 	public void indietro(){
-		vd.indietro();
+		vd.home();
 	}
 }

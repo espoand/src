@@ -60,7 +60,9 @@ public void elimina(){
 	{
 		ArrayList<String> parameters = new ArrayList<String>();
 		parameters.add(tutteFasce.getSelectionModel().getSelectedItem());
-		fc.handleRequest("RimuoviFascia", parameters);
+		boolean eseguito = (boolean) fc.handleRequest("RimuoviFascia", parameters);
+		if(eseguito){vd.showMessage("Completato");vd.ricarica();}
+		else vd.showMessage("Si è verificato un errore");
 	}
 	
 }

@@ -82,7 +82,7 @@ public void elimina(){
 	eseguito = (boolean) fc.handleRequest("RimuoviAuto",targalist);
 	}
 	if(eseguito){
-		vd.showMessage("Cancellazione eseguita");
+		vd.showMessage("Cancellazione eseguita");vd.ricarica();
 	}
 	else vd.showMessage("Si è verificato un errore durante la cancellazione");
 	}}

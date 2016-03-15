@@ -21,7 +21,7 @@
       </MenuBar>
       <AnchorPane prefHeight="171.0" prefWidth="600.0">
          <children>
-            <Button fx:id="cerca" layoutX="242.0" layoutY="118.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="117.0" text="Dettagli" />
+            <Button fx:id="cerca" layoutX="263.0" layoutY="118.0" mnemonicParsing="false" onAction="#cerca" prefHeight="27.0" prefWidth="117.0" text="Dettagli" />
             <Button fx:id="aggiungi" layoutX="40.0" layoutY="57.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi Agenzia" />
             <Button fx:id="elimina" layoutX="185.0" layoutY="57.0" mnemonicParsing="false" onAction="#elimina" text="Elimina Agenzia" />
             <Button fx:id="modifica" layoutX="321.0" layoutY="57.0" mnemonicParsing="false" onAction="#modifica" text="Modifica Agenzia" />

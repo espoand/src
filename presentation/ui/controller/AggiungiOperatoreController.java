@@ -59,6 +59,6 @@ public void quit(){
 @FXML
 
 public void indietro(){
-	vd.indietro();
+	vd.home();
 }
 }

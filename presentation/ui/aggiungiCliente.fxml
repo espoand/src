@@ -22,18 +22,22 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <Text layoutX="32.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOME" />
+            <Text layoutX="17.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOME" />
             <Text layoutX="335.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COGNOME" />
-            <TextField fx:id="nome" layoutX="119.0" layoutY="103.0" />
-            <TextField fx:id="cognome" layoutX="440.0" layoutY="103.0" />
-            <Text layoutX="17.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TELEFONO" />
-            <TextField fx:id="telefono" layoutX="119.0" layoutY="217.0" />
-            <TextField fx:id="indirizzo" layoutX="447.0" layoutY="217.0" />
-            <Text layoutX="336.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INDIRIZZO" />
-            <Text layoutX="278.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CODICE FISCALE" />
-            <TextField fx:id="cf" layoutX="247.0" layoutY="50.0" />
+            <TextField fx:id="nome" layoutX="119.0" layoutY="108.0" />
+            <TextField fx:id="cognome" layoutX="440.0" layoutY="108.0" />
+            <Text layoutX="332.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TELEFONO" />
+            <TextField fx:id="telefono" layoutX="440.0" layoutY="23.0" />
+            <TextField fx:id="via" layoutX="119.0" layoutY="172.0" />
+            <Text layoutX="17.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VIA" />
+            <Text layoutX="6.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CODICE FISCALE" />
+            <TextField fx:id="cf" layoutX="119.0" layoutY="31.0" />
             <Button layoutX="472.0" layoutY="288.0" mnemonicParsing="false" onAction="#indietro" text="INDIETRO" />
             <Button layoutX="159.0" layoutY="288.0" mnemonicParsing="false" onAction="#submit" text="CONFERMA" />
+            <TextField fx:id="citta" layoutX="440.0" layoutY="172.0" />
+            <Text layoutX="332.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CITTA" />
+            <TextField fx:id="cap" layoutX="119.0" layoutY="229.0" />
+            <Text layoutX="14.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CAP" />
       </children>
     </AnchorPane>
   </children>

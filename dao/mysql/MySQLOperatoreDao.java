@@ -26,8 +26,8 @@ public class MySQLOperatoreDao implements OperatoreDao{
 			statement.setString(3, cognome);
 			statement.setString(4, username);
 			statement.setString(5, password);
-			if(amministratore){statement.setBoolean(6, true);}
-			else statement.setBoolean(6, false);
+			if(!amministratore){statement.setBoolean(6, false);}
+			else statement.setBoolean(6, true);
 			
 			statement.executeUpdate();
 			inserito = true;

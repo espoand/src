@@ -123,10 +123,10 @@ Contratto contratto;
 			
 			boolean eseguito=(boolean) fc.handleRequest("ModificaContratto",parameters);
 			if(eseguito ){
-				vd.showMessage("Completato");vd.indietro();
+				vd.showMessage("Completato");vd.home();
 			}
 			else{
-				vd.showMessage("Si è verificato un errore");vd.indietro();
+				vd.showMessage("Si è verificato un errore");vd.home();
 			}
 		}
 	}

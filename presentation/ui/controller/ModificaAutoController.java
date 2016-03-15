@@ -78,11 +78,11 @@ ArrayList<Fascia> tutteFasce;
 		}
 		if(eseguito){
 			vd.showMessage("Completato");
-			vd.indietro();
+			vd.home();
 		}
 		else{
 			vd.showMessage("Si è verificato un errore");
-			vd.indietro();
+			vd.home();
 		}
 	}
 	@FXML

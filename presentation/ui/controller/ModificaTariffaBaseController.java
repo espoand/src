@@ -38,7 +38,7 @@ TextField giornoExtra;
 	}
 	@FXML
 public void indietro(){
-		vd.indietro();
+		vd.home();
 	}
 	@FXML
 	public void quit(){
@@ -60,11 +60,11 @@ public void submit(){
 			parameters.add(giornoExtra.getText());
 			boolean eseguito = (boolean) fc.handleRequest("ModificaTariffaBase",parameters);
 			if(eseguito){
-				vd.showMessage("Completato"); vd.indietro();
+				vd.showMessage("Completato"); vd.home();
 			}
 			else{
 				vd.showMessage("Si è verificato un errore");
-				vd.indietro();
+				vd.home();
 			}
 			
 		}

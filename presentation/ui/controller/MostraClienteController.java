@@ -25,20 +25,26 @@ TextField cognome;
 @FXML
 TextField telefono;
 @FXML
-TextField indirizzo;
+TextField via;
+@FXML
+TextField citta;
+@FXML
+TextField cap;
 @Override
 public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
 	Cliente cliente = Sessione.getClienteAttuale();
 	if(cliente == null){
 		vd.showMessage("Si è verificato un'errore");
-		vd.indietro();
+		vd.home();
 	}
 	cf.setText(cliente.getCodiceFiscale());
 	nome.setText(cliente.getNome());
 	cognome.setText(cliente.getCognome());
 	telefono.setText(cliente.getTelefono());
-	indirizzo.setText(cliente.getIndirizzo());
+	via.setText(cliente.getVia());
+	citta.setText(cliente.getCitta());
+	cap.setText(cliente.getCap());
 }
 @FXML 
 public void indietro(){
