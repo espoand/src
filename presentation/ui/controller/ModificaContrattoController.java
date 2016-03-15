@@ -56,8 +56,8 @@ Contratto contratto;
 		// TODO Auto-generated method stub
 		tutteAgenzie = (ArrayList<Agenzia>) fc.handleRequest("TutteAgenzie");
 		Iterator<Agenzia> it1 = tutteAgenzie.iterator();
-		ArrayList<Auto> tutteAuto = new ArrayList<Auto>();
-		ArrayList<TariffaBase> tutteTariffe = new ArrayList<TariffaBase>();
+		ArrayList<Auto> tutteAuto = (ArrayList<Auto>) fc.handleRequest("TutteAuto");
+		ArrayList<TariffaBase> tutteTariffe = (ArrayList<TariffaBase>) fc.handleRequest("TutteTariffe");
 		Agenzia tmp = null;
 		while(it1.hasNext()){
 			tmp = it1.next();
@@ -84,6 +84,7 @@ Contratto contratto;
 		nroKm.setText(Double.toString(contratto.getNroKm()));
 		illimitati.setSelected(contratto.isKmIllimitato());
 		auto.setValue(contratto.getAutoNoleggiata().getTarga());
+		importoTotale.setText(Double.toString(contratto.getImportoTotale()));
 		
 		
 		
@@ -94,17 +95,18 @@ Contratto contratto;
 	public void submit(){
 		if(tariffa.getValue().isEmpty() || auto.getValue().isEmpty() || importoTotale.getText().isEmpty() || cfCliente.getText().isEmpty() || dataNoleggio.getValue() == null|| acconto.getText().isEmpty() || dataFine.getValue()==null || agenziaNoleggio.getValue().isEmpty() || agenziaRiconsegna.getValue().isEmpty())
 		{	vd.showMessage("Compilare tutti i campi");}
-		if(dataNoleggio.getValue().isBefore(Sessione.today()) || dataNoleggio.getValue().isBefore(Sessione.today())){
+		else if(dataNoleggio.getValue().isBefore(Sessione.today()) || dataNoleggio.getValue().isBefore(Sessione.today())){
 			vd.showMessage("Le date devono essere successive a quella odierna");
 		}
-		if(!ic.onlyNumbersAndLetters(cfCliente.getText()) || !ic.onlyNumbers(acconto.getText())){
+		else 	if(!ic.onlyNumbersAndLetters(cfCliente.getText()) || !ic.onlyNumbers(acconto.getText())){
 			vd.showMessage("Codice fiscale e/o acconto non valido");
 		}
-		if(nroKm.getText().isEmpty() && !illimitati.isSelected()){
+		else if(nroKm.getText().isEmpty() && !illimitati.isSelected()){
 			vd.showMessage("Selezionare Km illimitati o inserire il numero di Km");
 		}
 		else{
 			ArrayList<String> parameters = new ArrayList<String>();
+			parameters.add(Integer.toString(contratto.getNroOrdine()));
 			parameters.add(cfCliente.getText());
 			parameters.add(dataNoleggio.getValue().toString());
 			parameters.add(acconto.getText());

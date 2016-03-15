@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -21,12 +22,13 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="286.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button layoutX="37.0" layoutY="159.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi Cliente" />
-            <Button layoutX="183.0" layoutY="159.0" mnemonicParsing="false" onAction="#modifica" prefHeight="27.0" prefWidth="119.0" text="Modifica Cliente" />
-            <Button layoutX="319.0" layoutY="159.0" mnemonicParsing="false" onAction="#elimina" prefHeight="27.0" prefWidth="119.0" text="Elimina Cliente" />
-            <Button layoutX="473.0" layoutY="159.0" mnemonicParsing="false" onAction="#indietro" prefHeight="27.0" prefWidth="119.0" text="Torna alla Home" />
+            <Button layoutX="34.0" layoutY="117.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi Cliente" />
+            <Button layoutX="179.0" layoutY="117.0" mnemonicParsing="false" onAction="#modifica" prefHeight="27.0" prefWidth="119.0" text="Modifica Cliente" />
+            <Button layoutX="319.0" layoutY="117.0" mnemonicParsing="false" onAction="#elimina" prefHeight="27.0" prefWidth="119.0" text="Elimina Cliente" />
+            <Button layoutX="473.0" layoutY="117.0" mnemonicParsing="false" onAction="#indietro" prefHeight="27.0" prefWidth="119.0" text="Torna alla Home" />
             <Button layoutX="473.0" layoutY="35.0" mnemonicParsing="false" onAction="#cerca" prefHeight="27.0" prefWidth="119.0" text="Cerca Cliente" />
             <TextField fx:id="cf" layoutX="14.0" layoutY="35.0" prefHeight="27.0" prefWidth="364.0" text="Codice Fiscale" />
+            <TableView fx:id="tabella" layoutX="10.0" layoutY="157.0" prefHeight="200.0" prefWidth="616.0" />
       </children>
     </AnchorPane>
   </children>

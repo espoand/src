@@ -3,7 +3,7 @@ package dao.mysql;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 import java.sql.Connection;
 
 import dao.OperatoreDao;
@@ -83,6 +83,27 @@ public class MySQLOperatoreDao implements OperatoreDao{
 			e.printStackTrace();
 		}
 		return operatore;
+	}
+
+	@Override
+	public ArrayList<Operatore> getOperatori() {
+		// TODO Auto-generated method stub
+		String query = "SELECT CF,Nome,Cognome,Username,Password,Amministratore FROM Operatore";
+		ArrayList<Operatore> tuttiOperatori = null;
+		try {
+			Connection connessione = MySqlDaoFactory.getConnection();
+			PreparedStatement statement = connessione.prepareStatement(query);
+			ResultSet risultato = statement.executeQuery();
+			tuttiOperatori = new ArrayList<Operatore>();
+			while(risultato.next()){
+				tuttiOperatori.add(new Operatore(risultato.getString("CF"),risultato.getString("Nome"),risultato.getString("Cognome"),risultato.getString("Username")," ",risultato.getBoolean("Amministratore")));
+				
+			}
+		} catch (DatabaseConnectionException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tuttiOperatori;
 	}
 
 }

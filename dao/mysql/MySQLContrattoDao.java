@@ -87,7 +87,7 @@ DateConverter dateConverter = new DateConverter();
 	@Override
 	public ArrayList<Contratto> getContratti() {
 		// TODO Auto-generated method stub
-			String query = "SELECT Cliente,Nro_ord,Data_inizio,Acconto,Fine_prevista,Agenzia_noleggio,Agenzia_restituzione,Tariffa_base,Km_illimitato,Nro_km,Auto_noleggiata,Importo_totale FROM Contratto";
+			String query = "SELECT Cliente,Nro_ord,Data_inizio,Acconto,Fine_prevista,Agenzia_noleggio,Agenzia_restituzione,Tariffa_base,Km_illimitato,Nro_km,Auto_noleggiata,Importo_totale,Chiuso FROM Contratto";
 			Connection connessione;
 			MySQLClienteDao clienteDao =new MySQLClienteDao();
 			MySQLAgenziaDao agenziaDao = new MySQLAgenziaDao();
@@ -127,8 +127,11 @@ DateConverter dateConverter = new DateConverter();
 			statement.setInt(5, agenziaRestituzione.getIdentificativo());
 			statement.setString(6, tariffaBase.getNome());
 			statement.setBoolean(7, kmIllimitato);
-			statement.setString(8, autoNoleggiata.getTarga());
-			statement.setDouble(9, importoTotale);
+			statement.setDouble(8, nroKm);
+			statement.setString(9, autoNoleggiata.getTarga());
+			statement.setDouble(10, importoTotale);
+			statement.setString(11, cliente.getCodiceFiscale());
+			statement.setInt(12, nroOrdine);
 			
 		
 			statement.executeUpdate();
@@ -156,7 +159,7 @@ DateConverter dateConverter = new DateConverter();
 		try {
 			connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connessione.prepareStatement(query);
-			statement.setInt(0, nroOrdine);
+			statement.setInt(1, nroOrdine);
 			statement.executeUpdate();
 			eseguito = true;
 			statement.close();
@@ -177,7 +180,7 @@ DateConverter dateConverter = new DateConverter();
 		MySQLTariffaBaseDao tbDao = new MySQLTariffaBaseDao();
 		MySQLAutoDAO autoDao = new MySQLAutoDAO();
 		Contratto c = null;
-		String query = "SELECT Cliente,Nro_ord,Data_inizio,Acconto,Fine_prevista,Agenzia_noleggio,Agenzia_restituzione,Tariffa_base,Km_illimitato,Nro_km,Auto_noleggiata,Importo_totale FROM Contratto WHERE Nro_ord = ?";
+		String query = "SELECT Cliente,Nro_ord,Data_inizio,Acconto,Fine_prevista,Agenzia_noleggio,Agenzia_restituzione,Tariffa_base,Km_illimitato,Nro_km,Auto_noleggiata,Importo_totale,Chiuso FROM Contratto WHERE Nro_ord = ?";
 		try {
 			Connection connessione = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connessione.prepareStatement(query);

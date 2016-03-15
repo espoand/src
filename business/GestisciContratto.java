@@ -102,10 +102,11 @@ public class GestisciContratto {
 		AutoBusiness autoBusiness = new AutoBusiness();
 		TariffaBaseBusiness tbBusiness = new TariffaBaseBusiness();
 		Contratto contr = cb.getContratto(Integer.parseInt(parameters.get(0)));
-		Cliente cliente = clientiBusiness.getCliente(parameters.get(0));
-		LocalDate dataInizio = LocalDate.parse(parameters.get(1));
-		double acconto = Double.parseDouble(parameters.get(2));
-		int nroOrdine = Integer.parseInt(parameters.get(3));
+		int nroOrdine = Integer.parseInt(parameters.get(0));
+		Cliente cliente = clientiBusiness.getCliente(parameters.get(1));
+		LocalDate dataInizio = LocalDate.parse(parameters.get(2));
+		double acconto = Double.parseDouble(parameters.get(3));
+
 		LocalDate dataFine = LocalDate.parse(parameters.get(4));
 		
 		Agenzia agRestituzione = agenzie.getAgenzia(Integer.parseInt(parameters.get(6)));

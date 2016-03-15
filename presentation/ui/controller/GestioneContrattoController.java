@@ -132,24 +132,25 @@ public class Record{
 	private SimpleStringProperty targa;
 	public Record(String a,String b ,String c){
 		
-	nroOrdine.set(a);
-	cf.set(b);
-	targa.set(c);
+	nroOrdine= new SimpleStringProperty(a);
+	cf = new SimpleStringProperty(b);
+	
+	targa = new SimpleStringProperty(c);
 	}
-	public SimpleStringProperty getNroOrdine() {
-		return nroOrdine;
+	public String getNroOrdine() {
+		return nroOrdine.get();
 	}
 	public void setNroOrdine(String nroOrdine) {
 		this.nroOrdine.set(nroOrdine);
 	}
-	public SimpleStringProperty getCf() {
-		return cf;
+	public String getCf() {
+		return cf.get();
 	}
 	public void setCf(String cf) {
 		this.cf.set(cf);
 	}
-	public SimpleStringProperty getTarga() {
-		return targa;
+	public String getTarga() {
+		return targa.get();
 	}
 	public void setTarga(String targa) {
 		this.targa.set(targa);

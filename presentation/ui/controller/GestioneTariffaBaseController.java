@@ -1,22 +1,30 @@
 package presentation.ui.controller;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import entity.TariffaBase;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import presentation.FrontController;
 import presentation.ViewDispatcher;
 import utility.InputController;
 import utility.Sessione;
 
-public class GestioneTariffaBaseController {
+public class GestioneTariffaBaseController implements Initializable{
 	FrontController fc = new FrontController();
 	ViewDispatcher vd = new ViewDispatcher();
 	InputController ic = new InputController();
 	
 @FXML
 TextField nome;
+@FXML 
+ListView<String> tabella;
+
 
 @FXML
 public void cerca(){
@@ -75,6 +83,12 @@ public void indietro(){
 @FXML
 public void quit(){
 	vd.quit();
+}
+@Override
+public void initialize(URL location, ResourceBundle resources) {
+	// TODO Auto-generated method stub
+	ArrayList<TariffaBase> tutteTariffe = (ArrayList<TariffaBase>) fc.handleRequest("TutteTariffe");
+	
 }
 
 }

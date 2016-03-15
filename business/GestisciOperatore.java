@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import business.bo.OperatoreBusiness;
 import entity.Operatore;
+import exceptions.GenericException;
 import utility.Cifratura;
 
 public class GestisciOperatore {
@@ -40,5 +41,12 @@ public class GestisciOperatore {
 	}
 	public Operatore getOperatore(String parameter){
 		return ob.getOperatore(parameter);
+	}
+	public ArrayList<Operatore> getOperatori(){
+		ArrayList<Operatore> tutti = ob.getOperatori();
+		if(tutti == null){
+			throw new GenericException("Si è verificato un errore");
+		}
+		return tutti;
 	}
 }

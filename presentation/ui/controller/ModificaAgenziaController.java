@@ -35,7 +35,7 @@ public class ModificaAgenziaController implements Initializable{
 	}
 	@FXML
 	public void indietro(){
-		vd.indietro();
+		vd.home();
 	}
 	@FXML
 	public void submit(){
@@ -57,8 +57,9 @@ public class ModificaAgenziaController implements Initializable{
 			boolean eseguito = (boolean) fc.handleRequest("ModificaAgenzia",parameters);
 			if(eseguito){
 				vd.showMessage("Completato");
+				vd.home();
 			}
-			else vd.showMessage("Si è verificato un errore");
+			else{ vd.showMessage("Si è verificato un errore");vd.home();}
 			
 			
 		}}

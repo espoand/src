@@ -110,7 +110,7 @@ public ArrayList<Agenzia> getAgenzie() {
 	public boolean modificaAgenzia(int id, String nome, String via,String citta,String cap,String telefono)  {
 		// TODO Auto-generated method stub
 		
-		String queryAggiornamento="UPDATE Agenzia SET Nome = ' ?' ,Via = '?' ,Citta = ?,CAP = ? ,Telefono= '?' WHERE Identificativo =? " ;
+		String queryAggiornamento="UPDATE Agenzia SET Nome = ? ,Via = ? ,Citta = ?,CAP = ? ,Telefono= ? WHERE Identificativo =? " ;
 		//effettua la connessione al database e modifica i dati
 		boolean effettuato = false;
 		try{

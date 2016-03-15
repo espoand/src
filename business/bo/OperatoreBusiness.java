@@ -1,5 +1,7 @@
 package business.bo;
 
+import java.util.ArrayList;
+
 import dao.DaoFactory;
 import dao.OperatoreDao;
 import entity.Operatore;
@@ -18,4 +20,8 @@ public boolean cancellaOperatore(String o){
 public Operatore getOperatore(String cf){
 	return operatoreDao.getOperatore(cf);
 }
+public ArrayList<Operatore> getOperatori(){
+	return operatoreDao.getOperatori();
+}
+
 }

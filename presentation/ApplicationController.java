@@ -20,6 +20,7 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 		dispatcher.home();
 			break;
 		case "AggiungiAuto":
+		
 			dispatcher.apriView("aggiungiAuto");break;
 		case "AggiungiCliente":
 			dispatcher.apriView("aggiungiCliente");break;
@@ -58,6 +59,8 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			dispatcher.apriView("modificaAgenzia");break;
 		case "ModificaContratto":
 			dispatcher.apriView("modificaContratto");break;
+		case "ModificaCliente":
+			dispatcher.apriView("modificaCliente");break;
 		case "ModificaFascia":
 			dispatcher.apriView("modificaFascia");break;
 		
@@ -102,6 +105,9 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			risultato = command.execute("");break;
 		case "TutteManutenzioni":
 			command = new TutteManutenzioni();
+			risultato = command.execute("");break;
+		case "TuttiOperatori":
+			command = new TuttiOperatori();
 			risultato = command.execute("");break;
 		
 		}

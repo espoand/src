@@ -18,7 +18,7 @@ public boolean onlyNumbersAndLetters(String s){
 	return s.matches("^[a-zA-Z0-9]+$");
 }
 public boolean telephoneNumber(String s){
-	return s.matches("^([+]39)?((38[{8,9}|0])|(34[{7-9}|0])|(36[6|8|0])|(33[{3-9}|0])|(32[{8,9}]))([\\d]{7})$");
+	return s.matches("^+(?:[0-9]●?){6,14}[0-9]$");
 }
 public boolean isDouble(String s){
 	return s.matches("^[0-9]+\\.?[0-9]*$");
