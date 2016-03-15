@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -23,13 +22,12 @@
       </MenuBar>
       <AnchorPane prefHeight="74.0" prefWidth="600.0">
          <children>
-            <TextField fx:id="nome" layoutX="14.0" layoutY="27.0" prefHeight="25.0" prefWidth="218.0" promptText="Nome Tariffa" />
-            <Button layoutX="462.0" layoutY="27.0" mnemonicParsing="false" onAction="#cerca" prefHeight="27.0" prefWidth="117.0" text="Cerca Tariffa " />
+            <Button layoutX="242.0" layoutY="80.0" mnemonicParsing="false" onAction="#cerca" prefHeight="27.0" prefWidth="117.0" text="Cerca Tariffa " />
             <ButtonBar layoutX="12.0" layoutY="141.0" prefHeight="19.0" prefWidth="577.0" />
-            <Button layoutX="462.0" layoutY="80.0" mnemonicParsing="false" onAction="#indietro" text="Torna alla home" />
-            <Button layoutX="321.0" layoutY="80.0" mnemonicParsing="false" onAction="#elimina" text="Elimina Tariffa " />
-            <Button layoutX="14.0" layoutY="80.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi Tariffa " />
-            <Button layoutX="173.0" layoutY="80.0" mnemonicParsing="false" onAction="#modifica" text="Modifica Tariffa " />
+            <Button layoutX="459.0" layoutY="27.0" mnemonicParsing="false" onAction="#indietro" text="Torna alla home" />
+            <Button layoutX="318.0" layoutY="27.0" mnemonicParsing="false" onAction="#elimina" text="Elimina Tariffa " />
+            <Button layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi Tariffa " />
+            <Button layoutX="162.0" layoutY="27.0" mnemonicParsing="false" onAction="#modifica" text="Modifica Tariffa " />
          </children>
       </AnchorPane>
       <ListView fx:id="tabella" prefHeight="200.0" prefWidth="200.0" />

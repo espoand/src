@@ -42,7 +42,7 @@ public void initialize(URL location, ResourceBundle resources) {
 }
 @FXML 
 public void indietro(){
-	vd.indietro();
+vd.home();
 }
 @FXML
 public void quit(){

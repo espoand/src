@@ -26,8 +26,7 @@ public class GestioneContrattoController implements Initializable{
 	ViewDispatcher vd = new ViewDispatcher();
 	InputController ic = new InputController();
 	Calculator calculator = new Calculator();
-	@FXML
-	TextField nroOrdine;
+	
 	@FXML
 	TableView<Record> listaContratti;
 	@FXML
@@ -38,15 +37,13 @@ public class GestioneContrattoController implements Initializable{
 	TableColumn tabTarga;
 	@FXML
 	public void cerca(){
-		if(nroOrdine.getText().isEmpty() ){
-			vd.showMessage("Compilare il campo Numero Ordine");
+		if(listaContratti.getSelectionModel().getSelectedItem() == null ){
+			vd.showMessage("Selezionare un elemento");
 		}
-		if(!ic.onlyNumbers(nroOrdine.getText())){
-			vd.showMessage("Numero Ordine non valido");
-		}
+		
 		else{
 			ArrayList<String> parameters = new ArrayList<String>();
-			parameters.add(nroOrdine.getText());
+			parameters.add(listaContratti.getSelectionModel().getSelectedItem().getNroOrdine());
 			Contratto c = (Contratto) fc.handleRequest("CercaContratto",parameters);
 			Sessione.setContrattoAttuale(c);
 			fc.handleRequest("MostraContratto");
@@ -58,15 +55,12 @@ public class GestioneContrattoController implements Initializable{
 	}
 	@FXML
 	public void modifica(){
-		if(nroOrdine.getText().isEmpty() ){
-			vd.showMessage("Compilare il campo Numero Ordine");
-		}
-		if(!ic.onlyNumbers(nroOrdine.getText())){
-			vd.showMessage("Numero Ordine non valido");
+		if(listaContratti.getSelectionModel().getSelectedItem() == null ){
+			vd.showMessage("Selezionare un elemento");
 		}
 		else{
 			ArrayList<String> parameters = new ArrayList<String>();
-			parameters.add(nroOrdine.getText());
+			parameters.add(listaContratti.getSelectionModel().getSelectedItem().getNroOrdine());
 			Contratto c = (Contratto) fc.handleRequest("CercaContratto",parameters);
 			Sessione.setContrattoAttuale(c);
 			fc.handleRequest("ModificaContratto");
@@ -77,18 +71,15 @@ public class GestioneContrattoController implements Initializable{
 	}
 	@FXML
 	public void elimina(){
-		if(nroOrdine.getText().isEmpty() ){
-			vd.showMessage("Compilare il campo Numero Ordine");
-		}
-		if(!ic.onlyNumbers(nroOrdine.getText()) ){
-			vd.showMessage("Numero Ordine non valido");
+		if(listaContratti.getSelectionModel().getSelectedItem() == null ){
+			vd.showMessage("Selezionare un elemento");
 		}
 		
 		else{
 			boolean eseguito = false;
 			if(vd.areYouSure("Sei sicuro di voler procedere?")== 0){
 				ArrayList<String> parameters = new ArrayList<String>();
-				parameters.add(nroOrdine.getText());
+				parameters.add(listaContratti.getSelectionModel().getSelectedItem().getNroOrdine());
 				eseguito = (boolean) fc.handleRequest("RimuoviContratto",parameters);
 				
 			}

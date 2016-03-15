@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import dao.LoginDao;
 import entity.Operatore;
 import exceptions.DatabaseConnectionException;
+import exceptions.GenericException;
+import exceptions.UtenteInesistenteException;
 import exceptions.WrongPasswordException;
 import utility.Cifratura;
 import utility.Sessione;
@@ -33,7 +35,9 @@ static String myPassword;
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, username);
 			ResultSet risultato = statement.executeQuery();
-			risultato.next();
+			
+			if(!risultato.next()){ throw new UtenteInesistenteException();}
+			
 			pw= risultato.getString("Password");
 			cf = risultato.getString("CF");
 			
@@ -54,6 +58,9 @@ static String myPassword;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		 if(username == null){
+			 throw new GenericException("Utente inesistente");
+		 }
 		Sessione.setUsername(username);
 		Sessione.setTipoUtente(tipo);
 		Sessione.setCf(cf);

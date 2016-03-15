@@ -21,20 +21,19 @@ public class GestioneTariffaBaseController implements Initializable{
 	ViewDispatcher vd = new ViewDispatcher();
 	InputController ic = new InputController();
 	
-@FXML
-TextField nome;
+
 @FXML 
 ListView<String> tabella;
 
 
 @FXML
 public void cerca(){
-	if(nome.getText().isEmpty()){
+	if(tabella.getSelectionModel().getSelectedItem() == null){
 		vd.showMessage("Riempire il campo nome");
 	}
 	else{
 		ArrayList<String> parameters  = new ArrayList<String>();
-		parameters.add(nome.getText());
+		parameters.add(tabella.getSelectionModel().getSelectedItem());
 		TariffaBase tf = null;
 		tf = (TariffaBase) fc.handleRequest("CercaTariffaBase",parameters);	
 		Sessione.setTariffaAttuale(tf);
@@ -48,12 +47,12 @@ public void aggiungi(){
 
 @FXML
 public void modifica(){
-	if(nome.getText().isEmpty()){
+	if(tabella.getSelectionModel().getSelectedItem() == null){
 		vd.showMessage("Riempire il campo nome");
 	}
 	else{
 		ArrayList<String> parameters  = new ArrayList<String>();
-		parameters.add(nome.getText());
+		parameters.add(tabella.getSelectionModel().getSelectedItem());
 		TariffaBase tf = null;
 		tf = (TariffaBase) fc.handleRequest("CercaTariffaBase",parameters);	
 		Sessione.setTariffaAttuale(tf);
@@ -63,14 +62,14 @@ public void modifica(){
 
 @FXML
 public void elimina(){
-	if(nome.getText().isEmpty()){
+	if(tabella.getSelectionModel().getSelectedItem() == null){
 		
 		vd.showMessage("Compilare il campo nome");
 	}
 	else{
 		if(vd.areYouSure("Sei sicuro di voler procedere?")== 0){
 			ArrayList<String> parameters = new ArrayList<String>();
-			parameters.add(nome.getText());
+			parameters.add(tabella.getSelectionModel().getSelectedItem());
 			fc.handleRequest("RimuoviTariffaBase", parameters);
 			vd.showMessage("Operazione completata");
 	}}

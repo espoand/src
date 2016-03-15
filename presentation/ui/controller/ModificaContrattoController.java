@@ -149,7 +149,7 @@ Contratto contratto;
 				contratto.setChiuso(true);
 				vd.showMessage("Completato");
 				Sessione.setContrattoAttuale(contratto);
-				fc.handleRequest("MostraContratto");
+				vd.home();
 			}
 			else{
 				vd.showMessage("Si è verificato un errore");

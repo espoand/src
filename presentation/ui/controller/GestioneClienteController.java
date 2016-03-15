@@ -27,25 +27,23 @@ public class GestioneClienteController implements Initializable{
 ViewDispatcher vd = new ViewDispatcher();
 FrontController fc = new FrontController();
 InputController ic = new InputController();
-@FXML
-TextField cf;
+
 @FXML
 TableView<Record> tabella;
 
 @FXML 
 public void cerca(){
 	Cliente cliente = null;
-	if(cf.getText().isEmpty()){
-		vd.showMessage("Compilare il campo codice fiscale");
+	if(tabella.getSelectionModel().getSelectedItem() == null){
+		vd.showMessage("Selezionare un elemento");
 		
 	}
-	if(!ic.onlyNumbersAndLetters(cf.getText())){
-		vd.showMessage("Il campo codice fiscale deve essere composto di soli numeri e lettere");
+	
 		
-}
+
 	else{
 		ArrayList<String> parameters = new ArrayList<String>();
-		parameters.add(cf.getText());
+		parameters.add(tabella.getSelectionModel().getSelectedItem().getCf());
 		cliente = (Cliente) fc.handleRequest("CercaCliente",parameters);
 		Sessione.setClienteAttuale(cliente);
 		fc.handleRequest("MostraCliente");
@@ -58,16 +56,14 @@ public void aggiungi(){
 @FXML
 public void modifica(){
 	Cliente cliente = null;
-	if(cf.getText().isEmpty()){
-		vd.showMessage("Compilare il campo codice fiscale");
+	if(tabella.getSelectionModel().getSelectedItem() == null){
+		vd.showMessage("Selezionare un elemento");
 		
 	}
-	if(!ic.onlyNumbersAndLetters(cf.getText())){
-		vd.showMessage("Il campo codice fiscale deve essere composto di soli numeri e lettere");
-		}
+	
 	else{
 		ArrayList<String> parameters = new ArrayList<String>();
-		parameters.add(cf.getText());
+		parameters.add(tabella.getSelectionModel().getSelectedItem().getCf());
 		cliente = (Cliente) fc.handleRequest("CercaCliente",parameters);
 		Sessione.setClienteAttuale(cliente);
 		fc.handleRequest("ModificaCliente");
@@ -75,15 +71,14 @@ public void modifica(){
 }
 @FXML
 public void elimina(){
-	if(cf.getText().isEmpty()){
-		vd.showMessage("Compilare il campo codice fiscale");
+	if(tabella.getSelectionModel().getSelectedItem() == null){
+		vd.showMessage("Selezionare un elemento");
 		
 	}
-	if(!ic.onlyNumbersAndLetters(cf.getText())){
-		vd.showMessage("Il campo codice fiscale deve essere composto di soli numeri e lettere");
-	}
+	
 	else{
 		ArrayList<String> parameters = new ArrayList<String>();
+		parameters.add(tabella.getSelectionModel().getSelectedItem().getCf());
 		fc.handleRequest("RimuoviCliente", parameters);
 	}
 }

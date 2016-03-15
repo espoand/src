@@ -26,8 +26,7 @@ public class GestioneAutoController implements Initializable{
 FrontController fc = new FrontController();
 ViewDispatcher vd = new ViewDispatcher();
 InputController ic = new InputController();
-@FXML
-TextField targa;
+
 @FXML
 TableView<Record> tabella;
 @FXML
@@ -36,16 +35,14 @@ public void manutenzione(){
 }
 @FXML 
 public void cerca(){
-	if(targa.getText().isEmpty()){
-		vd.showMessage("Campo targa vuoto");
+	if(tabella.getSelectionModel().getSelectedItem() == null){
+		vd.showMessage("Selezionare un elemento");
 	}
-	if(!ic.onlyNumbersAndLetters(targa.getText())){
-	vd.showMessage("Targa non valida");
-	}
+	
 	
 	else{
 		ArrayList<String> targaList = new ArrayList<String>();
-		targaList.add(targa.getText());
+		targaList.add(tabella.getSelectionModel().getSelectedItem().getTarga());
 		Auto a = (Auto) fc.handleRequest("CercaAuto",targaList);
 		Sessione.setAuto(a);
 		fc.handleRequest("MostraAuto");
@@ -58,16 +55,15 @@ public void aggiungi(){
 }
 @FXML
 public void modifica(){
-	if(targa.getText().isEmpty()){
-		vd.showMessage("Campo targa vuoto");
+	if(tabella.getSelectionModel().getSelectedItem() == null){
+		vd.showMessage("Selezionare un elemento");
 	}
-	if(!ic.onlyNumbersAndLetters(targa.getText())){
-	vd.showMessage("Targa non valida");
-	}
+	
+	
 	
 	else{
 		ArrayList<String> targaList = new ArrayList<String>();
-		targaList.add(targa.getText());
+		targaList.add(tabella.getSelectionModel().getSelectedItem().getTarga());
 		Auto a = (Auto) fc.handleRequest("CercaAuto",targaList);
 		Sessione.setAuto(a);
 		fc.handleRequest("ModificaAuto");
@@ -77,8 +73,10 @@ public void modifica(){
 }
 @FXML
 public void elimina(){
+	if(tabella.getSelectionModel().getSelectedItem() == null){vd.showMessage("Selezionare un elemento");}
+	else{
 	ArrayList<String> targalist = new ArrayList<String>();
-	targalist.add(targa.getText());
+	targalist.add(tabella.getSelectionModel().getSelectedItem().getTarga());
 	boolean eseguito = false;
 	if(vd.areYouSure("Sei sicuro di voler eliminare l'auto?") == 0){
 	eseguito = (boolean) fc.handleRequest("RimuoviAuto",targalist);
@@ -87,7 +85,7 @@ public void elimina(){
 		vd.showMessage("Cancellazione eseguita");
 	}
 	else vd.showMessage("Si è verificato un errore durante la cancellazione");
-	}
+	}}
 
 @FXML
 public void quit(){

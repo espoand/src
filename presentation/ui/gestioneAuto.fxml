@@ -5,7 +5,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -22,13 +21,12 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="286.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button layoutX="36.0" layoutY="132.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi Auto" />
-            <Button layoutX="182.0" layoutY="132.0" mnemonicParsing="false" onAction="#modifica" prefHeight="27.0" prefWidth="119.0" text="Modifica Auto" />
-            <Button layoutX="332.0" layoutY="132.0" mnemonicParsing="false" onAction="#elimina" prefHeight="27.0" prefWidth="119.0" text="Elimina Auto" />
-            <Button layoutX="487.0" layoutY="132.0" mnemonicParsing="false" onAction="#home" prefHeight="27.0" prefWidth="119.0" text="Torna alla Home" />
-            <Button layoutX="487.0" layoutY="35.0" mnemonicParsing="false" onAction="#cerca" prefHeight="27.0" prefWidth="119.0" text="Cerca Auto" />
-            <TextField fx:id="targa" layoutX="14.0" layoutY="35.0" prefHeight="27.0" prefWidth="364.0" text="Targa" />
-            <Button layoutX="487.0" layoutY="81.0" mnemonicParsing="false" onAction="#manutenzione" prefHeight="27.0" prefWidth="119.0" text="Manutenzione" />
+            <Button layoutX="29.0" layoutY="35.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi Auto" />
+            <Button layoutX="161.0" layoutY="35.0" mnemonicParsing="false" onAction="#modifica" prefHeight="27.0" prefWidth="119.0" text="Modifica Auto" />
+            <Button layoutX="323.0" layoutY="35.0" mnemonicParsing="false" onAction="#elimina" prefHeight="27.0" prefWidth="119.0" text="Elimina Auto" />
+            <Button layoutX="484.0" layoutY="35.0" mnemonicParsing="false" onAction="#home" prefHeight="27.0" prefWidth="119.0" text="Torna alla Home" />
+            <Button layoutX="161.0" layoutY="108.0" mnemonicParsing="false" onAction="#cerca" prefHeight="27.0" prefWidth="119.0" text="Cerca Auto" />
+            <Button layoutX="320.0" layoutY="108.0" mnemonicParsing="false" onAction="#manutenzione" prefHeight="27.0" prefWidth="119.0" text="Manutenzione" />
             <TableView fx:id="tabella" layoutX="9.0" layoutY="171.0" prefHeight="193.0" prefWidth="627.0" />
       </children>
     </AnchorPane>

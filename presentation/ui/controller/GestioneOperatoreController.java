@@ -51,10 +51,16 @@ public void aggiungi(){
 }
 @FXML
 public void elimina(){
+	
 	if(tabella.getSelectionModel().getSelectedItem() == null){
 		vd.showMessage("Selezionare un elemento");
 	}
-	if(Sessione.getUsername().equals(tabella.getSelectionModel().getSelectedItem())){
+	else{
+		ArrayList<String> para = new ArrayList<String>();
+		para.add(tabella.getSelectionModel().getSelectedItem().getCf());
+		Operatore op = (Operatore) fc.handleRequest("CercaOperatore",para);
+	
+	if(Sessione.getUsername().equals(op.getUsername())){
 		vd.showMessage("Utente attualmente loggato");
 	}
 	else{
@@ -65,7 +71,7 @@ public void elimina(){
 		if(eseguito){vd.showMessage("Completato");vd.ricarica();}
 		else{vd.showMessage("Si è verificato un errore");}
 		 
-	 }
+	 }}
 	 
 	}
 }

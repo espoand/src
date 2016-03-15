@@ -18,26 +18,23 @@ public class GestioneFasciaController implements Initializable{
 FrontController fc = new FrontController();
 ViewDispatcher vd = new ViewDispatcher();
 InputController ic = new InputController();
-@FXML
-TextField identificativo;
+
 @FXML
 ListView<String> tutteFasce;
 Fascia fascia = null;
 ArrayList<Fascia> fasce = null;
 @FXML	
 public void cerca(){
-	if(identificativo.getText().isEmpty()){
-		vd.showMessage("Compila il campo identificativo");
+	if(tutteFasce.getSelectionModel().getSelectedItem().isEmpty()){
+		vd.showMessage("Seleziona un elemento");
 	}
-	if(!ic.onlyNumbersAndLetters(identificativo.getText())){
-		vd.showMessage("Il campo identificativo deve essere composto solo da lettere e numeri");
-	}
+	
 	
 	Iterator<Fascia> it1 = fasce.iterator();
 	Fascia tmp = null;
 	while(it1.hasNext()){
 		tmp = it1.next();
-		if(tmp.getIdFascia().equals(identificativo.getText())){
+		if(tmp.getIdFascia().equals(tutteFasce.getSelectionModel().getSelectedItem())){
 			fascia = tmp;break;
 		}
 		
@@ -56,34 +53,28 @@ public void aggiungi(){
 }
 @FXML
 public void elimina(){
-	if(identificativo.getText().isEmpty()){
-		vd.showMessage("Compila il campo identificativo inserendo l'identificativo della fascia da eliminare");
-	}
-	if(!ic.onlyNumbersAndLetters(identificativo.getText())){
-		vd.showMessage("Il campo identificativo deve essere composto solo da lettere e numeri");
+	if(tutteFasce.getSelectionModel().getSelectedItem().isEmpty()){
+		vd.showMessage("Seleziona un elemento");
 	}
 	if(vd.areYouSure("Sei sicuro di voler eliminare la fascia?") == 0)
 	{
 		ArrayList<String> parameters = new ArrayList<String>();
-		parameters.add(identificativo.getText());
+		parameters.add(tutteFasce.getSelectionModel().getSelectedItem());
 		fc.handleRequest("RimuoviFascia", parameters);
 	}
 	
 }
 @FXML
 public void modifica(){
-	if(identificativo.getText().isEmpty()){
-		vd.showMessage("Compila il campo identificativo");
-	}
-	if(!ic.onlyNumbersAndLetters(identificativo.getText())){
-		vd.showMessage("Il campo identificativo deve essere composto solo da lettere e numeri");
+	if(tutteFasce.getSelectionModel().getSelectedItem().isEmpty()){
+		vd.showMessage("Seleziona un elemento");
 	}
 	
 	Iterator<Fascia> it1 = fasce.iterator();
 	Fascia tmp = null;
 	while(it1.hasNext()){
 		tmp = it1.next();
-		if(tmp.getIdFascia().equals(identificativo.getText())){
+		if(tmp.getIdFascia().equals(tutteFasce.getSelectionModel().getSelectedItem())){
 			fascia = tmp;break;
 		}
 		

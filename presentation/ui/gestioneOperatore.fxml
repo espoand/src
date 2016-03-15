@@ -5,7 +5,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -22,12 +21,11 @@
       </MenuBar>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Button layoutX="459.0" layoutY="27.0" mnemonicParsing="false" onAction="#cerca" prefHeight="27.0" prefWidth="128.0" text="Cerca Operatore" />
-            <Button fx:id="aggiungi" layoutX="40.0" layoutY="100.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi Operatore" />
-            <Button fx:id="elimina" layoutX="184.0" layoutY="100.0" mnemonicParsing="false" onAction="#elimina" text="Elimina Operatore" />
-            <Button fx:id="modifica" layoutX="317.0" layoutY="100.0" mnemonicParsing="false" onAction="#modifica" text="Modifica Operatore" />
-            <Button fx:id="indietro" layoutX="461.0" layoutY="100.0" mnemonicParsing="false" onAction="#indietro" prefHeight="27.0" prefWidth="128.0" text="Torna alla home" />
-            <TextField fx:id="cf" layoutX="40.0" layoutY="27.0" prefHeight="27.0" prefWidth="224.0" text="CODICE FISCALE" />
+            <Button layoutX="236.0" layoutY="113.0" mnemonicParsing="false" onAction="#cerca" prefHeight="27.0" prefWidth="128.0" text="Dettagli" />
+            <Button fx:id="aggiungi" layoutX="14.0" layoutY="41.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi Operatore" />
+            <Button fx:id="elimina" layoutX="172.0" layoutY="41.0" mnemonicParsing="false" onAction="#elimina" text="Elimina Operatore" />
+            <Button fx:id="modifica" layoutX="311.0" layoutY="41.0" mnemonicParsing="false" onAction="#modifica" text="Modifica Operatore" />
+            <Button fx:id="indietro" layoutX="466.0" layoutY="41.0" mnemonicParsing="false" onAction="#indietro" prefHeight="27.0" prefWidth="128.0" text="Torna alla home" />
          </children>
       </AnchorPane>
       <TableView fx:id="tabella" prefHeight="200.0" prefWidth="200.0" />

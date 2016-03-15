@@ -24,8 +24,7 @@ public class GestioneAgenziaController implements Initializable{
 	ViewDispatcher vd = new ViewDispatcher();
 	FrontController fc = new FrontController();
 	InputController ic = new InputController();
-@FXML
-TextField id;
+
 @FXML
 TableView<Record> listaAgenzie;
 //@FXML
@@ -34,12 +33,12 @@ TableView<Record> listaAgenzie;
 //TableColumn<Record,String> nomeTable;
 @FXML
 public void cerca(){
-	if(!ic.onlyNumbers(id.getText())){
-		vd.showMessage("Id non valido");
+	if(listaAgenzie.getSelectionModel().getSelectedItem() == null){
+		vd.showMessage("Selezionare un elemento");
 	}
 	else{
 		ArrayList<String> parameters = new ArrayList<String>();
-		parameters.add(id.getText());
+		parameters.add(listaAgenzie.getSelectionModel().getSelectedItem().getIdAgenzia());
 		Agenzia ag = (Agenzia) fc.handleRequest("CercaAgenzia",parameters);
 		if(ag!=null){
 			Sessione.setAgenziaAttuale(ag);
@@ -56,12 +55,12 @@ public void quit(){vd.quit();}
 public void aggiungi(){fc.handleRequest("AggiungiAgenzia");}
 @FXML
 public void elimina(){
-	if(!ic.onlyNumbers(id.getText())){
-		vd.showMessage("Id non valido");
+	if(listaAgenzie.getSelectionModel().getSelectedItem() == null){
+		vd.showMessage("Selezionare un elemento");
 	}
 	else{
 		ArrayList<String> parameters = new ArrayList<String>();
-		parameters.add(id.getText());
+		parameters.add(listaAgenzie.getSelectionModel().getSelectedItem().getIdAgenzia());
 		if(vd.areYouSure("Sei sicuro di voler procedere?") == 0){
 			boolean eseguito = (boolean) fc.handleRequest("RimuoviAgenzia",parameters);
 			if(eseguito){
@@ -72,12 +71,12 @@ public void elimina(){
 }
 @FXML
 public void modifica(){
-	if(!ic.onlyNumbers(id.getText())){
-		vd.showMessage("Id non valido");
+	if(listaAgenzie.getSelectionModel().getSelectedItem() == null){
+		vd.showMessage("Selezionare un elemento");
 	}
 	else{
 		ArrayList<String> parameters = new ArrayList<String>();
-		parameters.add(id.getText());
+		parameters.add(listaAgenzie.getSelectionModel().getSelectedItem().getIdAgenzia());
 		Agenzia ag = (Agenzia) fc.handleRequest("CercaAgenzia",parameters);
 		if(ag!=null){
 			Sessione.setAgenziaAttuale(ag);

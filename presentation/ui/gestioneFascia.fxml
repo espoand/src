@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -22,12 +21,11 @@
       </MenuBar>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <TextField fx:id="identificativo" layoutX="53.0" layoutY="27.0" prefHeight="25.0" prefWidth="218.0" promptText="inserisci identificativo fascia" />
-            <Button fx:id="cerca" layoutX="326.0" layoutY="27.0" mnemonicParsing="false" onAction="#cerca" text="Cerca Fascia" />
-            <Button layoutX="40.0" layoutY="100.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi Fascia" />
-            <Button fx:id="elimina" layoutX="184.0" layoutY="100.0" mnemonicParsing="false" onAction="#elimina" text="Elimina Fascia" />
-            <Button fx:id="modifica" layoutX="317.0" layoutY="100.0" mnemonicParsing="false" onAction="#modifica" text="Modifica Fascia" />
-            <Button fx:id="indietro" layoutX="455.0" layoutY="100.0" mnemonicParsing="false" onAction="#indietro" text="Torna alla home" />
+            <Button fx:id="cerca" layoutX="455.0" layoutY="30.0" mnemonicParsing="false" onAction="#cerca" text="Cerca Fascia" />
+            <Button layoutX="40.0" layoutY="30.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi Fascia" />
+            <Button fx:id="elimina" layoutX="181.0" layoutY="30.0" mnemonicParsing="false" onAction="#elimina" text="Elimina Fascia" />
+            <Button fx:id="modifica" layoutX="316.0" layoutY="30.0" mnemonicParsing="false" onAction="#modifica" text="Modifica Fascia" />
+            <Button fx:id="indietro" layoutX="258.0" layoutY="94.0" mnemonicParsing="false" onAction="#indietro" text="Torna alla home" />
          </children>
       </AnchorPane>
       <ListView fx:id="tutteFasce" prefHeight="235.0" prefWidth="600.0" />
