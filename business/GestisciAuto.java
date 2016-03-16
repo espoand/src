@@ -46,7 +46,7 @@ public class GestisciAuto {
 		a=new Auto(targa,modello,fascia,true,ultimoKmtraggio);
 		return car.inserisciAuto(a);
 		}
-		return false;
+		else return false;
 		
 	}
 	
@@ -72,10 +72,10 @@ public class GestisciAuto {
 	
 			
 			Auto a = car.getAuto(param);
-			if(a.isDisponibile()){
+			if(!a.isDisponibile()) return false;
 				return car.rimuoviAuto(param);
-			}
-			else return false;
+			
+			
 			
 				}
 				

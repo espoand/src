@@ -8,21 +8,8 @@ String modello;
 Fascia fascia;
 boolean disponibile;
 double ultimoKmtraggio;
-String dataManutenzioneOrdinaria;
-String dataManutenzioneStraordinaria;
-public String getDataManutenzioneOrdinaria() {
-	return dataManutenzioneOrdinaria;
-}
-public void setDataManutenzioneOrdinaria(String dataManutenzioneOrdinaria) {
-	this.dataManutenzioneOrdinaria = dataManutenzioneOrdinaria;
-}
-public String getDataManutenzioneStraordinaria() {
-	return dataManutenzioneStraordinaria;
-}
-public void setDataManutenzioneStraordinaria(
-		String dataManutenzioneStraordinaria) {
-	this.dataManutenzioneStraordinaria = dataManutenzioneStraordinaria;
-}
+
+
 public Auto(String targa,String modello,Fascia fascia,boolean b, double ultimoKmtraggio) throws RuntimeException{
 	if(targa.length()<3 || targa.length()>10) throw new GenericException("Targa non valida!");
 	if(modello == null || fascia == null ) throw new GenericException("Modello e/o fascia non valido/i");

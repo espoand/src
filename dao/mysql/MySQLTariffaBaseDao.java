@@ -72,8 +72,10 @@ public class MySQLTariffaBaseDao implements TariffaBaseDao{
 			PreparedStatement statement = connessione.prepareStatement(query);
 			statement.setString(1, nome);
 			ResultSet risultato = statement.executeQuery();
-			risultato.next();
-			tariffaBase = new TariffaBase(risultato.getString(1),risultato.getDouble(2),risultato.getDouble(3),risultato.getDouble(4));
+			if(!risultato.next()){
+				return null;
+			}
+			tariffaBase = new TariffaBase(risultato.getString("Nome"),risultato.getDouble("Costo_al_km"),risultato.getDouble("Costo_al_km_extra"),risultato.getDouble("Costo_al_giorno_extra"));
 			statement.close();
 
 		}

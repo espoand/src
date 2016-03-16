@@ -52,8 +52,12 @@ public class GestisciFascia {
 		
 		return fb.rimuoviFascia(param);
 	}
+	
+	
 	public ArrayList<Fascia> getFasce(){
 		return fb.getFasce();
 	}
-	
+public Fascia getFascia(String param){
+	return fb.getFascia(param);
+}	
 }

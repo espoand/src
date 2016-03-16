@@ -12,9 +12,10 @@ import business.GestisciAgenzia;
 import entity.Agenzia;
 
 public class AgenziaTest {
-
+GestisciAgenzia agBu;
 	@Before
 	public void setUp() throws Exception {
+		agBu = new GestisciAgenzia();
 	}
 
 	@After
@@ -23,8 +24,8 @@ public class AgenziaTest {
 
 	@Test
 	public void testInserisciAgenzia() {
-		GestisciAgenzia agBu = new GestisciAgenzia();
-
+		
+		//agenzia non presente nel database
 		ArrayList<String> parametri = new ArrayList<String>();
 		parametri.add("1");
 		parametri.add("Hertz Ostuni");
@@ -32,25 +33,16 @@ public class AgenziaTest {
 		parametri.add("Bari");
 		parametri.add("70125");
 		parametri.add("0831778990");
-		Agenzia a = new Agenzia(Integer.parseInt(parametri.get(0)),parametri.get(1),parametri.get(2),parametri.get(3),parametri.get(4),parametri.get(5));
-		assertEquals(agBu.inserisciAgenzia(parametri),true);
+		assert(agBu.inserisciAgenzia(parametri) == true);
 		
-		//numero di telefono un pò più lungo del limite
-		parametri = new ArrayList<String>();
-		parametri.add("1");
-		parametri.add("Hertz Ostuni");
-		parametri.add("Via indipendenza 15");
-		parametri.add("Bari");
-		parametri.add("70125");
-		parametri.add("0831747333338990");
-		assertEquals(agBu.inserisciAgenzia(parametri),false);
+		//provo a reinserire la stessa agenzia
+		assert(agBu.inserisciAgenzia(parametri) == false);
 		
 	}
 
 	@Test
 	public void testModificaAgenzia() {
-		GestisciAgenzia agBu = new GestisciAgenzia();
-
+		//modifica un'agenzia che esiste
 		ArrayList<String> parametri = new ArrayList<String>();
 		parametri.add("1");
 		parametri.add("Hertz Ostuni");
@@ -62,15 +54,34 @@ public class AgenziaTest {
 
 		assertEquals(agBu.modificaAgenzia(parametri),true);
 		assert(agBu.getAgenzia(parametri.get(0)).getCap() != a.getCap());
-		
+		//provo a modificare un'agenzia che non esiste
+		parametri.set(0, "20");
+		assert(agBu.modificaAgenzia(parametri) == false);
 		
 	}
-
+	public void testGetAgenzia(){
+		
+		ArrayList<String> parametri = new ArrayList<String>();
+		parametri.add("1");
+		parametri.add("Hertz Ostuni");
+		parametri.add("Via indipendenza 15");
+		parametri.add("Bari");
+		parametri.add("70124");
+		parametri.add("0831778990");
+		Agenzia agenzia1 = new Agenzia(Integer.parseInt(parametri.get(0)),parametri.get(1),parametri.get(2),parametri.get(3),parametri.get(4),parametri.get(5));
+		assertEquals(agenzia1,agBu.getAgenzia("3"));
+		 // test del metodo su un'agenzia che non esiste
+		assertEquals(agBu.getAgenzia("40"), null);
+	}
 	@Test
 	public void testEliminaAgenzia() {
-		GestisciAgenzia agBu = new GestisciAgenzia();
+		//elimino un'agenzia esistente
 		assertEquals(agBu.eliminaAgenzia("3"),true);
 		assert(agBu.getAgenzia("3") == null);
+		
+		//provo ad eliminare un'agenzia che non esiste
+		assert(agBu.eliminaAgenzia("30") == false);
 	}
+	
 
 }

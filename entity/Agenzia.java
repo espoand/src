@@ -1,6 +1,6 @@
 package entity;
 
-public class Agenzia {
+public class Agenzia implements Comparable<Agenzia>{
 int identificativo;
 String nome;
 String via;
@@ -53,6 +53,12 @@ public String getTelefono() {
 }
 public void setTelefono(String telefono) {
 	this.telefono = telefono;
+}
+@Override
+public int compareTo(Agenzia o) {
+	// TODO Auto-generated method stub
+	if(identificativo == o.getIdentificativo() && nome.equals(o.getNome()) && via.equals(o.getVia()) && citta.equals(o.getCitta()) && cap.equals(o.getCap()) && telefono.equals(o.getTelefono())) return 0;
+	return -1;
 }
 
 }

@@ -49,6 +49,7 @@ public class MySQLFasciaDao implements FasciaDao{
 			Connection connection = MySqlDaoFactory.getConnection();
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, idFascia);
+			statement.executeUpdate();
 			rimosso = true;
 		}
 		catch(SQLException | DatabaseConnectionException e){

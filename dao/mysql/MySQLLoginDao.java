@@ -18,8 +18,7 @@ import utility.Sessione;
 import utility.TipoUtente;
 
 public class MySQLLoginDao implements LoginDao{
-static String testPassword;
-static String myPassword;
+
 	@Override
 	public boolean login(String username, String password) {
 		// TODO Auto-generated method stub
@@ -67,12 +66,5 @@ static String myPassword;
 		
 		return loggato;
 	}
-/*public static void main(String[] args){
-	MySQLLoginDao logindao  = new MySQLLoginDao();
-	boolean logged = logindao.login("espoand", "28f719c89ef7f33ce2e178490676b5ab");	
-	
 
-	System.out.println(Boolean.toString(logged));
-
-}*/
 }

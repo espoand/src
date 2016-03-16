@@ -65,11 +65,8 @@ public void quit(){
 public void submit(){
 	if(tariffa.getValue() == null || auto.getValue() == null || importoTotale.getText().isEmpty() || cfCliente.getValue() == null || dataNoleggio.getValue() == null|| acconto.getText().isEmpty() || dataFine.getValue()==null || agenziaNoleggio.getValue()== null|| agenziaRiconsegna.getValue()== null)
 	{	vd.showMessage("Compilare tutti i campi");}
-	if(dataNoleggio.getValue().isBefore(Sessione.today()) || dataNoleggio.getValue().isBefore(Sessione.today()) || dataNoleggio.getValue().isAfter(dataFine.getValue())){
-		vd.showMessage("Le date devono essere successive a quella odierna e la data di restituzione successiva a quella di noleggio");
-	}
-	if(!ic.onlyNumbersAndLetters(cfCliente.getValue()) || !ic.onlyNumbers(acconto.getText()) || !ic.isDouble(importoTotale.getText())){
-		vd.showMessage("Codice fiscale e/o acconto e/o totale non valido");
+	if(!ic.onlyNumbersAndLetters(cfCliente.getValue()) || !ic.onlyNumbers(acconto.getText()) || !ic.isDouble(importoTotale.getText()) || dataNoleggio.getValue().isBefore(Sessione.today()) || dataNoleggio.getValue().isBefore(Sessione.today()) || dataNoleggio.getValue().isAfter(dataFine.getValue())){
+		vd.showMessage("Codice fiscale e/o acconto e/o totale non valido e/o date non valide");
 	}
 	if(nroKm.getText().isEmpty() && !illimitati.isSelected()){
 		vd.showMessage("Selezionare Km illimitati o inserire il numero di Km");

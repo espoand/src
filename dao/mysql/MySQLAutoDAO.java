@@ -26,7 +26,10 @@ public class MySQLAutoDAO implements AutoDao{
 			statement.setString(1, targa);
 
 			ResultSet risultato = statement.executeQuery();
-			risultato.next();
+			if(!risultato.next()){
+				return null;
+			}
+			
 			MySQLFasciaDao fd = new MySQLFasciaDao();
 			a = new Auto(risultato.getString("Targa"),risultato.getString("Modello"),fd.getFascia(risultato.getString("Fascia")),risultato.getBoolean("Disponibile"),risultato.getDouble("Ultimo_kmtraggio"));
 					

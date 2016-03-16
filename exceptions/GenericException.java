@@ -8,9 +8,9 @@ public GenericException(){
 	
 }
 public GenericException(String message){
-	ViewDispatcher vd = new ViewDispatcher();
+	/*ViewDispatcher vd = new ViewDispatcher();
 	FrontController fc = new FrontController();
 	vd.showMessage(message);
-	fc.handleRequest("Home");
+	fc.handleRequest("Home");*/
 }
 }
