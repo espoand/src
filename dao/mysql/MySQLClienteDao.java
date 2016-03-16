@@ -103,7 +103,7 @@ public class MySQLClienteDao implements ClienteDao{
 			statement.setString(1, cf);
 			ResultSet risultato = statement.executeQuery();
 			risultato.first();
-			cliente = new Cliente(risultato.getString(2),risultato.getString(3),risultato.getString(4),cf,risultato.getString(5),risultato.getString(6),risultato.getString(7));
+			cliente = new Cliente(risultato.getString("Nome"),risultato.getString("Cognome"),risultato.getString("Telefono"),risultato.getString("Codice_fiscale"),risultato.getString("Via"),risultato.getString("Citta"),risultato.getString("CAP"));
 			statement.close();
 
 			} catch (DatabaseConnectionException | SQLException e) {

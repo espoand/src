@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import entity.Agenzia;
+import entity.Contratto;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,20 +51,25 @@ public void quit(){vd.quit();}
 public void aggiungi(){fc.handleRequest("AggiungiAgenzia");}
 @FXML
 public void elimina(){
+	
 	if(listaAgenzie.getSelectionModel().getSelectedItem() == null){
 		vd.showMessage("Selezionare un elemento");
 	}
+	
+	
 	else{
+		if(!isInContract(Integer.parseInt(listaAgenzie.getSelectionModel().getSelectedItem().getIdAgenzia()))){
 		ArrayList<String> parameters = new ArrayList<String>();
 		parameters.add(listaAgenzie.getSelectionModel().getSelectedItem().getIdAgenzia());
 		if(vd.areYouSure("Sei sicuro di voler procedere?") == 0){
 			boolean eseguito = (boolean) fc.handleRequest("RimuoviAgenzia",parameters);
 			if(eseguito){
 				vd.showMessage("Completato");
-				vd.ricarica();
-		}
+				vd.ricarica();}
 			else vd.showMessage("Si è verificato un errore");
-	}}
+		}}
+			else vd.showMessage("Eliminare prima tutti i contratti in cui vi è questa agenzia");
+	}
 }
 @FXML
 public void modifica(){
@@ -114,6 +120,21 @@ public void home(){vd.home();}
 
 		
 		
+		
+	}
+	
+	public boolean isInContract(int agenzia){
+		boolean risultato = false;
+		ArrayList<Contratto> tuttiContratti = (ArrayList<Contratto>) fc.handleRequest("TuttiContratti");
+		Iterator<Contratto> it1 = tuttiContratti.iterator();
+		Contratto tmp ;
+		while(it1.hasNext()){
+			tmp = it1.next();
+			if(tmp.getAgenziaNoleggio().getIdentificativo() == agenzia || tmp.getAgenziaRestituzione().getIdentificativo() == agenzia){
+				return true;
+			}
+		}
+		return risultato;
 		
 	}
 	public class Record{

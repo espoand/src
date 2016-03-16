@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import entity.Cliente;
+import entity.Contratto;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -77,6 +78,7 @@ public void elimina(){
 	}
 	
 	else{
+		if(!isInContract(tabella.getSelectionModel().getSelectedItem().getCf())){
 		ArrayList<String> parameters = new ArrayList<String>();
 		parameters.add(tabella.getSelectionModel().getSelectedItem().getCf());
 		boolean eseguito =(boolean) fc.handleRequest("RimuoviCliente", parameters);
@@ -84,7 +86,9 @@ public void elimina(){
 			vd.showMessage("Completato");vd.ricarica();
 			
 		}
-		else vd.showMessage("Si è verificato un errore");
+		else vd.showMessage("Si è verificato un errore");}
+		else vd.showMessage("Eliminare prima tutti i contratti stipulati da questo cliente");
+		
 	}
 }
 @FXML
@@ -156,5 +160,18 @@ public void initialize(URL location, ResourceBundle resources) {
 
 
 	
+}
+public boolean isInContract(String cf){
+	
+	ArrayList<Contratto> tuttiContratti = (ArrayList<Contratto>) fc.handleRequest("TuttiContratti");
+	Iterator<Contratto> it1 = tuttiContratti.iterator();
+	Contratto tmp ;
+	while(it1.hasNext()){
+		tmp = it1.next();
+		if(tmp.getCliente().getCodiceFiscale().equals(cf)){
+			return true;
+		}
+	}
+	return false;
 }
 }

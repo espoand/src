@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import entity.Auto;
+import entity.Contratto;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -75,6 +76,7 @@ public void modifica(){
 public void elimina(){
 	if(tabella.getSelectionModel().getSelectedItem() == null){vd.showMessage("Selezionare un elemento");}
 	else{
+		if(!isInContract(tabella.getSelectionModel().getSelectedItem().getTarga())){
 	ArrayList<String> targalist = new ArrayList<String>();
 	targalist.add(tabella.getSelectionModel().getSelectedItem().getTarga());
 	boolean eseguito = false;
@@ -85,7 +87,9 @@ public void elimina(){
 		vd.showMessage("Cancellazione eseguita");vd.ricarica();
 	}
 	else vd.showMessage("Si è verificato un errore durante la cancellazione");
-	}}
+	}
+	else vd.showMessage("Eliminare prima tutti i contratti in cui vi è quest'auto");}}
+
 
 @FXML
 public void quit(){
@@ -121,6 +125,21 @@ public void initialize(URL location, ResourceBundle resources) {
 	 tabella.getColumns().setAll(targaTable,modelloTable,dispTable);
 	 
 	 
+}
+public boolean isInContract(String targa){
+	boolean risultato = false;
+	ArrayList<Contratto> tuttiContratti = (ArrayList<Contratto>) fc.handleRequest("TuttiContratti");
+	Contratto tmp ;
+	Iterator<Contratto> it1 = tuttiContratti.iterator();
+	while(it1.hasNext()){
+		tmp = it1.next();
+		if(tmp.getAutoNoleggiata().getTarga().equals(targa)){
+			return true;
+		}
+		
+	}
+	return risultato;
+	
 }
 public class Record{
 	private SimpleStringProperty targa;

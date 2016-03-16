@@ -9,8 +9,7 @@ String via;
 String citta;
 String cap;
 public Cliente(String nome,String cognome,String telefono,String codiceFiscale,String via,String citta,String cap) throws RuntimeException{
-	if(nome.length()==0 || cognome.length()==0 || telefono.length()==0 || codiceFiscale.length()==0 || via.length()==0) throw new RuntimeException("Tutti i campi sono obbligatori");
-	if(codiceFiscale.length()!=16 ) throw new RuntimeException("Il codice fiscale deve contenere 16 cifre");
+	
 	this.nome=nome;
 	this.cognome=cognome;
 	this.telefono=telefono;

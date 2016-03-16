@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
+import entity.Contratto;
 import entity.TariffaBase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -67,14 +68,18 @@ public void elimina(){
 		vd.showMessage("Compilare il campo nome");
 	}
 	else{
+		if(isInContract(tabella.getSelectionModel().getSelectedItem())){
 		if(vd.areYouSure("Sei sicuro di voler procedere?")== 0){
 			ArrayList<String> parameters = new ArrayList<String>();
 			parameters.add(tabella.getSelectionModel().getSelectedItem());
 			boolean eseguito = (boolean) fc.handleRequest("RimuoviTariffaBase", parameters);
 			if(eseguito){vd.showMessage("Operazione completata");vd.ricarica();}
 			else vd.showMessage("Si è verificato un errore");
-	}}
-}
+	}
+		else vd.showMessage("Eliminare prima tutti i contratti stipulati con questa tariffa"); 
+		}}
+	}
+
 
 @FXML
 public void indietro(){
@@ -93,6 +98,20 @@ public void initialize(URL location, ResourceBundle resources) {
 	while(it1.hasNext()){
 		tabella.getItems().add(it1.next().getNome());
 	}
+	
+	
+}
+public boolean isInContract(String nome){
+	ArrayList<Contratto> tuttiContratti = (ArrayList<Contratto>) fc.handleRequest("TuttiContratti");
+	Iterator<Contratto> it1 = tuttiContratti.iterator();
+	Contratto tmp ;
+	while(it1.hasNext()){
+		tmp = it1.next();
+		if(tmp.getTariffaBase().getNome().equals(nome)){
+			return true;
+		}
+	}
+	return false;
 	
 	
 }

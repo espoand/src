@@ -87,7 +87,7 @@ DateConverter dateConverter = new DateConverter();
 	@Override
 	public ArrayList<Contratto> getContratti() {
 		// TODO Auto-generated method stub
-			String query = "SELECT Cliente,Nro_ord,Data_inizio,Acconto,Fine_prevista,Agenzia_noleggio,Agenzia_restituzione,Tariffa_base,Km_illimitato,Nro_km,Auto_noleggiata,Importo_totale,Chiuso FROM Contratto";
+			String query = "SELECT Nro_ord,Cliente,Data_inizio,Acconto,Fine_prevista,Agenzia_noleggio,Agenzia_restituzione,Tariffa_base,Km_illimitato,Nro_km,Auto_noleggiata,Importo_totale,Chiuso FROM Contratto";
 			Connection connessione;
 			MySQLClienteDao clienteDao =new MySQLClienteDao();
 			MySQLAgenziaDao agenziaDao = new MySQLAgenziaDao();
