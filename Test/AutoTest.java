@@ -46,26 +46,44 @@ public class AutoTest {
 
 		@After
 		public void tearDown() throws Exception {
-			ga.rimuoviAuto(parameters.get(0));
+			ga.rimuoviAuto("EA111BB");
 			gf.eliminaFascia("Self Drive");
 			gt.eliminaTariffaBase("SelfDrive");
+			
 			
 			
 		}
 
 	@Test
 	public void testInserisciAuto() {
-		assertEquals(ga.inserisciAuto(parameters),true);
+		//inserisco un'auto
+		assert(ga.inserisciAuto(parameters) == true);
 	}
 
-	/*@Test
+	@Test
 	public void testModificaAuto() {
-		
+		//modifico l'auto esistente
+		parameters = new ArrayList<String>();
+		parameters.add("EA111BB");
+		parameters.add("30.0");
+		assert(ga.modificaAuto(parameters) == true);
+		//modifico un'auto che non esiste
+		parameters = new ArrayList<String>();
+		parameters.add("EB111BB");
+		parameters.add("40.0");
+		assertEquals(ga.modificaAuto(parameters),false);
 	}
-*/
+
 	@Test
 	public void testRimuoviAuto() {
-		assertEquals(ga.rimuoviAuto(parameters.get(0)),true);
+		//rimuovo un'auto da database
+		parameters = new ArrayList<String>();
+		parameters.add("EA111BB");
+		assert(ga.rimuoviAuto(parameters.get(0)) == true);
+		//provo ad applicare il metodo su un'auto che non esiste
+		parameters = new ArrayList<String>();
+		parameters.add("EC111BB");
+		assert(ga.rimuoviAuto(parameters.get(0)) == false);
 	}
 
 	@Test
@@ -78,15 +96,32 @@ public class AutoTest {
 		assertEquals(a1.getModello(),a2.getModello());
 		assertEquals(a1.isDisponibile(),a2.isDisponibile());
 		assert(a1.getUltimoKmtraggio() == a2.getUltimoKmtraggio());
+		
+		//auto che non esiste nel database
+		
+		assertEquals(ga.getAuto("FK444DB"),null);
 	}
 
-	/*@Test
-	public void testGetAutoDisponibili() {
-		
-	}
+	
 
 	@Test
 	public void testSetStato() {
+		String targa = "EA111BB";
+		boolean disponibile = false;
+		parameters = new ArrayList<String>();
+		parameters.add(targa);
+		parameters.add(Boolean.toString(disponibile));
+		assert(ga.setStato(parameters) == true);
+		
+		//auto inesistente
+		
+		 targa = "EB111BB";
+		disponibile = false;
+		parameters = new ArrayList<String>();
+		parameters.add(targa);
+		parameters.add(Boolean.toString(disponibile));
+		assert(ga.setStato(parameters) == false);
+		
 	}
-*/
+
 }

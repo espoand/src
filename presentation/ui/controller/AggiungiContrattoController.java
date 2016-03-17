@@ -105,7 +105,8 @@ public void submit(){
 		parameters.add(Boolean.toString(illimitati.isSelected()));
 		if(illimitati.isSelected()){parameters.add("1");}
 		else{
-		parameters.add(nroKm.getText());}
+		parameters.add(nroKm.getText());
+		}
 		
 		parameters.add(auto.getValue());
 		parameters.add(importoTotale.getText());

@@ -59,6 +59,8 @@ public class GestisciAuto {
 		double ultimoKm=Double.parseDouble(param.get(1));
 		
 		a=car.getAuto(targa);
+		if(a == null) return false;
+		
 		if(!a.isDisponibile()) return false;
 		
 		return car.modificaAuto(a,ultimoKm);
@@ -72,6 +74,7 @@ public class GestisciAuto {
 	
 			
 			Auto a = car.getAuto(param);
+			if(a== null) return false;
 			if(!a.isDisponibile()) return false;
 				return car.rimuoviAuto(param);
 			
@@ -83,7 +86,7 @@ public class GestisciAuto {
 	
 	public Auto getAuto(String targa){
 		Auto a = car.getAuto(targa);;
-		if(a==null) throw new GenericException("Auto non trovata");
+		if(a==null) return null;
 		
 		return a;
 	}
