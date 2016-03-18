@@ -34,11 +34,8 @@ public class AutoTest {
 			parameters.add("Auto che si guidano da sole");
 			parameters.add("SelfDrive");
 			gf.inserisciFascia(parameters);
-			parameters = new ArrayList<String>();
-			parameters.add("EA111BB");
-			parameters.add("Google Car");
-			parameters.add("Self Drive");
-			parameters.add("0.0");
+			
+			
 			
 			
 			
@@ -57,7 +54,19 @@ public class AutoTest {
 	@Test
 	public void testInserisciAuto() {
 		//inserisco un'auto
+		parameters = new ArrayList<String>();
+		parameters.add("EA111BB");
+		parameters.add("Google Car");
+		parameters.add("Self Drive");
+		parameters.add("0.0");
 		assert(ga.inserisciAuto(parameters) == true);
+		// provo ad inserire un'auto già presente
+		parameters = new ArrayList<String>();
+		parameters.add("EA111BB");
+		parameters.add("Google Car");
+		parameters.add("Self Drive");
+		parameters.add("0.0");
+		assert(ga.inserisciAuto(parameters) == false);
 	}
 
 	@Test
@@ -72,6 +81,15 @@ public class AutoTest {
 		parameters.add("EB111BB");
 		parameters.add("40.0");
 		assertEquals(ga.modificaAuto(parameters),false);
+		//tento di modificare un'auto che non è disponibile
+		parameters = new ArrayList<String>();
+		parameters.add("EA111BB");
+		parameters.add(Boolean.toString(false));
+		ga.setStato(parameters);
+		parameters = new ArrayList<String>();
+		parameters.add("EA111BB");
+		parameters.add("50.0");
+		assert(ga.modificaAuto(parameters) == false);
 	}
 
 	@Test
@@ -84,22 +102,43 @@ public class AutoTest {
 		parameters = new ArrayList<String>();
 		parameters.add("EC111BB");
 		assert(ga.rimuoviAuto(parameters.get(0)) == false);
+		// provo ad eliminare la stessa auto ma con lo stato settato su non disponibile
+		parameters = new ArrayList<String>();
+		parameters.add("EA111BB");
+		parameters.add("Google Car");
+		parameters.add("Self Drive");
+		parameters.add("0.0");
+		ga.inserisciAuto(parameters);
+		parameters = new ArrayList<String>();
+		parameters.add("EA111BB");
+		parameters.add(Boolean.toString(false));
+		ga.setStato(parameters);
+		assert(ga.rimuoviAuto("EA111BB") == false);
+		
+		
 	}
 
 	@Test
 	public void testGetAuto() {
+		parameters = new ArrayList<String>();
+		parameters.add("EA111BB");
+		parameters.add("Google Car");
+		parameters.add("Self Drive");
+		parameters.add("0.0");
 		ga.inserisciAuto(parameters);
 		Auto a1 = new Auto("EA111BB","Google Car",gf.getFascia("Self Drive"),true,0.0);
 		Auto a2 = ga.getAuto("EA111BB");
 		assertEquals(a1.getTarga(),a2.getTarga());
 		assertEquals(a1.getFascia().getIdFascia(),a2.getFascia().getIdFascia());
 		assertEquals(a1.getModello(),a2.getModello());
-		assertEquals(a1.isDisponibile(),a2.isDisponibile());
+		assert(a1.isDisponibile() == a2.isDisponibile());
 		assert(a1.getUltimoKmtraggio() == a2.getUltimoKmtraggio());
 		
 		//auto che non esiste nel database
 		
 		assertEquals(ga.getAuto("FK444DB"),null);
+		
+		
 	}
 
 	

@@ -15,7 +15,7 @@ public class GestisciCliente {
 		cb= new ClienteBusiness();
 	}
 	
-	public Object inserisciCliente(ArrayList<String> param) {
+	public boolean inserisciCliente(ArrayList<String> param) {
 		if(cb==null)
 			return false;
 		String nome=param.get(1);
@@ -31,7 +31,7 @@ public class GestisciCliente {
 		
 	}
 	
-	public Object modificaCliente(ArrayList<String> param){
+	public boolean modificaCliente(ArrayList<String> param){
 		if(cb==null)
 			return false;
 		String codiceFiscale=param.get(0);
@@ -46,7 +46,7 @@ public class GestisciCliente {
 		
 	}
 	
-	public Object rimuoviCliente(String param) {
+	public boolean rimuoviCliente(String param) {
 		if (cb==null)
 			return false;
 		

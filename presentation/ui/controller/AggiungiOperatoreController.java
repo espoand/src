@@ -30,7 +30,7 @@ PasswordField password;
 CheckBox amministratore;
 @FXML
 public void submit(){
-	boolean isAmministratore = amministratore.isSelected();
+	
 	if(cf.getText().isEmpty() || nome.getText().isEmpty() || cognome.getText().isEmpty() || username.getText().isEmpty() || password.getText().isEmpty()){
 		vd.showMessage("Compilare tutti i campi");
 	}
@@ -44,7 +44,8 @@ public void submit(){
 		parameters.add(cognome.getText());
 		parameters.add(username.getText());
 		parameters.add(password.getText());
-		parameters.add(Boolean.toString(isAmministratore));
+		
+		parameters.add(Boolean.toString(amministratore.isSelected()));
 		boolean eseguito = (boolean) fc.handleRequest("AggiungiOperatore",parameters);
 		if(eseguito){vd.showMessage("Completato");vd.indietro();}
 		else {vd.showMessage("Si è verificato un errore");vd.indietro();}

@@ -26,7 +26,7 @@ public String cripta(String messaggio){
 }
 public static void main(String[] args){
 	Cifratura cifratura = new Cifratura();
-	String stringa = "andrea";
+	String stringa = "admin";
 	int i = 0;
 	while(i<4){
 		System.out.println(cifratura.cripta(stringa));

@@ -32,7 +32,7 @@ public class GestisciContratto {
 		
 	}
 	
-	public Object InserisciContratto(ArrayList<String> param) throws ParseException, InstantiationException {
+	public boolean InserisciContratto(ArrayList<String> param) throws ParseException, InstantiationException {
 		if(cb==null)
 			return false;
 		AgenziaBusiness agenzie=new AgenziaBusiness();
@@ -84,7 +84,7 @@ public class GestisciContratto {
 		
 	}
 	
-	public Object eliminaContratto(String param) throws ParseException{
+	public boolean eliminaContratto(String param) throws ParseException{
 		
 		if (cb==null)
 			return false;

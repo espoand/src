@@ -18,7 +18,7 @@ public class GestisciOperatore {
 		
 	}
 	
-	public Object inserisciOperatore(ArrayList<String> param) {
+	public boolean inserisciOperatore(ArrayList<String> param) {
 		if(ob==null)
 			return false;
 		Cifratura cifr = new Cifratura();
@@ -34,7 +34,7 @@ public class GestisciOperatore {
 		
 	}
 	
-	public Object cancellaOperatore (String param){
+	public boolean cancellaOperatore (String param){
 		
 		
 		return ob.cancellaOperatore(param);
@@ -48,5 +48,22 @@ public class GestisciOperatore {
 			throw new GenericException("Si è verificato un errore");
 		}
 		return tutti;
+	}
+	public static void main(String[] args){
+		ArrayList<String> parameters = new ArrayList<String>();
+		GestisciOperatore go = new GestisciOperatore();
+		
+		Cifratura cifr = new Cifratura();
+		parameters.add("1234567890123456");
+		parameters.add("Admin");
+		parameters.add("Admin");
+		parameters.add("admin");
+		parameters.add("21232f297a57a5a743894a0e4a801fc3");
+		parameters.add(Boolean.toString(true));
+		
+		
+		
+		go.inserisciOperatore(parameters);
+		
 	}
 }

@@ -1,6 +1,6 @@
 package entity;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente>{
 String nome;
 String cognome;
 String telefono;
@@ -59,6 +59,14 @@ public String getCap() {
 }
 public void setCap(String cap) {
 	this.cap = cap;
+}
+@Override
+public int compareTo(Cliente o) {
+	// TODO Auto-generated method stub
+	if(nome.equals(o.nome) && cognome.equals(o.cognome) && telefono.equals(o.getTelefono()) && codiceFiscale.equals(o.getCodiceFiscale()) && via.equals(o.getVia()) && citta.equals(o.citta) && cap.equals(o.cap)){
+		return 0;
+	}
+	return -1;
 }
 
 

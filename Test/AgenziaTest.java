@@ -58,6 +58,7 @@ GestisciAgenzia agBu;
 		parametri.set(0, "20");
 		assert(agBu.modificaAgenzia(parametri) == false);
 		
+		
 	}
 	public void testGetAgenzia(){
 		

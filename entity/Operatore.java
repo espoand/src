@@ -2,14 +2,14 @@ package entity;
 
 import utility.Cifratura;
 
-public class Operatore {
+public class Operatore implements Comparable<Operatore>{
 String nome;
 String cognome;
 String cf;
 String username;
 String password;
 boolean amministratore;
-public Operatore(String cf,String nome,String cognome,String username,String password,boolean amministraotore) {
+public Operatore(String cf,String nome,String cognome,String username,String password, boolean amministratore) {
 	
 	// TODO Auto-generated constructor stub
 	this.cf = cf;
@@ -55,6 +55,13 @@ public boolean isAmministratore() {
 }
 public void setAmministratore(boolean amministratore) {
 	this.amministratore = amministratore;
+}
+@Override
+public int compareTo(Operatore o) {
+	// TODO Auto-generated method stub
+	if(nome.equals(o.getNome()) && cognome.equals(o.getCognome()) && cf.equals(o.getCf()) && username.equals(o.getUsername()) && amministratore == o.isAmministratore())
+	return 0;
+	return -1;
 }
 
 }
