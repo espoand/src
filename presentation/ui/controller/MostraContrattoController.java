@@ -27,10 +27,8 @@ public class MostraContrattoController implements Initializable{
 	DatePicker dataNoleggio;
 	@FXML
 	TextField acconto;
-	@FXML
-	TextField numeroOrdine;
-	@FXML
-	DatePicker dataFine;
+		@FXML
+	DatePicker dataFineNoleggio;
 	@FXML
 	TextField agenziaNoleggio;
 	@FXML
@@ -53,8 +51,7 @@ public class MostraContrattoController implements Initializable{
 		cfCliente.setText(contratto.getCliente().getCodiceFiscale());
 		dataNoleggio.setValue(contratto.getDataInizio());
 		acconto.setText(Double.toString(contratto.getAcconto()));
-		numeroOrdine.setText(Integer.toString(contratto.getNroOrdine()));
-		dataFine.setValue(contratto.getFinePrevista());
+		dataFineNoleggio.setValue(contratto.getFinePrevista());
 		agenziaNoleggio.setText(Integer.toString(contratto.getAgenziaNoleggio().getIdentificativo()));
 		agenziaRiconsegna.setText(Integer.toString(contratto.getAgenziaRestituzione().getIdentificativo()));
 		tariffa.setText(contratto.getTariffaBase().getNome());

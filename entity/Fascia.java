@@ -1,6 +1,6 @@
 package entity;
 
-public class Fascia {
+public class Fascia implements Comparable<Fascia>{
 String idFascia;
 String descrizioneFascia;
 TariffaBase tariffaFascia;
@@ -26,5 +26,12 @@ public Fascia(String id,String descr,TariffaBase tariffa){
 	this.idFascia=id;
 	this.descrizioneFascia=descr;
 	this.tariffaFascia=tariffa;
+}
+@Override
+public int compareTo(Fascia o) {
+	// TODO Auto-generated method stub
+	if(idFascia.equals(o.getIdFascia()) && descrizioneFascia.equals(o.getDescrizioneFascia()) && tariffaFascia.compareTo(o.getTariffaFascia()) == 0)
+	return 0;
+	else return -1;
 }
 }

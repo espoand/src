@@ -79,6 +79,8 @@ ViewDispatcher dispatcher = new ViewDispatcher();
 			dispatcher.apriView("mostraTariffaBase");break;
 		case "MostraOperatore":
 			dispatcher.apriView("mostraOperatore");break;
+		case "MostraContratto":
+			dispatcher.apriView("mostraContratto");break;
 		case "SchermataAmministratore":
 			dispatcher.apriView("SchermataAmministratore");break;
 		case "SchermataOperatore":

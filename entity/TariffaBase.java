@@ -1,6 +1,6 @@
 package entity;
 
-public class TariffaBase {
+public class TariffaBase implements Comparable<TariffaBase>{
 double costoAlKm;
 double costoAlKmExtra;
 double costoAlGiornoExtra;
@@ -35,6 +35,13 @@ public double getCostoAlGiornoExtra() {
 }
 public void setCostoAlGiornoExtra(double costoAlGiornoExtra) {
 	this.costoAlGiornoExtra = costoAlGiornoExtra;
+}
+@Override
+public int compareTo(TariffaBase o) {
+	// TODO Auto-generated method stub
+	if(nome.equals(o.getNome()) && costoAlKm== o.getCostoAlKm() && costoAlKmExtra == o.getCostoAlKmExtra() && costoAlGiornoExtra == o.getCostoAlGiornoExtra())
+	return 0;
+	else return -1;
 }
 
 }

@@ -17,7 +17,7 @@ public class GestisciFascia {
 		
 	}
 	
-	public Object inserisciFascia (ArrayList<String> param){
+	public boolean inserisciFascia (ArrayList<String> param){
 		if(fb==null)
 			return false;
 		TariffaBaseBusiness tb=new TariffaBaseBusiness();
@@ -31,7 +31,7 @@ public class GestisciFascia {
 		return fb.inserisciFascia(f);
 	}
 	
-	public Object modificaFascia (ArrayList<String> param){
+	public boolean modificaFascia (ArrayList<String> param){
 		if(fb==null)
 			return false;
 		TariffaBaseBusiness tb=new TariffaBaseBusiness();
@@ -46,7 +46,7 @@ public class GestisciFascia {
 		return fb.modificaFascia(f);
 	}
 	
-	public Object eliminaFascia (String param){
+	public boolean eliminaFascia (String param){
 		if(fb==null)
 			return false;
 		

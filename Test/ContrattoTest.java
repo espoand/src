@@ -104,6 +104,7 @@ public class ContrattoTest {
 
 	@Test
 	public void testGetContratto() {
+		Contratto contratto1 = new Contratto("ABCDEFGHILMNOPQR",LocalDate.now(),50.0,LocalDate.of(2016, 04, 12),gag.getAgenzia("1"))
 	}
 
 	@Test

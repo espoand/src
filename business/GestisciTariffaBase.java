@@ -15,7 +15,7 @@ public class GestisciTariffaBase {
 		
 	}
 	
-	public Object inserisciTariffaBase(ArrayList<String> param){
+	public boolean inserisciTariffaBase(ArrayList<String> param){
 		
 		if(tar==null)
 			return false;
@@ -29,7 +29,7 @@ public class GestisciTariffaBase {
 		return tar.inserisciTariffaBase(tarBas);
 	}
 	
-public Object modificaTariffaBase(ArrayList<String> param){
+public boolean modificaTariffaBase(ArrayList<String> param){
 		
 		if(tar==null)
 			return false;
@@ -43,7 +43,7 @@ public Object modificaTariffaBase(ArrayList<String> param){
 		return tar.modificaTariffaBase(tarBas);
 	}
 
-public Object eliminaTariffaBase(String param){
+public boolean eliminaTariffaBase(String param){
 	
 	if(tar==null)
 		return false;
