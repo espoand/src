@@ -68,7 +68,15 @@ GestisciAuto ga ;
 		parameters.add(LocalDate.now().toString());
 		parameters.add(TipoManutenzione.STRAORDINARIA.toString());
 		parameters.add("500.00");
+		
 		assert(gm.inserisciManutenzione(parameters) == true);
+		
+		parameters = new ArrayList<String>();
+		parameters.add("EA111BB");
+		parameters.add(LocalDate.now().toString());
+		parameters.add("PROGRAMMATA");
+		parameters.add("500.00");
+		assert(gm.inserisciManutenzione(parameters) == false);
 	}
 
 	

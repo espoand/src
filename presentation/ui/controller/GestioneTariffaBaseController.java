@@ -30,7 +30,7 @@ ListView<String> tabella;
 @FXML
 public void cerca(){
 	if(tabella.getSelectionModel().getSelectedItem() == null){
-		vd.showMessage("Riempire il campo nome");
+		vd.showMessage("Selezionare un elemento");
 	}
 	else{
 		ArrayList<String> parameters  = new ArrayList<String>();
@@ -49,7 +49,7 @@ public void aggiungi(){
 @FXML
 public void modifica(){
 	if(tabella.getSelectionModel().getSelectedItem() == null){
-		vd.showMessage("Riempire il campo nome");
+		vd.showMessage("Selezionare un elemento ");
 	}
 	else{
 		ArrayList<String> parameters  = new ArrayList<String>();
@@ -65,10 +65,10 @@ public void modifica(){
 public void elimina(){
 	if(tabella.getSelectionModel().getSelectedItem() == null){
 		
-		vd.showMessage("Compilare il campo nome");
+		vd.showMessage("Selezionare un elemento ");
 	}
 	else{
-		if(isInContract(tabella.getSelectionModel().getSelectedItem())){
+		if(!isInContract(tabella.getSelectionModel().getSelectedItem())){
 		if(vd.areYouSure("Sei sicuro di voler procedere?")== 0){
 			ArrayList<String> parameters = new ArrayList<String>();
 			parameters.add(tabella.getSelectionModel().getSelectedItem());

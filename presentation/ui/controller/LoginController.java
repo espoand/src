@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import exceptions.WrongPasswordException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
@@ -43,7 +44,12 @@ public void submit(){
 		ArrayList<String> parameters = new ArrayList<String>();
 		parameters.add(username.getText());
 		parameters.add(password.getText());
-		boolean loggato = (boolean) fc.handleRequest("Login", parameters);
+		boolean loggato = false;
+		try{
+		loggato = (boolean) fc.handleRequest("Login", parameters);}
+		catch(WrongPasswordException e){
+			vd.showMessage("Password errata!");
+		}
 		if(loggato){
 			if(Sessione.getTipo() == TipoUtente.AMMINISTRATORE){
 				fc.handleRequest("SchermataAmministratore");

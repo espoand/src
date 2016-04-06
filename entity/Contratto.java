@@ -2,7 +2,7 @@ package entity;
 
 import java.time.LocalDate;
 
-public class Contratto {
+public class Contratto implements Comparable<Contratto>{
 Cliente cliente;
 LocalDate dataInizio;
 double acconto;
@@ -17,6 +17,16 @@ Auto autoNoleggiata;
 double importoTotale;
 boolean chiuso;
 
+@Override
+public int compareTo(Contratto o) {
+	// TODO Auto-generated method stub
+	if(o.getCliente().equals(cliente) && dataInizio.isEqual(dataInizio) && o.getAcconto() == acconto && o.nroOrdine == nroOrdine && 
+			o.getFinePrevista().isEqual(finePrevista) && o.getAgenziaNoleggio().equals(agenziaNoleggio) && o.getAgenziaRestituzione().equals(agenziaRestituzione)
+			 && o.getTariffaBase().equals(tariffaBase) && o.isKmIllimitato() == kmIllimitato && o.getNroKm() == nroKm && 
+			 o.getAutoNoleggiata().equals(autoNoleggiata) && o.getImportoTotale() == importoTotale){
+	return 0;}
+	return -1;
+}
 
 public Contratto(int nroOrdine,Cliente c,LocalDate d,double acc,LocalDate fine,Agenzia noleggio,Agenzia restituzione,TariffaBase tariffaBase,boolean kmIllimitato,double nroKm,Auto autoNoleggiata,double importoTotale){
 	
@@ -49,6 +59,7 @@ public Contratto(int nroOrdine,Cliente c,LocalDate d,double acc,LocalDate fine,A
 	this.importoTotale = importoTotale;
 	this.chiuso = chiuso;	
 }
+
 
 public TariffaBase getTariffaBase() {
 	return tariffaBase;

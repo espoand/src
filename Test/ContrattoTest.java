@@ -16,6 +16,7 @@ import business.GestisciCliente;
 import business.GestisciContratto;
 import business.GestisciFascia;
 import business.GestisciTariffaBase;
+import entity.Contratto;
 
 public class ContrattoTest {
 	GestisciContratto gc ;
@@ -102,22 +103,5 @@ public class ContrattoTest {
 
 	
 
-	@Test
-	public void testGetContratto() {
-		Contratto contratto1 = new Contratto("ABCDEFGHILMNOPQR",LocalDate.now(),50.0,LocalDate.of(2016, 04, 12),gag.getAgenzia("1"))
-	}
-
-	@Test
-	public void testModificaContratto() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testChiudiContratto() {
-		fail("Not yet implemented");
-	}
-	@Test
-	public void testEliminaContratto() {
-		fail("Not yet implemented");
-	}
+	
 }
